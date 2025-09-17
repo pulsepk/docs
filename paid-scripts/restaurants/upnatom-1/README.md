@@ -1,12 +1,16 @@
-# 🍔 HornyBurgers
+# 🍔 Horny Burgers
 
-<figure><img src="../../../.gitbook/assets/hornyburgersthumbnail.jpeg" alt=""><figcaption></figcaption></figure>
+{% embed url="https://youtu.be/CaW-8S8WRLU" %}
 
-### Purchase Escrow: [\[Click Here\]](https://pulsescripts.tebex.io/package/6731403)
+### Purchase Escrow: [\[Click Here\]](https://pulsescripts.com/category/escrow)
 
-### Preview: [\[Click Here\]](https://youtu.be/CaW-8S8WRLU)
 
-### Map by Gabz- [Buy Here](https://www.gabzv.com/)
+
+### Map Supported by This Script
+
+**Gabz :** [\[Click Here\]](https://fivem.gabzv.com/)
+
+
 
 ### Features:
 
@@ -50,13 +54,9 @@ Stocked with fresh ingredients—grab what you need to cook up delicious meals!
 
 Master the art of cooking with a variety of delicious treats:
 
-🍔 **Burgers** – Serve up juicy, flavorful burgers with a variety of toppings.
-
-🍟 **Fries** – Enjoy crispy, golden fries, perfect as a side or snack.
-
-**🥛 Soft Drinks** – Enjoy refreshing sodas and fizzy beverages.
-
-🥤 **Sodas** – Refresh and quench your thirst with fizzy, flavorful drinks.
+🍔 **Burger** – Juicy, flavorful, and grilled to perfection. A classic favorite!\
+🍟 **Fries** – Crispy, golden, and perfectly seasoned. The ultimate sidekick!\
+🥤 **Drinks** – Refreshing and thirst-quenching beverages for every occasion.
 
 💰 **Cash Registers:**&#x20;
 
