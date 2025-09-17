@@ -1,6 +1,6 @@
 # Installation
 
-## Step 1
+### Dependencies
 
 Make Sure all the dependencies are installed.
 
@@ -10,130 +10,187 @@ Required
 
 [<kbd>ox-target</kbd>](https://github.com/overextended/ox_target) <kbd>or</kbd> [<kbd>qb-target</kbd>](https://github.com/qbcore-framework/qb-target)
 
-### Step 2
+### Config Setup
 
 Adjust config.lua according to your liking
 
-Make sure to set your target, clothing, billing, inventory script
+Make sure to set your map, target, clothing, billing, society script
 
-### Step 3
+### SQL Installation
 
-Now execute this query into your server database using heidisql or phpmyadmin.
+Use this if AutoInstallSQL Fails for some reason and doesn't generates the sql database
 
-{% tabs %}
-{% tab title="ESX" %}
-```sql
+<details>
+
+<summary>ESX</summary>
+
+```lua
 CREATE TABLE IF NOT EXISTS `pl_upnatom` (
-  `stock` longtext DEFAULT NULL
+    `stock` longtext DEFAULT NULL
+    `state` varchar(5) NOT NULL DEFAULT 'open'
 ) ENGINE=InnoDB DEFAULT CHARSET=armscii8 COLLATE=armscii8_bin;
 
-INSERT INTO `addon_account` (name, label, shared) VALUES
+ INSERT INTO `addon_account` (name, label, shared) VALUES
 	('society_upnatom', 'Up n Atom', 1);
 
 INSERT INTO `datastore` (name, label, shared) VALUES
-	('society_upnatom', 'Up n Atom', 1);
+        ('society_upnatom', 'Up n Atom', 1);
 
 INSERT INTO `jobs` (name, label,whitelisted) VALUES
-	('upnatom', 'Up n Atom',1)
-;
+       ('upnatom', 'Up n Atom',1);
 
-INSERT INTO `job_grades` (job_name, grade, name, label, salary, skin_male, skin_female) VALUES
-	('upnatom',0,'cashier','Cashier',20,'{}','{}'),
-	('upnatom',1,'cook','Cook',40,'{}','{}'),
-	('upnatom',2,'staff','Staff',60,'{}','{}'),
-	('upnatom',3,'manager','Manager',85,'{}','{}'),
-	('upnatom',4,'boss','Owner',100,'{}','{}')
-;
+ INSERT INTO `job_grades` (job_name, grade, name, label, salary, skin_male, skin_female) VALUES
+        ('upnatom',0,'cashier','Cashier',20,'{}','{}'),
+        ('upnatom',1,'cook','Cook',40,'{}','{}'),
+        ('upnatom',2,'staff','Staff',60,'{}','{}'),
+        ('upnatom',3,'manager','Manager',85,'{}','{}'),
+        ('upnatom',4,'boss','Owner',100,'{}','{}');
 ```
 
+</details>
 
-{% endtab %}
+<details>
 
-{% tab title="QBCore" %}
-```sql
+<summary>QBCore or Qbox</summary>
+
+```lua
 CREATE TABLE IF NOT EXISTS `pl_upnatom` (
-  `stock` longtext DEFAULT NULL
+     `stock` LONGTEXT DEFAULT NULL,
+     `state` VARCHAR(5) NOT NULL DEFAULT 'open'
 ) ENGINE=InnoDB DEFAULT CHARSET=armscii8 COLLATE=armscii8_bin;
 ```
 
+</details>
 
-{% endtab %}
-{% endtabs %}
-
-### Step 4
+### Items
 
 Add the items into your server
 
-{% tabs %}
-{% tab title="Ox-Inventory" %}
-Add the Following Items in ox\_inventory/data/items.lua
+<details>
+
+<summary>Ox Inventory</summary>
 
 ```lua
 ["ua_bbq_chicken"] = {
     label = "BBQ Chicken Burger",
     weight = 1,
-    stack = true,
-    close = true,
+    client = {
+			status = { hunger = 200000 },
+			anim = 'eating',
+			prop = 'burger',
+			usetime = 2500,
+			notification = 'You ate a delicious burger'
+		},
 },
 ["ua_mustard_beef"] = {
     label = "Mustard Beef Burger",
     weight = 1,
-    stack = true,
-    close = true,
+    client = {
+			status = { hunger = 200000 },
+			anim = 'eating',
+			prop = 'burger',
+			usetime = 2500,
+			notification = 'You ate a delicious burger'
+		},
 },
 ["ua_glazed_turkey"] = {
     label = "Glazed Turkey Burger",
     weight = 1,
-    stack = true,
-    close = true,
+    client = {
+			status = { hunger = 200000 },
+			anim = 'eating',
+			prop = 'burger',
+			usetime = 2500,
+			notification = 'You ate a delicious burger'
+		},
 },
 ["ua_spicy_lamb"] = {
     label = "Spic  Lamb Burger",
     weight = 1,
-    stack = true,
-    close = true,
+    client = {
+			status = { hunger = 200000 },
+			anim = 'eating',
+			prop = 'burger',
+			usetime = 2500,
+			notification = 'You ate a delicious burger'
+		},
 },
 ["ua_sweet_smoky_vegan"] = {
     label = "Sweet & Smoky Vegan Burger",
     weight = 1,
-    stack = true,
-    close = true,
+    client = {
+			status = { hunger = 200000 },
+			anim = 'eating',
+			prop = 'burger',
+			usetime = 2500,
+			notification = 'You ate a delicious burger'
+		},
 },
 ["ua_butter_fries"] = {
     label = "Butter Fries",
     weight = 1,
-    stack = true,
-    close = true,
+    client = {
+			status = { hunger = 200000 },
+			anim = 'eating',
+			prop = 'burger',
+			usetime = 2500,
+			notification = 'You ate a delicious burger'
+		},
 },
 ["ua_spicy_glazed"] = {
     label = "Spicy Glazed Fries",
     weight = 1,
-    stack = true,
-    close = true,
+    client = {
+			status = { hunger = 200000 },
+			anim = 'eating',
+			prop = 'burger',
+			usetime = 2500,
+			notification = 'You ate a delicious burger'
+		},
 },
 ["ua_parmesan_fries"] = {
     label = "Parmesan Fries",
     weight = 1,
-    stack = true,
-    close = true,
+    client = {
+			status = { hunger = 200000 },
+			anim = 'eating',
+			prop = 'burger',
+			usetime = 2500,
+			notification = 'You ate a delicious burger'
+		},
 },
 ["ua_sweet_cajun"] = {
     label = "Sweet Cajun Fries",
     weight = 1,
-    stack = true,
-    close = true,
+    client = {
+			status = { hunger = 200000 },
+			anim = 'eating',
+			prop = 'burger',
+			usetime = 2500,
+			notification = 'You ate a delicious burger'
+		},
 },
 ["ua_garlic_fries"] = {
     label = "Garlic Fries",
     weight = 1,
-    stack = true,
-    close = true,
+    client = {
+			status = { hunger = 200000 },
+			anim = 'eating',
+			prop = 'burger',
+			usetime = 2500,
+			notification = 'You ate a delicious burger'
+		},
 },
 ["ua_lemon_fizz"] = {
     label = "Lemon Fizz",
     weight = 1,
-    stack = true,
-    close = true,
+    client = {
+			status = { thirst = 200000 },
+			anim = { dict = 'mp_player_intdrink', clip = 'loop_bottle' },
+			prop = { model = `prop_ld_can_01`, pos = vec3(0.01, 0.01, 0.06), rot = vec3(5.0, 5.0, -180.5) },
+			usetime = 2500,
+			notification = 'You quenched your thirst with a sprunk'
+		},
 },
 ["ua_mint_cooler"] = {
     label = "Mint Cooler",
@@ -144,50 +201,90 @@ Add the Following Items in ox\_inventory/data/items.lua
 ["ua_ginger_punch"] = {
     label = "Ginger Punch",
     weight = 1,
-    stack = true,
-    close = true,
+    client = {
+			status = { thirst = 200000 },
+			anim = { dict = 'mp_player_intdrink', clip = 'loop_bottle' },
+			prop = { model = `prop_ld_can_01`, pos = vec3(0.01, 0.01, 0.06), rot = vec3(5.0, 5.0, -180.5) },
+			usetime = 2500,
+			notification = 'You quenched your thirst with a sprunk'
+		},
 },
 ["ua_berry_refresher"] = {
     label = "Berry Refresher",
     weight = 1,
-    stack = true,
-    close = true,
+    client = {
+			status = { thirst = 200000 },
+			anim = { dict = 'mp_player_intdrink', clip = 'loop_bottle' },
+			prop = { model = `prop_ld_can_01`, pos = vec3(0.01, 0.01, 0.06), rot = vec3(5.0, 5.0, -180.5) },
+			usetime = 2500,
+			notification = 'You quenched your thirst with a sprunk'
+		},
 },
 ["ua_tropical_splash"] = {
     label = "Tropica Splash",
     weight = 1,
-    stack = true,
-    close = true,
+    client = {
+			status = { thirst = 200000 },
+			anim = { dict = 'mp_player_intdrink', clip = 'loop_bottle' },
+			prop = { model = `prop_ld_can_01`, pos = vec3(0.01, 0.01, 0.06), rot = vec3(5.0, 5.0, -180.5) },
+			usetime = 2500,
+			notification = 'You quenched your thirst with a sprunk'
+		},
 },
 ["ua_green_tea"] = {
     label = "Iced Green Tea",
     weight = 1,
-    stack = true,
-    close = true,
+    client = {
+			status = { thirst = 200000 },
+			anim = { dict = 'mp_player_intdrink', clip = 'loop_bottle' },
+			prop = { model = `prop_ld_can_01`, pos = vec3(0.01, 0.01, 0.06), rot = vec3(5.0, 5.0, -180.5) },
+			usetime = 2500,
+			notification = 'You quenched your thirst with a sprunk'
+		},
 },
 ["ua_ginger_soda"] = {
     label = "Ginger Soda",
     weight = 1,
-    stack = true,
-    close = true,
+    client = {
+			status = { thirst = 200000 },
+			anim = { dict = 'mp_player_intdrink', clip = 'loop_bottle' },
+			prop = { model = `prop_ld_can_01`, pos = vec3(0.01, 0.01, 0.06), rot = vec3(5.0, 5.0, -180.5) },
+			usetime = 2500,
+			notification = 'You quenched your thirst with a sprunk'
+		},
 },
 ["ua_mint_sparkler"] = {
     label = "Mint Sparkler",
     weight = 1,
-    stack = true,
-    close = true,
+    client = {
+			status = { thirst = 200000 },
+			anim = { dict = 'mp_player_intdrink', clip = 'loop_bottle' },
+			prop = { model = `prop_ld_can_01`, pos = vec3(0.01, 0.01, 0.06), rot = vec3(5.0, 5.0, -180.5) },
+			usetime = 2500,
+			notification = 'You quenched your thirst with a sprunk'
+		},
 },
 ["ua_berry_soda"] = {
     label = "Berry Soda",
     weight = 1,
-    stack = true,
-    close = true,
+    client = {
+			status = { thirst = 200000 },
+			anim = { dict = 'mp_player_intdrink', clip = 'loop_bottle' },
+			prop = { model = `prop_ld_can_01`, pos = vec3(0.01, 0.01, 0.06), rot = vec3(5.0, 5.0, -180.5) },
+			usetime = 2500,
+			notification = 'You quenched your thirst with a sprunk'
+		},
 },
 ["ua_pineapple_pop"] = {
     label = "Pineapple Pop",
     weight = 1,
-    stack = true,
-    close = true,
+    client = {
+			status = { thirst = 200000 },
+			anim = { dict = 'mp_player_intdrink', clip = 'loop_bottle' },
+			prop = { model = `prop_ld_can_01`, pos = vec3(0.01, 0.01, 0.06), rot = vec3(5.0, 5.0, -180.5) },
+			usetime = 2500,
+			notification = 'You quenched your thirst with a sprunk'
+		},
 },
 ["ua_bun"] = {
     label = "Burger Bun",
@@ -303,13 +400,31 @@ Add the Following Items in ox\_inventory/data/items.lua
     stack = true,
     close = true,
 },
+["ua_icecubes"] = {
+    label = "Ice Cubes",
+    weight = 1,
+    stack = true,
+    close = true,
+},
+["ua_waterbottle"] = {
+    label = "Water Bottle",
+    weight = 1,
+    stack = true,
+    close = true,
+},
+["ua_emptycup"] = {
+    label = "Empty Cup",
+    weight = 1,
+    stack = true,
+    close = true,
+},
 ```
 
+</details>
 
-{% endtab %}
+<details>
 
-{% tab title="qb-inventory" %}
-Add the Following Items in qb-core/shared/items.lua
+<summary>QB Inventory</summary>
 
 ```lua
 ['ua_bbq_chicken'] = {['name'] = 'ua_bbq_chicken', ['label'] = 'BBQ Chicken Burger', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_bbq_chicken.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
@@ -351,13 +466,16 @@ Add the Following Items in qb-core/shared/items.lua
 ['ua_berry'] = {['name'] = 'ua_berry', ['label'] = 'Berry', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_berry.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
 ['ua_tropical'] = {['name'] = 'ua_tropical', ['label'] = 'Tropical', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_tropical.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
 ['ua_pineapple'] = {['name'] = 'ua_pineapple', ['label'] = 'Pineapple', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_pineapple.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_icecubes'] = {['name'] = 'ua_icecubes', ['label'] = 'Ice Cubes', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_icecubes.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_waterbottle'] = {['name'] = 'ua_waterbottle', ['label'] = 'Water Bottle', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_waterbottle.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_emptycup'] = {['name'] = 'ua_emptycup', ['label'] = 'Empty Cup', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_emptycup.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
 ```
 
+</details>
 
-{% endtab %}
+<details>
 
-{% tab title="qs-inventory" %}
-Add the Following Item in qs-inventory/shared/items.lua
+<summary>Quasar Inventory</summary>
 
 ```lua
 ['ua_bbq_chicken'] = {['name'] = 'ua_bbq_chicken', ['label'] = 'BBQ Chicken Burger', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_bbq_chicken.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
@@ -399,15 +517,18 @@ Add the Following Item in qs-inventory/shared/items.lua
 ['ua_berry'] = {['name'] = 'ua_berry', ['label'] = 'Berry', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_berry.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
 ['ua_tropical'] = {['name'] = 'ua_tropical', ['label'] = 'Tropical', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_tropical.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
 ['ua_pineapple'] = {['name'] = 'ua_pineapple', ['label'] = 'Pineapple', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_pineapple.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_icecubes'] = {['name'] = 'ua_icecubes', ['label'] = 'Ice Cubes', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_icecubes.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_waterbottle'] = {['name'] = 'ua_waterbottle', ['label'] = 'Water Bottle', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_waterbottle.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_emptycup'] = {['name'] = 'ua_emptycup', ['label'] = 'Empty Cup', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_emptycup.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
 ```
 
+</details>
 
-{% endtab %}
+<details>
 
-{% tab title="ESX Inventory" %}
-Execute the following query into your database
+<summary>ESX ITems Sql</summary>
 
-```sql
+```lua
 INSERT INTO `items` (`name`, `label`, `weight`) VALUES
 ('ua_bbq_chicken', 'BBQ Chicken Burger', 1),
 ('ua_mustard_beef', 'Mustard Beef Burger', 1),
@@ -447,14 +568,15 @@ INSERT INTO `items` (`name`, `label`, `weight`) VALUES
 ('ua_ginger', 'Ginger', 1),
 ('ua_berry', 'Berry', 1),
 ('ua_tropical', 'Tropica ', 1),
-('ua_pineapple', 'Pineapple', 1);
+('ua_pineapple', 'Pineapple', 1),
+('ua_icecubes', 'Ice Cubes', 1),
+('ua_waterbottle', 'Water Bottle', 1),
+('ua_emptycup', 'Empty Cup', 1);
 ```
 
+</details>
 
-{% endtab %}
-{% endtabs %}
-
-### Step 5 - For QBCore Only
+### For QBCore Only
 
 {% tabs %}
 {% tab title="jobs.lua" %}
@@ -490,34 +612,46 @@ Add the Following in qb-core/shared/jobs.lua
 },
 ```
 
-
-{% endtab %}
-
-{% tab title="management.lua" %}
-Add the following in qb-management/client/cl\_config.lua
+Added in Qbox->shared->jobs.lua
 
 ```lua
 ['upnatom'] = {
-    vector3(81.77, 296.29, 110.25)
+    label = 'Up n Atom',
+    defaultDuty = true,
+    grades = {
+        [0] = {
+            name = 'Cashier',
+            payment = 50
+        },
+        [1] = {
+            name = 'Cook',
+            payment = 75
+        },
+        [2] = {
+            name = 'Shift Manager',
+            payment = 100
+        },
+        [3] = {
+            name = 'Manager',
+            payment = 125,
+        },
+        [4] = {
+            name = 'Owner',
+            payment = 125,
+            isboss = true,
+        },
+    },
 },
 ```
-
-If your qb-management doesn't have the above file. Then add in the following qb-management/config.lua
-
-```lua
-upnatom = {
-    vector3(81.77, 296.29, 110.25)
-},
-```
-
-
 {% endtab %}
 {% endtabs %}
 
-### Step 6 - Consumables
+### Consumables
 
-{% tabs %}
-{% tab title="qb-smallresources" %}
+<details>
+
+<summary>QB Smallresources</summary>
+
 Add in qb-smallresourcse/config.lua
 
 ```lua
@@ -583,182 +717,53 @@ Config.Consumables = {
 }
 ```
 
+</details>
 
-{% endtab %}
+<details>
 
-{% tab title="jim-consumables" %}
-Add the following in jim-consumables/config.lua
+<summary>Jim Consumables</summary>
 
-```lua
-["ua_bbq_chicken"] = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20) } },
-["ua_mustard_beef"] = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20) } },
-["ua_glazed_turkey"] = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20) } },
-["ua_spicy_lamb"] = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20) } },
-["ua_sweet_smoky_vegan"] = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20) } },
-["ua_butter_fries"] = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20) } },
-["ua_spicy_glazed"] = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20) } },
-["ua_parmesan_fries"] = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20) } },
-["ua_sweet_cajun"] = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20) } },
-["ua_garlic_fries"] = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20) } },
-
-["ua_green_tea"] = { emote = "coffee", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "drink",stats = { effect = "stamina", time = 10000, thirst = math.random(10,20), }},
-["ua_mint_cooler"] = { emote = "coffee", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "drink",stats = { effect = "stamina", time = 10000, thirst = math.random(10,20), }},
-["ua_ginger_punch"] = { emote = "coffee", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "drink",stats = { effect = "stamina", time = 10000, thirst = math.random(10,20), }},
-["ua_berry_refresher"] = { emote = "coffee", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "drink",stats = { effect = "stamina", time = 10000, thirst = math.random(10,20), }},
-["ua_tropical_splash"] = { emote = "coffee", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "drink",stats = { effect = "stamina", time = 10000, thirst = math.random(10,20), }},
-
-["ua_lemon_fizz"] = { emote = "ecola", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "drink",stats = { effect = "stamina", time = 10000, thirst = math.random(10,20), }},
-["ua_ginger_soda"] = { emote = "ecola", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "drink",stats = { effect = "stamina", time = 10000, thirst = math.random(10,20), }},
-["ua_mint_sparkler"] = { emote = "ecola", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "drink",stats = { effect = "stamina", time = 10000, thirst = math.random(10,20), }},
-["ua_berry_soda"] = { emote = "ecola", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "drink",stats = { effect = "stamina", time = 10000, thirst = math.random(10,20), }},
-["ua_pineapple_pop"] = { emote = "ecola", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "drink",stats = { effect = "stamina", time = 10000, thirst = math.random(10,20), }},
-```
-{% endtab %}
-
-{% tab title="esx_basicneeds" %}
-Add the following in esx\_basicneeds->config.lua
+Add the following in jim-consumables/shared/consumables.lua
 
 ```lua
-Config.Items = {
-    ["ua_bbq_chicken"] = {
-        type = "food",
-        prop= "prop_cs_burger_01",
-        status = 200000,
-        remove = true
-    },
-    ["ua_mustard_beef"] = {
-        type = "food",
-        prop= "prop_cs_burger_01",
-        status = 200000,
-        remove = true
-    },
-    ["ua_glazed_turkey"] = {
-        type = "food",
-        prop= "prop_cs_burger_01",
-        status = 200000,
-        remove = true
-    },
-    ["ua_spicy_lamb"] = {
-        type = "food",
-        prop= "prop_cs_burger_01",
-        status = 200000,
-        remove = true
-    },
-    ["ua_sweet_smoky_vegan"] = {
-        type = "food",
-        prop= "prop_cs_burger_01",
-        status = 200000,
-        remove = true
-    },
-    ["ua_butter_fries"] = {
-        type = "food",
-        prop= "prop_cs_burger_01",
-        status = 200000,
-        remove = true
-    },
-    ["ua_spicy_glazed"] = {
-        type = "food",
-        prop= "prop_cs_burger_01",
-        status = 200000,
-        remove = true
-    },
-    ["ua_parmesan_fries"] = {
-        type = "food",
-        prop= "prop_cs_burger_01",
-        status = 200000,
-        remove = true
-    },
-    ["ua_sweet_cajun"] = {
-        type = "food",
-        prop= "prop_cs_burger_01",
-        status = 200000,
-        remove = true
-    },
-    ["ua_garlic_fries"] = {
-        type = "food",
-        prop= "prop_cs_burger_01",
-        status = 200000,
-        remove = true
-    },
-    
-    ["ua_green_tea"] = {
-        type = "drink",
-        prop= "prop_ld_flow_bottle",
-        status = 200000,
-        remove = true
-    },
-    ["ua_mint_cooler"] = {
-        type = "drink",
-        prop= "prop_ld_flow_bottle",
-        status = 200000,
-        remove = true
-    },
-    ["ua_ginger_punch"] = {
-        type = "drink",
-        prop= "prop_ld_flow_bottle",
-        status = 200000,
-        remove = true
-    },
-    ["ua_berry_refresher"] = {
-        type = "drink",
-        prop= "prop_ld_flow_bottle",
-        status = 200000,
-        remove = true
-    },
-    ["ua_tropical_splash"] = {
-        type = "drink",
-        prop= "prop_ld_flow_bottle",
-        status = 200000,
-        remove = true
-    },
-    ["ua_lemon_fizz"] = {
-        type = "drink",
-        prop= "prop_ld_flow_bottle",
-        status = 200000,
-        remove = true
-    },
-    ["ua_ginger_soda"] = {
-        type = "drink",
-        prop= "prop_ld_flow_bottle",
-        status = 200000,
-        remove = true
-    },
-    ["ua_mint_sparkler"] = {
-        type = "drink",
-        prop= "prop_ld_flow_bottle",
-        status = 200000,
-        remove = true
-    },
-    ["ua_berry_soda"] = {
-        type = "drink",
-        prop= "prop_ld_flow_bottle",
-        status = 200000,
-        remove = true
-    },
-    ["ua_pineapple_pop"] = {
-        type = "drink",
-        prop= "prop_ld_flow_bottle",
-        status = 200000,
-        remove = true
-    },
-}
+--jim-consumables/shared/consumables.lua
+ua_bbq_chicken = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20) } },
+ua_mustard_beef = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20) } },
+ua_glazed_turkey = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20) } },
+ua_spicy_lamb = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20) } },
+ua_sweet_smoky_vegan = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20) } },
+ua_butter_fries = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20) } },
+ua_spicy_glazed = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20) } },
+ua_parmesan_fries = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20) } },
+ua_sweet_cajun = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20) } },
+ua_garlic_fries = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20) } },
+
+ua_green_tea = { emote = "coffee", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "drink",stats = { effect = "stamina", time = 10000, thirst = math.random(10,20), }},
+ua_mint_cooler = { emote = "coffee", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "drink",stats = { effect = "stamina", time = 10000, thirst = math.random(10,20), }},
+ua_ginger_punch = { emote = "coffee", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "drink",stats = { effect = "stamina", time = 10000, thirst = math.random(10,20), }},
+ua_berry_refresher = { emote = "coffee", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "drink",stats = { effect = "stamina", time = 10000, thirst = math.random(10,20), }},
+ua_tropical_splash = { emote = "coffee", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "drink",stats = { effect = "stamina", time = 10000, thirst = math.random(10,20), }},
+
+ua_lemon_fizz = { emote = "ecola", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "drink",stats = { effect = "stamina", time = 10000, thirst = math.random(10,20), }},
+ua_ginger_soda = { emote = "ecola", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "drink",stats = { effect = "stamina", time = 10000, thirst = math.random(10,20), }},
+ua_mint_sparkler = { emote = "ecola", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "drink",stats = { effect = "stamina", time = 10000, thirst = math.random(10,20), }},
+ua_berry_soda = { emote = "ecola", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "drink",stats = { effect = "stamina", time = 10000, thirst = math.random(10,20), }},
+ua_pineapple_pop = { emote = "ecola", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "drink",stats = { effect = "stamina", time = 10000, thirst = math.random(10,20), }},
 ```
 
+</details>
 
-{% endtab %}
-{% endtabs %}
-
-### Step 7
+### Add Images to Inventory
 
 Copy all the Images folder and paste it in your inventory Images folder
 
-### Step 8 - Optional
+### Log Webook Setup - Optional
 
 To enable discord logs make sure to add your webhook in the server->Log.lua File
 
 {% embed url="https://www.youtube.com/watch?pp=ygULI2FwcHlxczIwMjM=&v=fKksxz2Gdnc" %}
 
+### Video of Installation:
 
-
-
+{% embed url="https://www.youtube.com/watch?v=rkWxUxoF3_s" %}
 

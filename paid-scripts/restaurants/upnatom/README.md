@@ -1,14 +1,16 @@
-# 🍅 UpnAtom
+# ⚛️ UpnAtom
 
-###
 
-<figure><img src="../../../.gitbook/assets/upnatom-thumbnail.png" alt=""><figcaption></figcaption></figure>
 
-### Purchase Escrow: [\[Click Here\]](https://pulsescripts.tebex.io/package/6749404)
+### Purchase Escrow: [\[Click Here\]](https://pulsescripts.com/category/escrow)
 
 ### Preview: Coming Soon
 
-### Map by Gabz- [Buy Here](https://www.gabzv.com/)
+### Map Supported by This Script
+
+**Gabz :** [\[Click Here\]](https://fivem.gabzv.com/)
+
+
 
 ### Features:
 
@@ -54,9 +56,7 @@ Master the art of cooking with a variety of delicious treats:
 
 🍔 **Burger** – Juicy, flavorful, and grilled to perfection. A classic favorite!\
 🍟 **Fries** – Crispy, golden, and perfectly seasoned. The ultimate sidekick!\
-**🥛** **Drinks** – Refreshing and thirst-quenching beverages for every occasion.
-
-🥤 **Sodas** – Refresh and quench your thirst with fizzy, flavorful drinks.
+🥤 **Drinks** – Refreshing and thirst-quenching beverages for every occasion.
 
 💰 **Cash Registers:**&#x20;
 
