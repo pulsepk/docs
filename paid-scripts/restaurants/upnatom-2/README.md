@@ -1,16 +1,20 @@
-# 🐟 Pearls
+# 🍔 Horny Burgers
 
-<figure><img src="../../../.gitbook/assets/Pearls.png" alt=""><figcaption></figcaption></figure>
+{% embed url="https://youtu.be/CaW-8S8WRLU" %}
 
-### Purchase Escrow: [\[Click Here\]](https://pulsescripts.tebex.io/package/6707935)
+### Purchase Escrow: [\[Click Here\]](https://pulsescripts.com/category/escrow)
 
-### Preview: [\[Click Here\]](https://youtu.be/KaU5mq9hx94)
 
-### Map by Gabz- [Buy Here](https://www.gabzv.com/)
+
+### Map Supported by This Script
+
+**Gabz :** [\[Click Here\]](https://fivem.gabzv.com/)
+
+
 
 ### Features:
 
-**🍞 40 Consumable Item with unique ingredients**
+**🍞 20 Consumable Item with unique ingredients**
 
 **🏛️ Item Stock Management :-**
 
@@ -50,13 +54,9 @@ Stocked with fresh ingredients—grab what you need to cook up delicious meals!
 
 Master the art of cooking with a variety of delicious treats:
 
-🐟 **Fish** – Fresh and flavorful seafood, cooked to perfection.
-
-🍽️ **Appetizers** – Delicious starters to begin your meal on a tasty note.
-
-🥤 **Beverages** – Refreshing drinks to quench your thirst.
-
-☕ **Coffee** – Rich, aromatic brews to energize your day.
+🍔 **Burger** – Juicy, flavorful, and grilled to perfection. A classic favorite!\
+🍟 **Fries** – Crispy, golden, and perfectly seasoned. The ultimate sidekick!\
+🥤 **Drinks** – Refreshing and thirst-quenching beverages for every occasion.
 
 💰 **Cash Registers:**&#x20;
 

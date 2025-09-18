@@ -41,9 +41,8 @@ Config.Debug = {
     Prints = true, --Prints debug messages in console
 }
 --gabz: https://fivem.gabzv.com/
---slb2k11: https://yuri-customs.tebex.io/package/4826484
 
-Config.location = "gabz" --'gabz', 'slb2k11'  -- Location of the shop
+Config.location = "gabz" --'gabz'  -- Location of the shop
 
 Config.TextUI = 'autodetect' --'autodetect' or 'ox_lib', 'qb-core', 'jg-textui', 'lation_ui', 'esx_textui', 'cd_drawtextui', 'brutal_textui'
 Config.BossMenu = 'autodetect' --'autodetect' or 'esx_society', 'qb-management', 'qbx_management', 'vms_bossmenu'
@@ -70,19 +69,18 @@ Config.Logging = {
 Config.CheckVersion = true
 
 local locationBlips = {
-    gabz = vector3(-1835.59, -1190.72, 14.31),
-    slb2k11 = vector3(-1835.59, -1190.72, 14.31)
+    gabz = vector3(1242.684, -360.787, 69.082)
 }
 
 local blipcoords = locationBlips[Config.location]
 
 Config.Blip = {
-    BlipName = "Pearls", -- Blip Name
+    BlipName = "Horny Burgers", -- Blip Name
     Enable = true,
     Coords = blipcoords,
     Options = {
-        Sprite = 267,
-        Color = 3,
+        Sprite = 80,
+        Color = 2,
         Scale = 0.8,
         Display = 4
     }
@@ -99,7 +97,7 @@ Config.MarkerSettings = {
 }
 
 Config.EnableSocietyPayment = false -- If enable you can pay from society for the fridge items
-Config.Jobname = 'pearls' -- Job Name
+Config.Jobname = 'hornyburgers' -- Job Name
 
 Config.StashInventory = {
     --Stash
@@ -119,8 +117,8 @@ Config.StashInventory = {
 Config.MaxStock = 100
 
 Config.IceMachine = {
-    ice_itemname = 'pearl_icecubes',
-    water_itemname = 'pearl_waterbottle',
+    ice_itemname = 'hb_icecubes',
+    water_itemname = 'hb_waterbottle',
     WaitTime = 560,
     MaxIce = 10
 }
@@ -180,75 +178,57 @@ Config.SkillCheck = {
     }
 }
 
--- 💡 Use creator code 'PULSE' at checkout to get a 10% discount!
--- Enable DJ's custom food props/items from DJS Collection
--- Package link: https://djscollections.com/package/6011288
-
-Config.UseDJItems = true -- Set to true to enable DJ's custom items/props
-
 Config.CheckCanCarryItem = false
 
 Config.Shop = {
     Storage = {
 		label = "Fridge",
 		items = {
-            Fish = {
-                { name = "pearl_fillet", label="Fillet", price = 50, amount = 50},
-                { name = "pearl_garlic_butter", label="Garlic Butter Special Sauce", price = 50, amount = 50},
-                { name = "pearl_herb", label="Herb sauce", price = 50, amount = 50},
-                { name = "pearl_parmesan_cheese", label="Parmesan cheese", price = 50, amount = 50},
-                { name = "pearl_blackening_seaon", label="Blackening seasoning", price = 50, amount = 50},
-                { name = "pearl_beer_batter", label="Beer batter ", price = 50, amount = 50},
-                { name = "pearl_mango_salsa", label="Mango Salsa", price = 50, amount = 50},
-                { name = "pearl_ginger", label="Ginger", price = 50, amount = 50},
-                { name = "pearl_lime_slaw", label="Lime Slaw ", price = 50, amount = 50},
-                { name = "pearl_lemon_sauce", label="Lemon Sauce", price = 50, amount = 50},
-                { name = "pearl_pesto", label="Pesto", price = 50, amount = 50},   
+            Burgers = {
+                { name = "hb_bun", label = "Burger Bun", price = 50, amount = 50},
+                { name = "hb_sauce", label = "Horny Sauce", price = 50, amount = 50},
+                { name = "hb_jalapeno_relish", label = "Jalapeno Relish", price = 50, amount = 50},
+                { name = "hb_melted_cheddar", label = "Melted Cheddar", price = 50, amount = 50},
+                { name = "hb_crispy_bacon", label = "Crispy Bacon", price = 50, amount = 50},
+                { name = "hb_bbq_sauce", label = "Special BBQ Sauce", price = 50, amount = 50},
             },
-            Appetizers = {
-                { name = "pearl_lemon", label="Lemon", price = 50, amount = 50},
-                { name = "pearl_crostini", label="Crostini", price = 50, amount = 50},
-                { name = "pearl_soy_sauce", label="Soy Sauce", price = 50, amount = 50},
-                { name = "pearl_aioli", label="Aioli", price = 50, amount = 50},
-                { name = "pearl_cocktail_sauce", label="Cocktail Sauce", price = 50, amount = 50},
-                { name = "pearl_garlic", label="Garlic", price = 50, amount = 50},
-                { name = "pearl_chilli_sauce", label="Chili Sauce", price = 50, amount = 50},
-                { name = "pearl_tumeric", label="Tumeric", price = 50, amount = 50},
-                { name = "pearl_wedges", label="Wedges", price = 50, amount = 50},
-                { name = "pearl_poke_sauce", label="Poke sauce", price = 50, amount = 50},
+            
+            Drinks = {
+                { name = "hb_chocolate_syrup", label = "Chocolate Syrup", price = 50, amount = 50},
+                { name = "hb_caramel_drizzle", label = "Caramel Drizzle", price = 50, amount = 50},
+                { name = "hb_honey", label = "Honey", price = 50, amount = 50},
+                { name = "hb_citrus_blend", label = "Citrus Blend", price = 50, amount = 50},
+                { name = "hb_milk", label = "Milk", price = 50, amount = 50},
+                { name = "hb_coffee", label = "Coffee", price = 50, amount = 50},
+                { name = "hb_mixed_berries", label = "Mixed Berries", price = 50, amount = 50},
+                { name = "hb_caffeine_base", label = "Caffeine Base", price = 50, amount = 50},
+                { name = "hb_emptycup", label = "Emtpy Cup", price = 50, amount = 50},
+                { name = "hb_waterbottle", label = "Water Bottle", price = 50, amount = 50},
             },
-            Beverages = {
-                { name = "pearl_lemon", label="Lemon", price = 50, amount = 50},
-                { name = "pearl_ice", label="Ice", price = 50, amount = 50},
-                { name = "pearl_honey", label="Honey", price = 50, amount = 50},
-                { name = "pearl_citrus", label="Citrus Slices", price = 50, amount = 50},
-                { name = "pearl_coconut", label="Coconut", price = 50, amount = 50},
-                { name = "pearl_sugar", label="Sugar", price = 50, amount = 50},
-                { name = "pearl_mint", label="Mint", price = 50, amount = 50},
-                { name = "pearl_ginger", label="Ginger", price = 50, amount = 50},
-                { name = "pearl_pineapple", label="Pineapple", price = 50, amount = 50},
-                { name = "pearl_emptycup", label="Empty Cup", price = 50, amount = 50},
-                { name = "pearl_waterbottle", label="Water Bottle", price = 50, amount = 50},
+            
+            Fries = {
+                { name = "hb_potato_fries", label = "Potato Fries", price = 50, amount = 50},
+                { name = "hb_sea_salt", label = "Sea Salt", price = 50, amount = 50},
+                { name = "hb_melted_cheese", label = "Melted Cheese", price = 50, amount = 50},
+                { name = "hb_sriracha", label = "Sriracha", price = 50, amount = 50},
+                { name = "hb_crispy_bacon", label = "Crispy Bacon", price = 50, amount = 50},
+                { name = "hb_sour_cream_chives", label = "Sour Cream & Chives", price = 50, amount = 50},
             },
-            Coffee = {
-                { name = "pearl_lemon", label="Lemon", price = 50, amount = 50},
-                { name = "pearl_coffee_beans", label="Coffee Beans", price = 50, amount = 50},
-                { name = "pearl_almond", label="Almond Milk", price = 50, amount = 50},
-                { name = "pearl_dark_chocolate", label="Dark Chocolate", price = 50, amount = 50},
-                { name = "pearl_vanilla_syrup", label="Vanilla Syrup", price = 50, amount = 50},
-                { name = "pearl_chocolate_syrup", label="Chocolate Syrup", price = 50, amount = 50},
-                { name = "pearl_whipped_cream", label="Whipped Cream", price = 50, amount = 50,},
-                { name = "pearl_cinnamon_stick", label="Cinnamon Stick", price = 50, amount = 50},
-                { name = "pearl_caramel_syrup", label="Caramel Syrup", price = 50, amount = 50},               
-                { name = "pearl_hazelnut_syrup", label="Hazelnut Syrup", price = 50, amount = 50},
-                { name = "pearl_vanilla_icecream", label="Vanilla Ice Cream", price = 50, amount = 50},
+            
+            Sodas = {
+                { name = "hb_carbonated_water", label = "Carbonated Water", price = 50, amount = 50},
+                { name = "hb_cola_flavor", label = "Cola Flavoring", price = 50, amount = 50},
+                { name = "hb_root_beer_extract", label = "Root Beer Extract", price = 50, amount = 50},
+                { name = "hb_orange_syrup", label = "Orange Syrup", price = 50, amount = 50},
+                { name = "hb_grape_syrup", label = "Grape Syrup", price = 50, amount = 50},
+                { name = "hb_fresh_lemon", label = "Fresh Lemon", price = 50, amount = 50},
             },
         }
 	},
 }
 
 Config.Emotes = {
-    Fish = {
+    Burgers = {
         prop = `prop_fish_slice_01`,
         dict = 'amb@prop_human_bbq@male@idle_a',
         anim = 'idle_b',
@@ -256,7 +236,15 @@ Config.Emotes = {
         offset = vec3(0.0, 0.0, 0.0),
         rotation = vec3(0.0, 0.0, 0.0)
     },
-    Beverages= {
+    Fries = {
+        prop = `prop_fish_slice_01`,
+        dict = 'amb@prop_human_bbq@male@idle_a',
+        anim = 'idle_b',
+        bone = 28422,
+        offset = vec3(0.0, 0.0, 0.0),
+        rotation = vec3(0.0, 0.0, 0.0)
+    },
+    Drinks= {
         prop = `prop_food_bs_juice01`,
         dict = 'mp_ped_interaction',
         anim = 'handshake_guy_a',
@@ -264,7 +252,7 @@ Config.Emotes = {
         offset = vec3(0.02, 0.0, -0.10),
         rotation = vec3(0.0, 0.0, -0.50)
     },
-    Coffee= {
+    Sodas= {
         prop = `prop_food_bs_juice01`,
         dict = 'mp_ped_interaction',
         anim = 'handshake_guy_a',
@@ -277,22 +265,25 @@ Config.Emotes = {
 Config.DeliveryFood = {
     {
         items = {
-            { name = "pearl_grill_salmon", label = "Grilled Salmon", quantity = 1 },
-            { name = "pearl_lemonade", label = "Freshly Lemonade", quantity = 1 }, 
+            { name = "hb_classic_burger", label = "Classic Burger", quantity = 1 },
+            { name = "hb_classic_fries", label = "Classic Fries", quantity = 1 }, 
+            { name = "hb_lemonlime", label = "Lemon Lime", quantity = 1 },
         },
         total = 200
     },
     {
         items = {
-            { name = "pearl_seared_cod", label = "Seared Cod", quantity = 1 },
-            { name = "pearl_iced_tea", label = "Iced Green Tea", quantity = 1 },
+            { name = "hb_spicy_burger", label = "Spicy Burger", quantity = 1 },
+            { name = "hb_cheesy_fries", label = "Cheesy Fries", quantity = 1 },
+            { name = "hb_orange_soda", label = "Orange Soda", quantity = 1 },
         },
         total = 150
     },
     {
         items = {
-            { name = "pearl_tilapia", label = "Tilapia", quantity = 1 },
-            { name = "pearl_lemon_mint", label = "Lemon and Mint", quantity = 1 },
+            { name = "hb_cheesy_burger", label = "Cheesy Burger", quantity = 1 },
+            { name = "hb_spicy_fries", label = "Spicy Fries", quantity = 1 },
+            { name = "hb_cola", label = "Cola", quantity = 1 },
         },
         total = 135
     } 
