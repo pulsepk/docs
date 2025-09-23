@@ -36,13 +36,14 @@ Config.AutoInstallSQL = true
 
 Config.Locale = 'en' -- 'en', 'fr', 'de', 'es', 'it', 'pt', 'tr' -- Language
 Config.Debug = {
-    PolyZone = true, --Shows Red Boxes for Target
+    PolyZone = false, --Shows Red Boxes for Target
     DrawSprite = true, --Show White Circles above the target locations
     Prints = true, --Prints debug messages in console
 }
 --gabz: https://fivem.gabzv.com/
+--slb2k11: https://yuri-customs.tebex.io/package/4826484
 
-Config.location = "gabz" --'gabz'  -- Location of the shop
+Config.location = "gabz" --'gabz', 'slb2k11'  -- Location of the shop
 
 Config.TextUI = 'autodetect' --'autodetect' or 'ox_lib', 'qb-core', 'jg-textui', 'lation_ui', 'esx_textui', 'cd_drawtextui', 'brutal_textui'
 Config.BossMenu = 'autodetect' --'autodetect' or 'esx_society', 'qb-management', 'qbx_management', 'vms_bossmenu'
@@ -69,21 +70,19 @@ Config.Logging = {
 Config.CheckVersion = true
 
 local locationBlips = {
-    gabz = vec3(119.69, -1036.463, 29.278),
-    slth = vec3(281.29, -971.83, 29.42),
-    unlcejust = vec3(-627.23, 234.89, 86.33),
-    fm = vec3(119.69, -1036.463, 29.278)
+    gabz = vector3(-1835.59, -1190.72, 14.31),
+    slb2k11 = vector3(-1835.59, -1190.72, 14.31)
 }
 
 local blipcoords = locationBlips[Config.location]
 
 Config.Blip = {
-    BlipName = "UpNAtom", -- Blip Name
+    BlipName = "Pearls", -- Blip Name
     Enable = true,
     Coords = blipcoords,
     Options = {
-        Sprite = 106,
-        Color = 12,
+        Sprite = 267,
+        Color = 3,
         Scale = 0.8,
         Display = 4
     }
@@ -100,7 +99,7 @@ Config.MarkerSettings = {
 }
 
 Config.EnableSocietyPayment = false -- If enable you can pay from society for the fridge items
-Config.Jobname = 'upnatom' -- Job Name
+Config.Jobname = 'pearls' -- Job Name
 
 Config.StashInventory = {
     --Stash
@@ -120,8 +119,8 @@ Config.StashInventory = {
 Config.MaxStock = 100
 
 Config.IceMachine = {
-    ice_itemname = 'ua_icecubes',
-    water_itemname = 'ua_waterbottle',
+    ice_itemname = 'pearl_icecubes',
+    water_itemname = 'pearl_waterbottle',
     WaitTime = 560,
     MaxIce = 10
 }
@@ -181,50 +180,75 @@ Config.SkillCheck = {
     }
 }
 
+-- 💡 Use creator code 'PULSE' at checkout to get a 10% discount!
+-- Enable DJ's custom food props/items from DJS Collection
+-- Package link: https://djscollections.com/package/6011288
+
+Config.UseDJItems = true -- Set to true to enable DJ's custom items/props
+
 Config.CheckCanCarryItem = false
 
 Config.Shop = {
     Storage = {
 		label = "Fridge",
 		items = {
-            Burgers = {
-                { name = "ua_bun", label = "Burger Bun", price = 50, amount = 50 },
-                { name = "ua_bbq_sauce", label = "BBQ Sauce", price = 50, amount = 50 },
-                { name = "ua_mustard_sauce", label = "Mustard Sauce", price = 50, amount = 50 },
-                { name = "ua_glaze", label = "Glaze Sauce", price = 50, amount = 50 },
-                { name = "ua_chili", label = "Chili Sauce", price = 50, amount = 50 },
-                { name = "ua_smoked", label = "Smoked Sauce", price = 50, amount = 50 }
+            Fish = {
+                { name = "pearl_fillet", label="Fillet", price = 50, amount = 50},
+                { name = "pearl_garlic_butter", label="Garlic Butter Special Sauce", price = 50, amount = 50},
+                { name = "pearl_herb", label="Herb sauce", price = 50, amount = 50},
+                { name = "pearl_parmesan_cheese", label="Parmesan cheese", price = 50, amount = 50},
+                { name = "pearl_blackening_seaon", label="Blackening seasoning", price = 50, amount = 50},
+                { name = "pearl_beer_batter", label="Beer batter ", price = 50, amount = 50},
+                { name = "pearl_mango_salsa", label="Mango Salsa", price = 50, amount = 50},
+                { name = "pearl_ginger", label="Ginger", price = 50, amount = 50},
+                { name = "pearl_lime_slaw", label="Lime Slaw ", price = 50, amount = 50},
+                { name = "pearl_lemon_sauce", label="Lemon Sauce", price = 50, amount = 50},
+                { name = "pearl_pesto", label="Pesto", price = 50, amount = 50},   
             },
-            Fries = {
-                { name = "ua_potato", label = "Potato", price = 50, amount = 50 },
-                { name = "ua_butter", label = "Butter", price = 50, amount = 50 },
-                { name = "ua_chili", label = "Chili Glaze", price = 50, amount = 50 },
-                { name = "ua_parmesan", label = "Parmesan Drizzle", price = 50, amount = 50 },
-                { name = "ua_cajun", label = "Cajun Sauce", price = 50, amount = 50 },
-                { name = "ua_garlic", label = "Garlic Sauce", price = 50, amount = 50 }
+            Appetizers = {
+                { name = "pearl_lemon", label="Lemon", price = 50, amount = 50},
+                { name = "pearl_crostini", label="Crostini", price = 50, amount = 50},
+                { name = "pearl_soy_sauce", label="Soy Sauce", price = 50, amount = 50},
+                { name = "pearl_aioli", label="Aioli", price = 50, amount = 50},
+                { name = "pearl_cocktail_sauce", label="Cocktail Sauce", price = 50, amount = 50},
+                { name = "pearl_garlic", label="Garlic", price = 50, amount = 50},
+                { name = "pearl_chilli_sauce", label="Chili Sauce", price = 50, amount = 50},
+                { name = "pearl_tumeric", label="Tumeric", price = 50, amount = 50},
+                { name = "pearl_wedges", label="Wedges", price = 50, amount = 50},
+                { name = "pearl_poke_sauce", label="Poke sauce", price = 50, amount = 50},
             },
-            Drinks = {
-                { name = "ua_mint", label = "Mint Syrup", price = 50, amount = 50 },
-                { name = "ua_ginger", label = "Ginger Syrup", price = 50, amount = 50 },
-                { name = "ua_berry", label = "Berry Syrup", price = 50, amount = 50 },
-                { name = "ua_tropical", label = "Tropical", price = 50, amount = 50 },
-                { name = "ua_emptycup", label = "Empty Cup", price = 50, amount = 50 },
-                { name = "ua_waterbottle", label = "Water Bottle", price = 50, amount = 50 },
+            Beverages = {
+                { name = "pearl_lemon", label="Lemon", price = 50, amount = 50},
+                { name = "pearl_ice", label="Ice", price = 50, amount = 50},
+                { name = "pearl_honey", label="Honey", price = 50, amount = 50},
+                { name = "pearl_citrus", label="Citrus Slices", price = 50, amount = 50},
+                { name = "pearl_coconut", label="Coconut", price = 50, amount = 50},
+                { name = "pearl_sugar", label="Sugar", price = 50, amount = 50},
+                { name = "pearl_mint", label="Mint", price = 50, amount = 50},
+                { name = "pearl_ginger", label="Ginger", price = 50, amount = 50},
+                { name = "pearl_pineapple", label="Pineapple", price = 50, amount = 50},
+                { name = "pearl_emptycup", label="Empty Cup", price = 50, amount = 50},
+                { name = "pearl_waterbottle", label="Water Bottle", price = 50, amount = 50},
             },
-            Sodas = {
-                { name = "ua_lemon", label = "Lemon", price = 50, amount = 50 },
-                { name = "ua_lemon_syrup", label = "Lemon Syrup", price = 50, amount = 50 },
-                { name = "ua_ginger", label = "Ginger", price = 50, amount = 50 },
-                { name = "ua_mint", label = "Mint", price = 50, amount = 50 },
-                { name = "ua_berry", label = "Berry", price = 50, amount = 50 },
-                { name = "ua_pineapple", label = "Pineapple", price = 50, amount = 50 }
+            Coffee = {
+                { name = "pearl_lemon", label="Lemon", price = 50, amount = 50},
+                { name = "pearl_coffee_beans", label="Coffee Beans", price = 50, amount = 50},
+                { name = "pearl_almond", label="Almond Milk", price = 50, amount = 50},
+                { name = "pearl_dark_chocolate", label="Dark Chocolate", price = 50, amount = 50},
+                { name = "pearl_vanilla_syrup", label="Vanilla Syrup", price = 50, amount = 50},
+                { name = "pearl_chocolate_syrup", label="Chocolate Syrup", price = 50, amount = 50},
+                { name = "pearl_whipped_cream", label="Whipped Cream", price = 50, amount = 50,},
+                { name = "pearl_cinnamon_stick", label="Cinnamon Stick", price = 50, amount = 50},
+                { name = "pearl_caramel_syrup", label="Caramel Syrup", price = 50, amount = 50},               
+                { name = "pearl_hazelnut_syrup", label="Hazelnut Syrup", price = 50, amount = 50},
+                { name = "pearl_vanilla_icecream", label="Vanilla Ice Cream", price = 50, amount = 50},
             },
         }
 	},
 }
 
 Config.Emotes = {
-    Burgers = {
+    Fish = {
         prop = `prop_fish_slice_01`,
         dict = 'amb@prop_human_bbq@male@idle_a',
         anim = 'idle_b',
@@ -232,15 +256,7 @@ Config.Emotes = {
         offset = vec3(0.0, 0.0, 0.0),
         rotation = vec3(0.0, 0.0, 0.0)
     },
-    Fries = {
-        prop = `prop_fish_slice_01`,
-        dict = 'amb@prop_human_bbq@male@idle_a',
-        anim = 'idle_b',
-        bone = 28422,
-        offset = vec3(0.0, 0.0, 0.0),
-        rotation = vec3(0.0, 0.0, 0.0)
-    },
-    Drinks= {
+    Beverages= {
         prop = `prop_food_bs_juice01`,
         dict = 'mp_ped_interaction',
         anim = 'handshake_guy_a',
@@ -248,7 +264,7 @@ Config.Emotes = {
         offset = vec3(0.02, 0.0, -0.10),
         rotation = vec3(0.0, 0.0, -0.50)
     },
-    Sodas= {
+    Coffee= {
         prop = `prop_food_bs_juice01`,
         dict = 'mp_ped_interaction',
         anim = 'handshake_guy_a',
@@ -261,25 +277,22 @@ Config.Emotes = {
 Config.DeliveryFood = {
     {
         items = {
-            { name = "ua_bbq_chicken", label = "BBQ Chicken Burger", quantity = 1 },
-            { name = "ua_butter_fries", label = "Butter Fries", quantity = 1 },
-            { name = "ua_lemon_fizz", label = "Lemon Fizz", quantity = 1 }, 
+            { name = "pearl_grill_salmon", label = "Grilled Salmon", quantity = 1 },
+            { name = "pearl_lemonade", label = "Freshly Lemonade", quantity = 1 }, 
         },
         total = 200
     },
     {
         items = {
-            { name = "ua_mustard_beef", label = "Mustard Beef Burger", quantity = 1 },
-            { name = "ua_spicy_glazed", label = "Spicy Glazed Fries", quantity = 1 },
-            { name = "ua_ginger_soda", label = "Ginger Soda", quantity = 1 },
+            { name = "pearl_seared_cod", label = "Seared Cod", quantity = 1 },
+            { name = "pearl_iced_tea", label = "Iced Green Tea", quantity = 1 },
         },
         total = 150
     },
     {
         items = {
-            { name = "ua_glazed_turkey", label = "Glazed Turkey Burger", quantity = 1 },
-            { name = "ua_parmesan_fries", label = "Parmesan Fries", quantity = 1 },
-            { name = "ua_mint_sparkler", label = "Mint Sparkler", quantity = 1 },
+            { name = "pearl_tilapia", label = "Tilapia", quantity = 1 },
+            { name = "pearl_lemon_mint", label = "Lemon and Mint", quantity = 1 },
         },
         total = 135
     } 

@@ -25,26 +25,26 @@ Use this if AutoInstallSQL Fails for some reason and doesn't generates the sql d
 <summary>ESX</summary>
 
 ```lua
-CREATE TABLE IF NOT EXISTS `pl_pearls` (
-      `stock` longtext DEFAULT NULL
-      `state` varchar(5) NOT NULL DEFAULT 'open'
+CREATE TABLE IF NOT EXISTS `pl_upnatom` (
+    `stock` longtext DEFAULT NULL
+    `state` varchar(5) NOT NULL DEFAULT 'open'
 ) ENGINE=InnoDB DEFAULT CHARSET=armscii8 COLLATE=armscii8_bin;
 
-INSERT INTO `addon_account` (name, label, shared) VALUES
-	('society_pearls', 'Pearls', 1);
-	
+ INSERT INTO `addon_account` (name, label, shared) VALUES
+	('society_upnatom', 'Up n Atom', 1);
+
 INSERT INTO `datastore` (name, label, shared) VALUES
-       ('society_pearls', 'Pearls', 1);
-       
+        ('society_upnatom', 'Up n Atom', 1);
+
 INSERT INTO `jobs` (name, label,whitelisted) VALUES
-       ('pearls', 'Pearls',1);
-       
-INSERT INTO `job_grades` (job_name, grade, name, label, salary, skin_male, skin_female) VALUES
-        ('pearls',0,'cashier','Cashier',20,'{}','{}'),
-        ('pearls',1,'cook','Cook',40,'{}','{}'),
-        ('pearls',2,'staff','Staff',60,'{}','{}'),
-        ('pearls',3,'manager','Manager',85,'{}','{}'),
-        ('pearls',4,'boss','Owner',100,'{}','{}');
+       ('upnatom', 'Up n Atom',1);
+
+ INSERT INTO `job_grades` (job_name, grade, name, label, salary, skin_male, skin_female) VALUES
+        ('upnatom',0,'cashier','Cashier',20,'{}','{}'),
+        ('upnatom',1,'cook','Cook',40,'{}','{}'),
+        ('upnatom',2,'staff','Staff',60,'{}','{}'),
+        ('upnatom',3,'manager','Manager',85,'{}','{}'),
+        ('upnatom',4,'boss','Owner',100,'{}','{}');
 ```
 
 </details>
@@ -54,10 +54,10 @@ INSERT INTO `job_grades` (job_name, grade, name, label, salary, skin_male, skin_
 <summary>QBCore or Qbox</summary>
 
 ```lua
-CREATE TABLE IF NOT EXISTS `pl_pearls` (
-    `stock` LONGTEXT DEFAULT NULL,
-    `state` VARCHAR(5) NOT NULL DEFAULT 'open'
- ) ENGINE=InnoDB DEFAULT CHARSET=armscii8 COLLATE=armscii8_bin;
+CREATE TABLE IF NOT EXISTS `pl_upnatom` (
+     `stock` LONGTEXT DEFAULT NULL,
+     `state` VARCHAR(5) NOT NULL DEFAULT 'open'
+) ENGINE=InnoDB DEFAULT CHARSET=armscii8 COLLATE=armscii8_bin;
 ```
 
 </details>
@@ -71,8 +71,8 @@ Add the items into your server
 <summary>Ox Inventory</summary>
 
 ```lua
-["pearl_grill_salmon"] = {
-    label = "Coffee Beans Butter",
+["ua_bbq_chicken"] = {
+    label = "BBQ Chicken Burger",
     weight = 1,
     client = {
 			status = { hunger = 200000 },
@@ -82,23 +82,107 @@ Add the items into your server
 			notification = 'You ate a delicious burger'
 		},
 },
-
-["pearl_hazelnut_syrup"] = {
-    label = "Hazelnut Syrup",
+["ua_mustard_beef"] = {
+    label = "Mustard Beef Burger",
     weight = 1,
-    stack = true,
-    close = true,
+    client = {
+			status = { hunger = 200000 },
+			anim = 'eating',
+			prop = 'burger',
+			usetime = 2500,
+			notification = 'You ate a delicious burger'
+		},
 },
-
-["pearl_herb"] = {
-    label = "Herb sauce",
+["ua_glazed_turkey"] = {
+    label = "Glazed Turkey Burger",
     weight = 1,
-    stack = true,
-    close = true,
+    client = {
+			status = { hunger = 200000 },
+			anim = 'eating',
+			prop = 'burger',
+			usetime = 2500,
+			notification = 'You ate a delicious burger'
+		},
 },
-
-["pearl_hibiscus_tea"] = {
-    label = "Hibiscus Tea",
+["ua_spicy_lamb"] = {
+    label = "Spic  Lamb Burger",
+    weight = 1,
+    client = {
+			status = { hunger = 200000 },
+			anim = 'eating',
+			prop = 'burger',
+			usetime = 2500,
+			notification = 'You ate a delicious burger'
+		},
+},
+["ua_sweet_smoky_vegan"] = {
+    label = "Sweet & Smoky Vegan Burger",
+    weight = 1,
+    client = {
+			status = { hunger = 200000 },
+			anim = 'eating',
+			prop = 'burger',
+			usetime = 2500,
+			notification = 'You ate a delicious burger'
+		},
+},
+["ua_butter_fries"] = {
+    label = "Butter Fries",
+    weight = 1,
+    client = {
+			status = { hunger = 200000 },
+			anim = 'eating',
+			prop = 'burger',
+			usetime = 2500,
+			notification = 'You ate a delicious burger'
+		},
+},
+["ua_spicy_glazed"] = {
+    label = "Spicy Glazed Fries",
+    weight = 1,
+    client = {
+			status = { hunger = 200000 },
+			anim = 'eating',
+			prop = 'burger',
+			usetime = 2500,
+			notification = 'You ate a delicious burger'
+		},
+},
+["ua_parmesan_fries"] = {
+    label = "Parmesan Fries",
+    weight = 1,
+    client = {
+			status = { hunger = 200000 },
+			anim = 'eating',
+			prop = 'burger',
+			usetime = 2500,
+			notification = 'You ate a delicious burger'
+		},
+},
+["ua_sweet_cajun"] = {
+    label = "Sweet Cajun Fries",
+    weight = 1,
+    client = {
+			status = { hunger = 200000 },
+			anim = 'eating',
+			prop = 'burger',
+			usetime = 2500,
+			notification = 'You ate a delicious burger'
+		},
+},
+["ua_garlic_fries"] = {
+    label = "Garlic Fries",
+    weight = 1,
+    client = {
+			status = { hunger = 200000 },
+			anim = 'eating',
+			prop = 'burger',
+			usetime = 2500,
+			notification = 'You ate a delicious burger'
+		},
+},
+["ua_lemon_fizz"] = {
+    label = "Lemon Fizz",
     weight = 1,
     client = {
 			status = { thirst = 200000 },
@@ -108,23 +192,14 @@ Add the items into your server
 			notification = 'You quenched your thirst with a sprunk'
 		},
 },
-
-["pearl_honey"] = {
-    label = "Honey",
+["ua_mint_cooler"] = {
+    label = "Mint Cooler",
     weight = 1,
     stack = true,
     close = true,
 },
-
-["pearl_ice"] = {
-    label = "Pearls Ice",
-    weight = 1,
-    stack = true,
-    close = true,
-},
-
-["pearl_iced_coffee"] = {
-    label = "Iced Coffee",
+["ua_ginger_punch"] = {
+    label = "Ginger Punch",
     weight = 1,
     client = {
 			status = { thirst = 200000 },
@@ -134,8 +209,29 @@ Add the items into your server
 			notification = 'You quenched your thirst with a sprunk'
 		},
 },
-
-["pearl_iced_tea"] = {
+["ua_berry_refresher"] = {
+    label = "Berry Refresher",
+    weight = 1,
+    client = {
+			status = { thirst = 200000 },
+			anim = { dict = 'mp_player_intdrink', clip = 'loop_bottle' },
+			prop = { model = `prop_ld_can_01`, pos = vec3(0.01, 0.01, 0.06), rot = vec3(5.0, 5.0, -180.5) },
+			usetime = 2500,
+			notification = 'You quenched your thirst with a sprunk'
+		},
+},
+["ua_tropical_splash"] = {
+    label = "Tropica Splash",
+    weight = 1,
+    client = {
+			status = { thirst = 200000 },
+			anim = { dict = 'mp_player_intdrink', clip = 'loop_bottle' },
+			prop = { model = `prop_ld_can_01`, pos = vec3(0.01, 0.01, 0.06), rot = vec3(5.0, 5.0, -180.5) },
+			usetime = 2500,
+			notification = 'You quenched your thirst with a sprunk'
+		},
+},
+["ua_green_tea"] = {
     label = "Iced Green Tea",
     weight = 1,
     client = {
@@ -146,9 +242,8 @@ Add the items into your server
 			notification = 'You quenched your thirst with a sprunk'
 		},
 },
-
-["pearl_kombucha"] = {
-    label = "Kombucha",
+["ua_ginger_soda"] = {
+    label = "Ginger Soda",
     weight = 1,
     client = {
 			status = { thirst = 200000 },
@@ -158,9 +253,8 @@ Add the items into your server
 			notification = 'You quenched your thirst with a sprunk'
 		},
 },
-
-["pearl_latte"] = {
-    label = "Latte",
+["ua_mint_sparkler"] = {
+    label = "Mint Sparkler",
     weight = 1,
     client = {
 			status = { thirst = 200000 },
@@ -170,683 +264,155 @@ Add the items into your server
 			notification = 'You quenched your thirst with a sprunk'
 		},
 },
-
-["pearl_lemon"] = {
+["ua_berry_soda"] = {
+    label = "Berry Soda",
+    weight = 1,
+    client = {
+			status = { thirst = 200000 },
+			anim = { dict = 'mp_player_intdrink', clip = 'loop_bottle' },
+			prop = { model = `prop_ld_can_01`, pos = vec3(0.01, 0.01, 0.06), rot = vec3(5.0, 5.0, -180.5) },
+			usetime = 2500,
+			notification = 'You quenched your thirst with a sprunk'
+		},
+},
+["ua_pineapple_pop"] = {
+    label = "Pineapple Pop",
+    weight = 1,
+    client = {
+			status = { thirst = 200000 },
+			anim = { dict = 'mp_player_intdrink', clip = 'loop_bottle' },
+			prop = { model = `prop_ld_can_01`, pos = vec3(0.01, 0.01, 0.06), rot = vec3(5.0, 5.0, -180.5) },
+			usetime = 2500,
+			notification = 'You quenched your thirst with a sprunk'
+		},
+},
+["ua_bun"] = {
+    label = "Burger Bun",
+    weight = 1,
+    stack = true,
+    close = true,
+},
+["ua_potato"] = {
+    label = "Potato",
+    weight = 1,
+    stack = true,
+    close = true,
+},
+["ua_ice"] = {
+    label = "Ice",
+    weight = 1,
+    stack = true,
+    close = true,
+},
+["ua_lemon"] = {
     label = "Lemon",
     weight = 1,
     stack = true,
     close = true,
 },
-
-["pearl_lemonade"] = {
-    label = "Freshly Squeezed Lemonade",
-    weight = 1,
-    client = {
-			status = { thirst = 200000 },
-			anim = { dict = 'mp_player_intdrink', clip = 'loop_bottle' },
-			prop = { model = `prop_ld_can_01`, pos = vec3(0.01, 0.01, 0.06), rot = vec3(5.0, 5.0, -180.5) },
-			usetime = 2500,
-			notification = 'You quenched your thirst with a sprunk'
-		},
-},
-
-["pearl_lemon_mint"] = {
-    label = "Lemon and Mint",
-    weight = 1,
-    client = {
-			status = { thirst = 200000 },
-			anim = { dict = 'mp_player_intdrink', clip = 'loop_bottle' },
-			prop = { model = `prop_ld_can_01`, pos = vec3(0.01, 0.01, 0.06), rot = vec3(5.0, 5.0, -180.5) },
-			usetime = 2500,
-			notification = 'You quenched your thirst with a sprunk'
-		},
-},
-
-["pearl_lemon_sauce"] = {
-    label = "Lemon Sauce",
+["ua_bbq_sauce"] = {
+    label = "BBQ Sauce",
     weight = 1,
     stack = true,
     close = true,
 },
-
-["pearl_lime_slaw"] = {
-    label = "Lime Slaw",
+["ua_mustard_sauce"] = {
+    label = "Mustard Sauce",
     weight = 1,
     stack = true,
     close = true,
 },
-
-["pearl_macchiato"] = {
-    label = "Macchiato",
-    weight = 1,
-    client = {
-			status = { thirst = 200000 },
-			anim = { dict = 'mp_player_intdrink', clip = 'loop_bottle' },
-			prop = { model = `prop_ld_can_01`, pos = vec3(0.01, 0.01, 0.06), rot = vec3(5.0, 5.0, -180.5) },
-			usetime = 2500,
-			notification = 'You quenched your thirst with a sprunk'
-		},
-},
-
-["pearl_mango_salsa"] = {
-    label = "Mango Salsa",
+["ua_glaze"] = {
+    label = "Glaze Sauce",
     weight = 1,
     stack = true,
     close = true,
 },
-
-["pearl_mint"] = {
-    label = "Mint",
-    weight = 1,
-    stack = true,
-    close = true,
-},
-
-["pearl_mixed_fruit"] = {
-    label = "Mixed Fruit Juice",
-    weight = 1,
-    stack = true,
-    close = true,
-},
-
-["pearl_mocha"] = {
-    label = "Mocha",
-    weight = 1,
-    client = {
-			status = { thirst = 200000 },
-			anim = { dict = 'mp_player_intdrink', clip = 'loop_bottle' },
-			prop = { model = `prop_ld_can_01`, pos = vec3(0.01, 0.01, 0.06), rot = vec3(5.0, 5.0, -180.5) },
-			usetime = 2500,
-			notification = 'You quenched your thirst with a sprunk'
-		},
-},
-
-["pearl_parmesan_cheese"] = {
-    label = "Parmesan cheese",
-    weight = 1,
-    stack = true,
-    close = true,
-},
-
-["pearl_pesto"] = {
-    label = "Pesto",
-    weight = 1,
-    stack = true,
-    close = true,
-},
-
-["pearl_pineapple"] = {
-    label = "Pineapple",
-    weight = 1,
-    stack = true,
-    close = true,
-},
-
-["pearl_pineapple_juice"] = {
-    label = "Pineapple Juice",
-    weight = 1,
-    client = {
-			status = { thirst = 200000 },
-			anim = { dict = 'mp_player_intdrink', clip = 'loop_bottle' },
-			prop = { model = `prop_ld_can_01`, pos = vec3(0.01, 0.01, 0.06), rot = vec3(5.0, 5.0, -180.5) },
-			usetime = 2500,
-			notification = 'You quenched your thirst with a sprunk'
-		},
-},
-
-["pearl_poke_sauce"] = {
-    label = "Poke Sauce",
-    weight = 1,
-    stack = true,
-    close = true,
-},
-
-["pearl_red_snapper"] = {
-    label = "Red Snapper",
-    weight = 1,
-    client = {
-			status = { hunger = 200000 },
-			anim = 'eating',
-			prop = 'burger',
-			usetime = 2500,
-			notification = 'You ate a delicious burger'
-		},
-},
-
-["pearl_salmon"] = {
-    label = "Grilled Salmon",
-    weight = 1,
-    client = {
-			status = { hunger = 200000 },
-			anim = 'eating',
-			prop = 'burger',
-			usetime = 2500,
-			notification = 'You ate a delicious burger'
-		},
-},
-
-["pearl_salsa"] = {
-    label = "Mango Salsa",
-    weight = 1,
-    client = {
-			status = { hunger = 200000 },
-			anim = 'eating',
-			prop = 'burger',
-			usetime = 2500,
-			notification = 'You ate a delicious burger'
-		},
-},
-
-["pearl_samosa"] = {
-    label = "Fish Samosas",
-    weight = 1,
-    client = {
-			status = { hunger = 200000 },
-			anim = 'eating',
-			prop = 'burger',
-			usetime = 2500,
-			notification = 'You ate a delicious burger'
-		},
-},
-
-["pearl_seared_cod"] = {
-    label = "Seared Cod",
-    weight = 1,
-    client = {
-			status = { hunger = 200000 },
-			anim = 'eating',
-			prop = 'burger',
-			usetime = 2500,
-			notification = 'You ate a delicious burger'
-		},
-},
-
-["pearl_sea_bass"] = {
-    label = "Sea Bass",
-    weight = 1,
-    client = {
-			status = { hunger = 200000 },
-			anim = 'eating',
-			prop = 'burger',
-			usetime = 2500,
-			notification = 'You ate a delicious burger'
-		},
-},
-
-["pearl_shrimp"] = {
-    label = "Shrimp Cocktail",
-    weight = 1,
-    client = {
-			status = { hunger = 200000 },
-			anim = 'eating',
-			prop = 'burger',
-			usetime = 2500,
-			notification = 'You ate a delicious burger'
-		},
-},
-
-["pearl_skewers"] = {
-    label = "Fish Skewers",
-    weight = 1,
-    client = {
-			status = { hunger = 200000 },
-			anim = 'eating',
-			prop = 'burger',
-			usetime = 2500,
-			notification = 'You ate a delicious burger'
-		},
-},
-
-["pearl_soy_sauce"] = {
-    label = "Soy Sauce",
-    weight = 1,
-    stack = true,
-    close = true,
-},
-
-["pearl_sugar"] = {
-    label = "Sugar",
-    weight = 1,
-    stack = true,
-    close = true,
-},
-
-["pearl_swordfish_steak"] = {
-    label = "Swordfish Steak",
-    weight = 1,
-    client = {
-			status = { hunger = 200000 },
-			anim = 'eating',
-			prop = 'burger',
-			usetime = 2500,
-			notification = 'You ate a delicious burger'
-		},
-},
-
-["pearl_tacos"] = {
-    label = "Tacos",
-    weight = 1,
-    client = {
-			status = { hunger = 200000 },
-			anim = 'eating',
-			prop = 'burger',
-			usetime = 2500,
-			notification = 'You ate a delicious burger'
-		},
-},
-
-["pearl_tartar"] = {
-    label = "Fish Tartar",
-    weight = 1,
-    client = {
-			status = { hunger = 200000 },
-			anim = 'eating',
-			prop = 'burger',
-			usetime = 2500,
-			notification = 'You ate a delicious burger'
-		},
-},
-
-["pearl_tilapia"] = {
-    label = "Tilapia",
-    weight = 1,
-    client = {
-			status = { hunger = 200000 },
-			anim = 'eating',
-			prop = 'burger',
-			usetime = 2500,
-			notification = 'You ate a delicious burger'
-		},
-},
-
-["pearl_tumeric"] = {
-    label = "Tumeric",
-    weight = 1,
-    stack = true,
-    close = true,
-},
-
-["pearl_tuna_bites"] = {
-    label = "Tuna Poke Bites",
-    weight = 1,
-    client = {
-			status = { hunger = 200000 },
-			anim = 'eating',
-			prop = 'burger',
-			usetime = 2500,
-			notification = 'You ate a delicious burger'
-		},
-},
-
-["pearl_vanilla_icecream"] = {
-    label = "Vanilla Ice Cream",
-    weight = 1,
-    stack = true,
-    close = true,
-},
-
-["pearl_vanilla_syrup"] = {
-    label = "Vanilla Syrup",
-    weight = 1,
-    stack = true,
-    close = true,
-},
-
-["pearl_wedges"] = {
-    label = "Wedges",
-    weight = 1,
-    stack = true,
-    close = true,
-},
-
-["pearl_whipped_cream"] = {
-    label = "Whipped Cream",
-    weight = 1,
-    stack = true,
-    close = true,
-},
-
-["pearl_affogato"] = {
-    label = "Affogato",
-    weight = 1,
-    client = {
-			status = { thirst = 200000 },
-			anim = { dict = 'mp_player_intdrink', clip = 'loop_bottle' },
-			prop = { model = `prop_ld_can_01`, pos = vec3(0.01, 0.01, 0.06), rot = vec3(5.0, 5.0, -180.5) },
-			usetime = 2500,
-			notification = 'You quenched your thirst with a sprunk'
-		},
-},
-
-["pearl_aioli"] = {
-    label = "Aioli",
-    weight = 1,
-    stack = true,
-    close = true,
-},
-
-["pearl_ale"] = {
-    label = "Ginger Ale",
-    weight = 1,
-    client = {
-			status = { thirst = 200000 },
-			anim = { dict = 'mp_player_intdrink', clip = 'loop_bottle' },
-			prop = { model = `prop_ld_can_01`, pos = vec3(0.01, 0.01, 0.06), rot = vec3(5.0, 5.0, -180.5) },
-			usetime = 2500,
-			notification = 'You quenched your thirst with a sprunk'
-		},
-},
-
-["pearl_almond"] = {
-    label = "Almond Milk",
-    weight = 1,
-    stack = true,
-    close = true,
-},
-
-["pearl_americano"] = {
-    label = "Americano",
-    weight = 1,
-    client = {
-			status = { thirst = 200000 },
-			anim = { dict = 'mp_player_intdrink', clip = 'loop_bottle' },
-			prop = { model = `prop_ld_can_01`, pos = vec3(0.01, 0.01, 0.06), rot = vec3(5.0, 5.0, -180.5) },
-			usetime = 2500,
-			notification = 'You quenched your thirst with a sprunk'
-		},
-},
-
-["pearl_beer_batter"] = {
-    label = "Beer batter",
-    weight = 1,
-    stack = true,
-    close = true,
-},
-
-["pearl_blackening_seaon"] = {
-    label = "Blackening seasoning",
-    weight = 1,
-    stack = true,
-    close = true,
-},
-
-["pearl_brew"] = {
-    label = "Iced Brew",
-    weight = 1,
-    client = {
-			status = { thirst = 200000 },
-			anim = { dict = 'mp_player_intdrink', clip = 'loop_bottle' },
-			prop = { model = `prop_ld_can_01`, pos = vec3(0.01, 0.01, 0.06), rot = vec3(5.0, 5.0, -180.5) },
-			usetime = 2500,
-			notification = 'You quenched your thirst with a sprunk'
-		},
-},
-
-["pearl_broiled_halibut"] = {
-    label = "Broiled Halibut",
-    weight = 1,
-    client = {
-			status = { hunger = 200000 },
-			anim = 'eating',
-			prop = 'burger',
-			usetime = 2500,
-			notification = 'You ate a delicious burger'
-		},
-},
-
-["pearl_bruschetta"] = {
-    label = "Anchovy Bruschetta",
-    weight = 1,
-    client = {
-			status = { hunger = 200000 },
-			anim = 'eating',
-			prop = 'burger',
-			usetime = 2500,
-			notification = 'You ate a delicious burger'
-		},
-},
-
-["pearl_calamari"] = {
-    label = "Calamari",
-    weight = 1,
-    client = {
-			status = { hunger = 200000 },
-			anim = 'eating',
-			prop = 'burger',
-			usetime = 2500,
-			notification = 'You ate a delicious burger'
-		},
-},
-
-["pearl_cappuccino"] = {
-    label = "Cappuccino",
-    weight = 1,
-    client = {
-			status = { thirst = 200000 },
-			anim = { dict = 'mp_player_intdrink', clip = 'loop_bottle' },
-			prop = { model = `prop_ld_can_01`, pos = vec3(0.01, 0.01, 0.06), rot = vec3(5.0, 5.0, -180.5) },
-			usetime = 2500,
-			notification = 'You quenched your thirst with a sprunk'
-		},
-},
-
-["pearl_caramel_syrup"] = {
-    label = "Caramel Syrup",
-    weight = 1,
-    stack = true,
-    close = true,
-},
-
-["pearl_ceviche"] = {
-    label = "Smoked Salmon Crostini",
-    weight = 1,
-    client = {
-			status = { hunger = 200000 },
-			anim = 'eating',
-			prop = 'burger',
-			usetime = 2500,
-			notification = 'You ate a delicious burger'
-		},
-},
-
-["pearl_chilli_sauce"] = {
+["ua_chili"] = {
     label = "Chili Sauce",
     weight = 1,
     stack = true,
     close = true,
 },
-
-["pearl_chocolate_syrup"] = {
-    label = "Chocolate Syrup",
+["ua_smoked"] = {
+    label = "Smoked Sauce",
     weight = 1,
     stack = true,
     close = true,
 },
-
-["pearl_cilantro"] = {
-    label = "Grilled Salmon",
+["ua_butter"] = {
+    label = "Butter",
     weight = 1,
     stack = true,
     close = true,
 },
-
-["pearl_cinnamon_stick"] = {
-    label = "Cinnamon Stick",
+["ua_parmesan"] = {
+    label = "Parmesan Drizzle",
     weight = 1,
     stack = true,
     close = true,
 },
-
-["pearl_citrus"] = {
-    label = "Citrus Slices",
+["ua_cajun"] = {
+    label = "Cajun Sauce",
     weight = 1,
     stack = true,
     close = true,
 },
-
-["pearl_citrus_water"] = {
-    label = "Sparkling Water",
-    weight = 1,
-    client = {
-			status = { thirst = 200000 },
-			anim = { dict = 'mp_player_intdrink', clip = 'loop_bottle' },
-			prop = { model = `prop_ld_can_01`, pos = vec3(0.01, 0.01, 0.06), rot = vec3(5.0, 5.0, -180.5) },
-			usetime = 2500,
-			notification = 'You quenched your thirst with a sprunk'
-		},
-},
-
-["pearl_cocktail_sauce"] = {
-    label = "Cocktail Sauce",
+["ua_garlic"] = {
+    label = "Garlic Sauce",
     weight = 1,
     stack = true,
     close = true,
 },
-
-["pearl_coconut"] = {
-    label = "Coconut",
+["ua_lemon_syrup"] = {
+    label = "Lemon Syrup",
     weight = 1,
     stack = true,
     close = true,
 },
-
-["pearl_coconut_water"] = {
-    label = "Fresh Coconut Water",
-    weight = 1,
-    client = {
-			status = { thirst = 200000 },
-			anim = { dict = 'mp_player_intdrink', clip = 'loop_bottle' },
-			prop = { model = `prop_ld_can_01`, pos = vec3(0.01, 0.01, 0.06), rot = vec3(5.0, 5.0, -180.5) },
-			usetime = 2500,
-			notification = 'You quenched your thirst with a sprunk'
-		},
-},
-
-["pearl_coffee_bean"] = {
-    label = "Coffee Beans",
+["ua_mint"] = {
+    label = "Mint",
     weight = 1,
     stack = true,
     close = true,
 },
-
-["pearl_crostini"] = {
-    label = "Crispy Bread",
-    weight = 1,
-    stack = true,
-    close = true,
-},
-
-["pearl_dark_chocolate"] = {
-    label = "Dark Chocolate",
-    weight = 1,
-    stack = true,
-    close = true,
-},
-
-["pearl_espresso"] = {
-    label = "Espresso",
-    weight = 1,
-    client = {
-			status = { thirst = 200000 },
-			anim = { dict = 'mp_player_intdrink', clip = 'loop_bottle' },
-			prop = { model = `prop_ld_can_01`, pos = vec3(0.01, 0.01, 0.06), rot = vec3(5.0, 5.0, -180.5) },
-			usetime = 2500,
-			notification = 'You quenched your thirst with a sprunk'
-		},
-},
-
-["pearl_fillet"] = {
-    label = "Fillet",
-    weight = 1,
-    stack = true,
-    close = true,
-},
-
-["pearl_fish_cake"] = {
-    label = "Fish Cakes",
-    weight = 1,
-    client = {
-			status = { hunger = 200000 },
-			anim = 'eating',
-			prop = 'burger',
-			usetime = 2500,
-			notification = 'You ate a delicious burger'
-		},
-},
-
-["pearl_fish_chips"] = {
-    label = "Fish and Chips",
-    weight = 1,
-    client = {
-			status = { hunger = 200000 },
-			anim = 'eating',
-			prop = 'burger',
-			usetime = 2500,
-			notification = 'You ate a delicious burger'
-		},
-},
-
-["pearl_flat_white"] = {
-    label = "Flat White",
-    weight = 1,
-    client = {
-			status = { thirst = 200000 },
-			anim = { dict = 'mp_player_intdrink', clip = 'loop_bottle' },
-			prop = { model = `prop_ld_can_01`, pos = vec3(0.01, 0.01, 0.06), rot = vec3(5.0, 5.0, -180.5) },
-			usetime = 2500,
-			notification = 'You quenched your thirst with a sprunk'
-		},
-},
-
-["pearl_fruit"] = {
-    label = "Fruit Punch",
-    weight = 1,
-    client = {
-			status = { thirst = 200000 },
-			anim = { dict = 'mp_player_intdrink', clip = 'loop_bottle' },
-			prop = { model = `prop_ld_can_01`, pos = vec3(0.01, 0.01, 0.06), rot = vec3(5.0, 5.0, -180.5) },
-			usetime = 2500,
-			notification = 'You quenched your thirst with a sprunk'
-		},
-},
-
-["pearl_garlic"] = {
-    label = "Garlic",
-    weight = 1,
-    stack = true,
-    close = true,
-},
-
-["pearl_garlic_butter"] = {
-    label = "Garlic Butter Special Sauce",
-    weight = 1,
-    stack = true,
-    close = true,
-},
-
-["pearl_ginger"] = {
+["ua_ginger"] = {
     label = "Ginger",
     weight = 1,
     stack = true,
     close = true,
 },
-
-["pearl_icecubes"] = {
+["ua_berry"] = {
+    label = "Berry",
+    weight = 1,
+    stack = true,
+    close = true,
+},
+["ua_tropical"] = {
+    label = "Tropica ",
+    weight = 1,
+    stack = true,
+    close = true,
+},
+["ua_pineapple"] = {
+    label = "Pineapple",
+    weight = 1,
+    stack = true,
+    close = true,
+},
+["ua_icecubes"] = {
     label = "Ice Cubes",
     weight = 1,
     stack = true,
     close = true,
 },
-
-
-["pearl_waterbottle"] = {
+["ua_waterbottle"] = {
     label = "Water Bottle",
     weight = 1,
     stack = true,
     close = true,
 },
-
-["pearl_emptycup"] = {
+["ua_emptycup"] = {
     label = "Empty Cup",
     weight = 1,
     stack = true,
@@ -861,89 +427,48 @@ Add the items into your server
 <summary>QB Inventory</summary>
 
 ```lua
-['pearl_grill_salmon'] = {['name'] = 'pearl_grill_salmon', ['label'] = 'Grilled Salmon', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_grill_salmon.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_seared_cod'] = {['name'] = 'pearl_seared_cod', ['label'] = 'Seared Cod', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_seared_cod.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_tilapia'] = {['name'] = 'pearl_tilapia', ['label'] = 'Tilapia', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_tilapia.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_red_snapper'] = {['name'] = 'pearl_red_snapper', ['label'] = 'Red Snapper', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_red_snapper.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_fish_chips'] = {['name'] = 'pearl_fish_chips', ['label'] = 'Fish and Chips', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_fish_chips.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_salsa'] = {['name'] = 'pearl_salsa', ['label'] = 'Mango Salsa', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_salsa.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_sea_bass'] = {['name'] = 'pearl_sea_bass', ['label'] = 'Sea Bass', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_sea_bass.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_tacos'] = {['name'] = 'pearl_tacos', ['label'] = 'Tacos', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_tacos.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_broiled_halibut'] = {['name'] = 'pearl_broiled_halibut', ['label'] = 'Broiled Halibut', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_broiled_halibut.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_swordfish_steak'] = {['name'] = 'pearl_swordfish_steak', ['label'] = 'Swordfish Steak', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_swordfish_steak.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_ceviche'] = {['name'] = 'pearl_ceviche', ['label'] = 'Fish Ceviche', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_ceviche.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_salmon'] = {['name'] = 'pearl_salmon', ['label'] = 'Smoked Salmon Crostini', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_salmon.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_tartar'] = {['name'] = 'pearl_tartar', ['label'] = 'Fish Tartar', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_tartar.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_fish_cake'] = {['name'] = 'pearl_fish_cake', ['label'] = 'Fish Cakes', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_fish_cake.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_shrimp'] = {['name'] = 'pearl_shrimp', ['label'] = 'Shrimp Cocktail', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_shrimp.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_bruschetta'] = {['name'] = 'pearl_bruschetta', ['label'] = 'Anchovy Bruschetta', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_bruschetta.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_skewers'] = {['name'] = 'pearl_skewers', ['label'] = 'Fish Skewers', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_skewers.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_samosa'] = {['name'] = 'pearl_samosa', ['label'] = 'Fish Samosas', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_samosa.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_calamari'] = {['name'] = 'pearl_calamari', ['label'] = 'Calamari', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_calamari.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_tuna_bites'] = {['name'] = 'pearl_tuna_bites', ['label'] = 'Tuna Poke Bites', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_tuna_bites.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_lemonade'] = {['name'] = 'pearl_lemonade', ['label'] = 'Freshly Squeezed Lemonade', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_lemonade.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_iced_tea'] = {['name'] = 'pearl_iced_tea', ['label'] = 'Iced Green Tea', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_iced_tea.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_citrus_water'] = {['name'] = 'pearl_citrus_water', ['label'] = 'Sparkling Water', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_citrus_water.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_fruit'] = {['name'] = 'pearl_fruit', ['label'] = 'Fruit Punch', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_fruit.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_hibiscus_tea'] = {['name'] = 'pearl_hibiscus_tea', ['label'] = 'Hibiscus Tea', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_hibiscus_tea.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_coconut_water'] = {['name'] = 'pearl_coconut_water', ['label'] = 'Fresh Coconut Water', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_coconut_water.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_ale'] = {['name'] = 'pearl_ale', ['label'] = 'Ginger Ale', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_ale.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_lemon_mint'] = {['name'] = 'pearl_lemon_mint', ['label'] = 'Lemon and Mint', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_lemon_mint.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_kombucha'] = {['name'] = 'pearl_kombucha', ['label'] = 'Kombucha', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_kombucha.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_pineapple_juice'] = {['name'] = 'pearl_pineapple_juice', ['label'] = 'Pineapple Juice', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_pineapple_juice.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_espresso'] = {['name'] = 'pearl_espresso', ['label'] = 'Espresso', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_espresso.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_americano'] = {['name'] = 'pearl_americano', ['label'] = 'Americano', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_americano.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_cappuccino'] = {['name'] = 'pearl_cappuccino', ['label'] = 'Cappuccino', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_cappuccino.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_latte'] = {['name'] = 'pearl_latte', ['label'] = 'Latte', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_latte.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_mocha'] = {['name'] = 'pearl_mocha', ['label'] = 'Mocha', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_mocha.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_iced_coffee'] = {['name'] = 'pearl_iced_coffee', ['label'] = 'Iced Coffee', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_iced_coffee.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_brew'] = {['name'] = 'pearl_brew', ['label'] = 'Iced Brew', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_brew.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_macchiato'] = {['name'] = 'pearl_macchiato', ['label'] = 'Macchiato', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_macchiato.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_flat_white'] = {['name'] = 'pearl_flat_white', ['label'] = 'Flat White', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_flat_white.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_affogato'] = {['name'] = 'pearl_affogato', ['label'] = 'Affogato', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_affogato.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_fillet'] = {['name'] = 'pearl_fillet', ['label'] = 'Fillet', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_fillet.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_garlic_butter'] = {['name'] = 'pearl_garlic_butter', ['label'] = 'Garlic Butter Special Sauce', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_garlic_butter.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_herb'] = {['name'] = 'pearl_herb', ['label'] = 'Herb sauce', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_herb.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_parmesan_cheese'] = {['name'] = 'pearl_parmesan_cheese', ['label'] = 'Parmesan cheese', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_parmesan_cheese.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_blackening_seaon'] = {['name'] = 'pearl_blackening_seaon', ['label'] = 'Blackening seasoning ', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_blackening_seaon.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_beer_batter'] = {['name'] = 'pearl_beer_batter', ['label'] = 'Beer batter', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_beer_batter.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_mango_salsa'] = {['name'] = 'pearl_mango_salsa', ['label'] = 'Mango Salsa', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_mango_salsa.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_ginger'] = {['name'] = 'pearl_ginger', ['label'] = 'Ginger', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_ginger.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_lime_slaw'] = {['name'] = 'pearl_lime_slaw', ['label'] = 'Lime Slaw ', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_lime_slaw.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_lemon_sauce'] = {['name'] = 'pearl_lemon_sauce', ['label'] = 'Lemon Sauce', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_lemon_sauce.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_pesto'] = {['name'] = 'pearl_pesto', ['label'] = 'Pesto', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_pesto.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_lemon'] = {['name'] = 'pearl_lemon', ['label'] = 'Lemon', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_lemon.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_cilantro'] = {['name'] = 'pearl_cilantro', ['label'] = 'Coffee Beans Butter', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_cilantro.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_crostini'] = {['name'] = 'pearl_crostini', ['label'] = 'Crispy Bread', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_crostini.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_soy_sauce'] = {['name'] = 'pearl_soy_sauce', ['label'] = 'Soy Sauce', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_soy_sauce.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_aioli'] = {['name'] = 'pearl_aioli', ['label'] = 'Aioli', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_aioli.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_cocktail_sauce'] = {['name'] = 'pearl_cocktail_sauce', ['label'] = 'Cocktail Sauce', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_cocktail_sauce.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_garlic'] = {['name'] = 'pearl_garlic', ['label'] = 'Garlic', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_garlic.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_chilli_sauce'] = {['name'] = 'pearl_chilli_sauce', ['label'] = 'Chili Sauce', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_chilli_sauce.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_tumeric'] = {['name'] = 'pearl_tumeric', ['label'] = 'Tumeric', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_tumeric.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_wedges'] = {['name'] = 'pearl_wedges', ['label'] = 'Wedges', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_wedges.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_poke_sauce'] = {['name'] = 'pearl_poke_sauce', ['label'] = 'Poke Sauce', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_poke_sauce.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_ice'] = {['name'] = 'pearl_ice', ['label'] = 'Ice', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_ice.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_honey'] = {['name'] = 'pearl_honey', ['label'] = 'Honey', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_honey.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_citrus'] = {['name'] = 'pearl_citrus', ['label'] = 'Citrus Slices', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_citrus.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_mixed_fruit'] = {['name'] = 'pearl_mixed_fruit', ['label'] = 'Mixed Fruit Juice', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_mixed_fruit.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_coconut'] = {['name'] = 'pearl_coconut', ['label'] = 'Coconut', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_coconut.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_sugar'] = {['name'] = 'pearl_sugar', ['label'] = 'Sugar', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_sugar.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_mint'] = {['name'] = 'pearl_mint', ['label'] = 'Mint', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_mint.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_pineapple'] = {['name'] = 'pearl_pineapple', ['label'] = 'Pineapple', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_pineapple.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_coffee_bean'] = {['name'] = 'pearl_coffee_bean', ['label'] = 'Coffee Beans', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_coffee_bean.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_almond'] = {['name'] = 'pearl_almond', ['label'] = 'Almond Milk', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_almond.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_dark_chocolate'] = {['name'] = 'pearl_dark_chocolate', ['label'] = 'Dark Chocolate', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_dark_chocolate.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_vanilla_syrup'] = {['name'] = 'pearl_vanilla_syrup', ['label'] = 'Vanilla Syrup', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_vanilla_syrup.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_chocolate_syrup'] = {['name'] = 'pearl_chocolate_syrup', ['label'] = 'Chocolate Syrup', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_chocolate_syrup.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_whipped_cream'] = {['name'] = 'pearl_whipped_cream', ['label'] = 'Whipped Cream', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_whipped_cream.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_cinnamon_stick'] = {['name'] = 'pearl_cinnamon_stick', ['label'] = 'Cinnamon Stick', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_cinnamon_stick.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_caramel_syrup'] = {['name'] = 'pearl_caramel_syrup', ['label'] = 'Caramel Syrup', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_caramel_syrup.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_hazelnut_syrup'] = {['name'] = 'pearl_hazelnut_syrup', ['label'] = 'Hazelnut Syrup', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_hazelnut_syrup.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_vanilla_icecream'] = {['name'] = 'pearl_vanilla_icecream', ['label'] = 'Vanilla Ice Cream', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_vanilla_icecream.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_icecubes'] = {['name'] = 'pearl_icecubes', ['label'] = 'Ice Cubes', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_icecubes.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_waterbottle'] = {['name'] = 'pearl_waterbottle', ['label'] = 'Water Bottle', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_waterbottle.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_emptycup'] = {['name'] = 'pearl_emptycup', ['label'] = 'Empty Cup', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_emptycup.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_bbq_chicken'] = {['name'] = 'ua_bbq_chicken', ['label'] = 'BBQ Chicken Burger', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_bbq_chicken.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_mustard_beef'] = {['name'] = 'ua_mustard_beef', ['label'] = 'Mustard Beef Burger', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_mustard_beef.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_glazed_turkey'] = {['name'] = 'ua_glazed_turkey', ['label'] = 'Glazed Turkey Burger', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_glazed_turkey.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_spicy_lamb'] = {['name'] = 'ua_spicy_lamb', ['label'] = 'Spicy Lamb Burger', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_spicy_lamb.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_sweet_smoky_vegan'] = {['name'] = 'ua_sweet_smoky_vegan', ['label'] = 'Sweet & Smoky Vegan Burger', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_sweet_smoky_vegan.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_butter_fries'] = {['name'] = 'ua_butter_fries', ['label'] = 'Butter Fries', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_butter_fries.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_spicy_glazed'] = {['name'] = 'ua_spicy_glazed', ['label'] = 'Spicy Glazed Fries', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_spicy_glazed.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_parmesan_fries'] = {['name'] = 'ua_parmesan_fries', ['label'] = 'Parmesan Fries', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_parmesan_fries.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_sweet_cajun'] = {['name'] = 'ua_sweet_cajun', ['label'] = 'Sweet Cajun Fries', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_sweet_cajun.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_garlic_fries'] = {['name'] = 'ua_garlic_fries', ['label'] = 'Garlic Fries', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_garlic_fries.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_green_tea'] = {['name'] = 'ua_green_tea', ['label'] = 'Iced Green Tea', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_green_tea.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_mint_cooler'] = {['name'] = 'ua_mint_cooler', ['label'] = 'Mint Cooler', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_mint_cooler.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_ginger_punch'] = {['name'] = 'ua_ginger_punch', ['label'] = 'Ginger Punch', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_ginger_punch.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_berry_refresher'] = {['name'] = 'ua_berry_refresher', ['label'] = 'Berry Refresher', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_berry_refresher.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_tropical_splash'] = {['name'] = 'ua_tropical_splash', ['label'] = 'Tropical Splash', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_tropical_splash.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_lemon_fizz'] = {['name'] = 'ua_lemon_fizz', ['label'] = 'Lemon Fizz', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_lemon_fizz.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_ginger_soda'] = {['name'] = 'ua_ginger_soda', ['label'] = 'Ginger Soda', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_ginger_soda.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_mint_sparkler'] = {['name'] = 'ua_mint_sparkler', ['label'] = 'Mint Sparkler', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_mint_sparkler.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_berry_soda'] = {['name'] = 'ua_berry_soda', ['label'] = 'Berry Soda', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_berry_soda.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_pineapple_pop'] = {['name'] = 'ua_pineapple_pop', ['label'] = 'Pineapple Pop', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_pineapple_pop.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_bun'] = {['name'] = 'ua_bun', ['label'] = 'Burger Bun', ['weight'] = 10, ['type'] = 'item', ['image'] = 'burger_ua_bun.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_potato'] = {['name'] = 'ua_potato', ['label'] = 'Potato', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_potato.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_ice'] = {['name'] = 'ua_ice', ['label'] = 'Ice', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_ice.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_lemon'] = {['name'] = 'ua_lemon', ['label'] = 'Lemon', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_lemon.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_bbq_sauce'] = {['name'] = 'ua_bbq_sauce', ['label'] = 'BBQ Sauce', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_bbq_sauce.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_mustard_sauce'] = {['name'] = 'ua_mustard_sauce', ['label'] = 'Mustard Sauce', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_mustard_sauce.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_glaze'] = {['name'] = 'ua_glaze', ['label'] = 'Glaze Sauce', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_glaze.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_chili'] = {['name'] = 'ua_chili', ['label'] = 'Chili Sauce', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_chili.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_smoked'] = {['name'] = 'ua_smoked', ['label'] = 'Smoked Sauce', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_smoked.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_butter'] = {['name'] = 'ua_butter', ['label'] = 'Butter', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_butter.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_parmesan'] = {['name'] = 'ua_parmesan', ['label'] = 'Parmesan Drizzle', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_parmesan.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_cajun'] = {['name'] = 'ua_cajun', ['label'] = 'Cajun Sauce', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_cajun.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_garlic'] = {['name'] = 'ua_garlic', ['label'] = 'Garlic Sauce', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_garlic.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_lemon_syrup'] = {['name'] = 'ua_lemon_syrup', ['label'] = 'Lemon Syrup', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_lemon_syrup.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_mint'] = {['name'] = 'ua_mint', ['label'] = 'Mint', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_mint.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_ginger'] = {['name'] = 'ua_ginger', ['label'] = 'Ginger', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_ginger.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_berry'] = {['name'] = 'ua_berry', ['label'] = 'Berry', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_berry.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_tropical'] = {['name'] = 'ua_tropical', ['label'] = 'Tropical', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_tropical.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_pineapple'] = {['name'] = 'ua_pineapple', ['label'] = 'Pineapple', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_pineapple.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_icecubes'] = {['name'] = 'ua_icecubes', ['label'] = 'Ice Cubes', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_icecubes.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_waterbottle'] = {['name'] = 'ua_waterbottle', ['label'] = 'Water Bottle', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_waterbottle.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_emptycup'] = {['name'] = 'ua_emptycup', ['label'] = 'Empty Cup', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_emptycup.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
 ```
 
 </details>
@@ -953,89 +478,48 @@ Add the items into your server
 <summary>Quasar Inventory</summary>
 
 ```lua
-['pearl_grill_salmon'] = {['name'] = 'pearl_grill_salmon', ['label'] = 'Grilled Salmon', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_grill_salmon.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_seared_cod'] = {['name'] = 'pearl_seared_cod', ['label'] = 'Seared Cod', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_seared_cod.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_tilapia'] = {['name'] = 'pearl_tilapia', ['label'] = 'Tilapia', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_tilapia.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_red_snapper'] = {['name'] = 'pearl_red_snapper', ['label'] = 'Red Snapper', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_red_snapper.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_fish_chips'] = {['name'] = 'pearl_fish_chips', ['label'] = 'Fish and Chips', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_fish_chips.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_salsa'] = {['name'] = 'pearl_salsa', ['label'] = 'Mango Salsa', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_salsa.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_sea_bass'] = {['name'] = 'pearl_sea_bass', ['label'] = 'Sea Bass', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_sea_bass.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_tacos'] = {['name'] = 'pearl_tacos', ['label'] = 'Tacos', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_tacos.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_broiled_halibut'] = {['name'] = 'pearl_broiled_halibut', ['label'] = 'Broiled Halibut', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_broiled_halibut.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_swordfish_steak'] = {['name'] = 'pearl_swordfish_steak', ['label'] = 'Swordfish Steak', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_swordfish_steak.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_ceviche'] = {['name'] = 'pearl_ceviche', ['label'] = 'Fish Ceviche', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_ceviche.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_salmon'] = {['name'] = 'pearl_salmon', ['label'] = 'Smoked Salmon Crostini', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_salmon.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_tartar'] = {['name'] = 'pearl_tartar', ['label'] = 'Fish Tartar', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_tartar.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_fish_cake'] = {['name'] = 'pearl_fish_cake', ['label'] = 'Fish Cakes', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_fish_cake.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_shrimp'] = {['name'] = 'pearl_shrimp', ['label'] = 'Shrimp Cocktail', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_shrimp.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_bruschetta'] = {['name'] = 'pearl_bruschetta', ['label'] = 'Anchovy Bruschetta', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_bruschetta.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_skewers'] = {['name'] = 'pearl_skewers', ['label'] = 'Fish Skewers', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_skewers.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_samosa'] = {['name'] = 'pearl_samosa', ['label'] = 'Fish Samosas', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_samosa.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_calamari'] = {['name'] = 'pearl_calamari', ['label'] = 'Calamari', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_calamari.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_tuna_bites'] = {['name'] = 'pearl_tuna_bites', ['label'] = 'Tuna Poke Bites', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_tuna_bites.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_lemonade'] = {['name'] = 'pearl_lemonade', ['label'] = 'Freshly Squeezed Lemonade', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_lemonade.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_iced_tea'] = {['name'] = 'pearl_iced_tea', ['label'] = 'Iced Green Tea', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_iced_tea.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_citrus_water'] = {['name'] = 'pearl_citrus_water', ['label'] = 'Sparkling Water', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_citrus_water.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_fruit'] = {['name'] = 'pearl_fruit', ['label'] = 'Fruit Punch', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_fruit.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_hibiscus_tea'] = {['name'] = 'pearl_hibiscus_tea', ['label'] = 'Hibiscus Tea', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_hibiscus_tea.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_coconut_water'] = {['name'] = 'pearl_coconut_water', ['label'] = 'Fresh Coconut Water', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_coconut_water.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_ale'] = {['name'] = 'pearl_ale', ['label'] = 'Ginger Ale', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_ale.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_lemon_mint'] = {['name'] = 'pearl_lemon_mint', ['label'] = 'Lemon and Mint', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_lemon_mint.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_kombucha'] = {['name'] = 'pearl_kombucha', ['label'] = 'Kombucha', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_kombucha.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_pineapple_juice'] = {['name'] = 'pearl_pineapple_juice', ['label'] = 'Pineapple Juice', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_pineapple_juice.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_espresso'] = {['name'] = 'pearl_espresso', ['label'] = 'Espresso', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_espresso.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_americano'] = {['name'] = 'pearl_americano', ['label'] = 'Americano', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_americano.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_cappuccino'] = {['name'] = 'pearl_cappuccino', ['label'] = 'Cappuccino', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_cappuccino.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_latte'] = {['name'] = 'pearl_latte', ['label'] = 'Latte', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_latte.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_mocha'] = {['name'] = 'pearl_mocha', ['label'] = 'Mocha', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_mocha.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_iced_coffee'] = {['name'] = 'pearl_iced_coffee', ['label'] = 'Iced Coffee', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_iced_coffee.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_brew'] = {['name'] = 'pearl_brew', ['label'] = 'Iced Brew', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_brew.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_macchiato'] = {['name'] = 'pearl_macchiato', ['label'] = 'Macchiato', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_macchiato.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_flat_white'] = {['name'] = 'pearl_flat_white', ['label'] = 'Flat White', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_flat_white.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_affogato'] = {['name'] = 'pearl_affogato', ['label'] = 'Affogato', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_affogato.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_fillet'] = {['name'] = 'pearl_fillet', ['label'] = 'Fillet', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_fillet.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_garlic_butter'] = {['name'] = 'pearl_garlic_butter', ['label'] = 'Garlic Butter Special Sauce', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_garlic_butter.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_herb'] = {['name'] = 'pearl_herb', ['label'] = 'Herb sauce', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_herb.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_parmesan_cheese'] = {['name'] = 'pearl_parmesan_cheese', ['label'] = 'Parmesan cheese', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_parmesan_cheese.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_blackening_seaon'] = {['name'] = 'pearl_blackening_seaon', ['label'] = 'Blackening seasoning ', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_blackening_seaon.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_beer_batter'] = {['name'] = 'pearl_beer_batter', ['label'] = 'Beer batter', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_beer_batter.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_mango_salsa'] = {['name'] = 'pearl_mango_salsa', ['label'] = 'Mango Salsa', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_mango_salsa.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_ginger'] = {['name'] = 'pearl_ginger', ['label'] = 'Ginger', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_ginger.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_lime_slaw'] = {['name'] = 'pearl_lime_slaw', ['label'] = 'Lime Slaw ', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_lime_slaw.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_lemon_sauce'] = {['name'] = 'pearl_lemon_sauce', ['label'] = 'Lemon Sauce', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_lemon_sauce.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_pesto'] = {['name'] = 'pearl_pesto', ['label'] = 'Pesto', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_pesto.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_lemon'] = {['name'] = 'pearl_lemon', ['label'] = 'Lemon', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_lemon.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_cilantro'] = {['name'] = 'pearl_cilantro', ['label'] = 'Coffee Beans Butter', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_cilantro.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_crostini'] = {['name'] = 'pearl_crostini', ['label'] = 'Crispy Bread', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_crostini.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_soy_sauce'] = {['name'] = 'pearl_soy_sauce', ['label'] = 'Soy Sauce', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_soy_sauce.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_aioli'] = {['name'] = 'pearl_aioli', ['label'] = 'Aioli', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_aioli.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_cocktail_sauce'] = {['name'] = 'pearl_cocktail_sauce', ['label'] = 'Cocktail Sauce', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_cocktail_sauce.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_garlic'] = {['name'] = 'pearl_garlic', ['label'] = 'Garlic', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_garlic.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_chilli_sauce'] = {['name'] = 'pearl_chilli_sauce', ['label'] = 'Chili Sauce', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_chilli_sauce.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_tumeric'] = {['name'] = 'pearl_tumeric', ['label'] = 'Tumeric', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_tumeric.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_wedges'] = {['name'] = 'pearl_wedges', ['label'] = 'Wedges', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_wedges.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_poke_sauce'] = {['name'] = 'pearl_poke_sauce', ['label'] = 'Poke Sauce', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_poke_sauce.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_ice'] = {['name'] = 'pearl_ice', ['label'] = 'Ice', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_ice.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_honey'] = {['name'] = 'pearl_honey', ['label'] = 'Honey', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_honey.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_citrus'] = {['name'] = 'pearl_citrus', ['label'] = 'Citrus Slices', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_citrus.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_mixed_fruit'] = {['name'] = 'pearl_mixed_fruit', ['label'] = 'Mixed Fruit Juice', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_mixed_fruit.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_coconut'] = {['name'] = 'pearl_coconut', ['label'] = 'Coconut', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_coconut.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_sugar'] = {['name'] = 'pearl_sugar', ['label'] = 'Sugar', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_sugar.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_mint'] = {['name'] = 'pearl_mint', ['label'] = 'Mint', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_mint.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_pineapple'] = {['name'] = 'pearl_pineapple', ['label'] = 'Pineapple', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_pineapple.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_coffee_bean'] = {['name'] = 'pearl_coffee_bean', ['label'] = 'Coffee Beans', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_coffee_bean.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_almond'] = {['name'] = 'pearl_almond', ['label'] = 'Almond Milk', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_almond.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_dark_chocolate'] = {['name'] = 'pearl_dark_chocolate', ['label'] = 'Dark Chocolate', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_dark_chocolate.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_vanilla_syrup'] = {['name'] = 'pearl_vanilla_syrup', ['label'] = 'Vanilla Syrup', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_vanilla_syrup.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_chocolate_syrup'] = {['name'] = 'pearl_chocolate_syrup', ['label'] = 'Chocolate Syrup', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_chocolate_syrup.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_whipped_cream'] = {['name'] = 'pearl_whipped_cream', ['label'] = 'Whipped Cream', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_whipped_cream.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_cinnamon_stick'] = {['name'] = 'pearl_cinnamon_stick', ['label'] = 'Cinnamon Stick', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_cinnamon_stick.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_caramel_syrup'] = {['name'] = 'pearl_caramel_syrup', ['label'] = 'Caramel Syrup', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_caramel_syrup.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_hazelnut_syrup'] = {['name'] = 'pearl_hazelnut_syrup', ['label'] = 'Hazelnut Syrup', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_hazelnut_syrup.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_vanilla_icecream'] = {['name'] = 'pearl_vanilla_icecream', ['label'] = 'Vanilla Ice Cream', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_vanilla_icecream.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_icecubes'] = {['name'] = 'pearl_icecubes', ['label'] = 'Ice Cubes', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_icecubes.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_waterbottle'] = {['name'] = 'pearl_waterbottle', ['label'] = 'Water Bottle', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_waterbottle.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['pearl_emptycup'] = {['name'] = 'pearl_emptycup', ['label'] = 'Empty Cup', ['weight'] = 10, ['type'] = 'item', ['image'] = 'pearl_emptycup.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_bbq_chicken'] = {['name'] = 'ua_bbq_chicken', ['label'] = 'BBQ Chicken Burger', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_bbq_chicken.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_mustard_beef'] = {['name'] = 'ua_mustard_beef', ['label'] = 'Mustard Beef Burger', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_mustard_beef.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_glazed_turkey'] = {['name'] = 'ua_glazed_turkey', ['label'] = 'Glazed Turkey Burger', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_glazed_turkey.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_spicy_lamb'] = {['name'] = 'ua_spicy_lamb', ['label'] = 'Spicy Lamb Burger', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_spicy_lamb.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_sweet_smoky_vegan'] = {['name'] = 'ua_sweet_smoky_vegan', ['label'] = 'Sweet & Smoky Vegan Burger', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_sweet_smoky_vegan.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_butter_fries'] = {['name'] = 'ua_butter_fries', ['label'] = 'Butter Fries', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_butter_fries.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_spicy_glazed'] = {['name'] = 'ua_spicy_glazed', ['label'] = 'Spicy Glazed Fries', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_spicy_glazed.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_parmesan_fries'] = {['name'] = 'ua_parmesan_fries', ['label'] = 'Parmesan Fries', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_parmesan_fries.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_sweet_cajun'] = {['name'] = 'ua_sweet_cajun', ['label'] = 'Sweet Cajun Fries', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_sweet_cajun.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_garlic_fries'] = {['name'] = 'ua_garlic_fries', ['label'] = 'Garlic Fries', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_garlic_fries.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_green_tea'] = {['name'] = 'ua_green_tea', ['label'] = 'Iced Green Tea', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_green_tea.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_mint_cooler'] = {['name'] = 'ua_mint_cooler', ['label'] = 'Mint Cooler', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_mint_cooler.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_ginger_punch'] = {['name'] = 'ua_ginger_punch', ['label'] = 'Ginger Punch', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_ginger_punch.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_berry_refresher'] = {['name'] = 'ua_berry_refresher', ['label'] = 'Berry Refresher', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_berry_refresher.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_tropical_splash'] = {['name'] = 'ua_tropical_splash', ['label'] = 'Tropical Splash', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_tropical_splash.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_lemon_fizz'] = {['name'] = 'ua_lemon_fizz', ['label'] = 'Lemon Fizz', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_lemon_fizz.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_ginger_soda'] = {['name'] = 'ua_ginger_soda', ['label'] = 'Ginger Soda', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_ginger_soda.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_mint_sparkler'] = {['name'] = 'ua_mint_sparkler', ['label'] = 'Mint Sparkler', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_mint_sparkler.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_berry_soda'] = {['name'] = 'ua_berry_soda', ['label'] = 'Berry Soda', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_berry_soda.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_pineapple_pop'] = {['name'] = 'ua_pineapple_pop', ['label'] = 'Pineapple Pop', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_pineapple_pop.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_bun'] = {['name'] = 'ua_bun', ['label'] = 'Burger Bun', ['weight'] = 10, ['type'] = 'item', ['image'] = 'burger_ua_bun.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_potato'] = {['name'] = 'ua_potato', ['label'] = 'Potato', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_potato.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_ice'] = {['name'] = 'ua_ice', ['label'] = 'Ice', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_ice.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_lemon'] = {['name'] = 'ua_lemon', ['label'] = 'Lemon', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_lemon.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_bbq_sauce'] = {['name'] = 'ua_bbq_sauce', ['label'] = 'BBQ Sauce', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_bbq_sauce.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_mustard_sauce'] = {['name'] = 'ua_mustard_sauce', ['label'] = 'Mustard Sauce', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_mustard_sauce.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_glaze'] = {['name'] = 'ua_glaze', ['label'] = 'Glaze Sauce', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_glaze.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_chili'] = {['name'] = 'ua_chili', ['label'] = 'Chili Sauce', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_chili.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_smoked'] = {['name'] = 'ua_smoked', ['label'] = 'Smoked Sauce', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_smoked.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_butter'] = {['name'] = 'ua_butter', ['label'] = 'Butter', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_butter.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_parmesan'] = {['name'] = 'ua_parmesan', ['label'] = 'Parmesan Drizzle', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_parmesan.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_cajun'] = {['name'] = 'ua_cajun', ['label'] = 'Cajun Sauce', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_cajun.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_garlic'] = {['name'] = 'ua_garlic', ['label'] = 'Garlic Sauce', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_garlic.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_lemon_syrup'] = {['name'] = 'ua_lemon_syrup', ['label'] = 'Lemon Syrup', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_lemon_syrup.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_mint'] = {['name'] = 'ua_mint', ['label'] = 'Mint', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_mint.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_ginger'] = {['name'] = 'ua_ginger', ['label'] = 'Ginger', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_ginger.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_berry'] = {['name'] = 'ua_berry', ['label'] = 'Berry', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_berry.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_tropical'] = {['name'] = 'ua_tropical', ['label'] = 'Tropical', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_tropical.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_pineapple'] = {['name'] = 'ua_pineapple', ['label'] = 'Pineapple', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_pineapple.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_icecubes'] = {['name'] = 'ua_icecubes', ['label'] = 'Ice Cubes', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_icecubes.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_waterbottle'] = {['name'] = 'ua_waterbottle', ['label'] = 'Water Bottle', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_waterbottle.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['ua_emptycup'] = {['name'] = 'ua_emptycup', ['label'] = 'Empty Cup', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_emptycup.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
 ```
 
 </details>
@@ -1046,90 +530,48 @@ Add the items into your server
 
 ```lua
 INSERT INTO `items` (`name`, `label`, `weight`) VALUES
-    ('pearl_grill_salmon', 'Grilled Salmon', 1, 0, 1),
-    ('pearl_seared_cod', 'Seared Cod', 1, 0, 1),
-    ('pearl_tilapia', 'Tilapia', 1, 0, 1),
-    ('pearl_red_snapper', 'Red Snapper', 1, 0, 1),
-    ('pearl_fish_chips', 'Fish and Chips', 1, 0, 1),
-    ('pearl_salsa', 'Mango Salsa', 1, 0, 1),
-    ('pearl_sea_bass', 'Sea Bass', 1, 0, 1),
-    ('pearl_tacos', 'Tacos', 1, 0, 1),
-    ('pearl_broiled_halibut', 'Broiled Halibut', 1, 0, 1),
-    ('pearl_swordfish_steak', 'Swordfish Steak', 1, 0, 1),
-    ('pearl_ceviche', 'Smoked Salmon Crostini', 1, 0, 1),
-    ('pearl_salmon', 'Grilled Salmon', 1, 0, 1),
-    ('pearl_tartar', 'Fish Tartar', 1, 0, 1),
-    ('pearl_fish_cake', 'Fish Cakes', 1, 0, 1),
-    ('pearl_shrimp', 'Shrimp Cocktail', 1, 0, 1),
-    ('pearl_bruschetta', 'Anchovy Bruschetta', 1, 0, 1),
-    ('pearl_skewers', 'Fish Skewers', 1, 0, 1),
-    ('pearl_samosa', 'Fish Samosas', 1, 0, 1),
-    ('pearl_calamari', 'Calamari', 1, 0, 1),
-    ('pearl_tuna_bites', 'Tuna Poke Bites', 1, 0, 1),
-    ('pearl_lemonade', 'Freshly Squeezed Lemonade', 1, 0, 1),
-    ('pearl_iced_tea', 'Iced Green Tea', 1, 0, 1),
-    ('pearl_citrus_water', 'Sparkling Water', 1, 0, 1),
-    ('pearl_fruit', 'Fruit Punch', 1, 0, 1),
-    ('pearl_hibiscus_tea', 'Hibiscus Tea', 1, 0, 1),
-    ('pearl_coconut_water', 'Fresh Coconut Water', 1, 0, 1),
-    ('pearl_ale', 'Ginger Ale', 1, 0, 1),
-    ('pearl_lemon_mint', 'Lemon and Mint', 1, 0, 1),
-    ('pearl_kombucha', 'Kombucha', 1, 0, 1),
-    ('pearl_pineapple_juice', 'Pineapple Juice', 1, 0, 1),
-    ('pearl_espresso', 'Espresso', 1, 0, 1),
-    ('pearl_americano', 'Americano', 1, 0, 1),
-    ('pearl_cappuccino', 'Cappuccino', 1, 0, 1),
-    ('pearl_latte', 'Latte', 1, 0, 1),
-    ('pearl_mocha', 'Mocha', 1, 0, 1),
-    ('pearl_iced_coffee', 'Iced Coffee', 1, 0, 1),
-    ('pearl_brew', 'Iced Brew', 1, 0, 1),
-    ('pearl_macchiato', 'Macchiato', 1, 0, 1),
-    ('pearl_flat_white', 'Flat White', 1, 0, 1),
-    ('pearl_affogato', 'Affogato', 1, 0, 1),
-    ('pearl_fillet', 'Fillet', 1, 0, 1),
-    ('pearl_garlic_butter', 'Garlic Butter Special Sauce', 1, 0, 1),
-    ('pearl_herb', 'Herb sauce', 1, 0, 1),
-    ('pearl_parmesan_cheese', 'Parmesan cheese', 1, 0, 1),
-    ('pearl_blackening_seaon', 'Blackening seasoning', 1, 0, 1),
-    ('pearl_beer_batter', 'Beer batter', 1, 0, 1),
-    ('pearl_mango_salsa', 'Mango Salsa', 1, 0, 1),
-    ('pearl_ginger', 'Ginger', 1, 0, 1),
-    ('pearl_lime_slaw', 'Lime Slaw', 1, 0, 1),
-    ('pearl_lemon_sauce', 'Lemon Sauce', 1, 0, 1),
-    ('pearl_pesto', 'Pesto', 1, 0, 1),
-    ('pearl_lemon', 'Lemon', 1, 0, 1),
-    ('pearl_cilantro', 'Grilled Salmon', 1, 0, 1),
-    ('pearl_grill_salmon', 'Coffee Beans Butter', 1, 0, 1),
-    ('pearl_crostini', 'Crispy Bread', 1, 0, 1),
-    ('pearl_soy_sauce', 'Soy Sauce', 1, 0, 1),
-    ('pearl_aioli', 'Aioli', 1, 0, 1),
-    ('pearl_cocktail_sauce', 'Cocktail Sauce', 1, 0, 1),
-    ('pearl_garlic', 'Garlic', 1, 0, 1),
-    ('pearl_chilli_sauce', 'Chili Sauce', 1, 0, 1),
-    ('pearl_tumeric', 'Tumeric', 1, 0, 1),
-    ('pearl_wedges', 'Wedges', 1, 0, 1),
-    ('pearl_poke_sauce', 'Poke Sauce', 1, 0, 1),
-    ('pearl_ice', 'Pearls Ice', 1, 0, 1),
-    ('pearl_honey', 'Honey', 1, 0, 1),
-    ('pearl_citrus', 'Citrus Slices', 1, 0, 1),
-    ('pearl_mixed_fruit', 'Mixed Fruit Juice', 1, 0, 1),
-    ('pearl_coconut', 'Coconut', 1, 0, 1),
-    ('pearl_sugar', 'Sugar', 1, 0, 1),
-    ('pearl_mint', 'Mint', 1, 0, 1),
-    ('pearl_pineapple', 'Pineapple', 1, 0, 1),
-    ('pearl_coffee_bean', 'Coffee Beans', 1, 0, 1),
-    ('pearl_almond', 'Almond Milk', 1, 0, 1),
-    ('pearl_dark_chocolate', 'Dark Chocolate', 1, 0, 1),
-    ('pearl_vanilla_syrup', 'Vanilla Syrup', 1, 0, 1),
-    ('pearl_chocolate_syrup', 'Chocolate Syrup', 1, 0, 1),
-    ('pearl_whipped_cream', 'Whipped Cream', 1, 0, 1),
-    ('pearl_cinnamon_stick', 'Cinnamon Stick', 1, 0, 1),
-    ('pearl_caramel_syrup', 'Caramel Syrup', 1, 0, 1),
-    ('pearl_hazelnut_syrup', 'Hazelnut Syrup', 1, 0, 1),
-    ('pearl_vanilla_icecream', 'Vanilla Ice Cream', 1, 0, 1),
-    ('pearl_icecubes', 'Ice Cubes', 1),
-    ('pearl_waterbottle', 'Water Bottle', 1),
-    ('pearl_emptycup', 'Empty Cup', 1);
+('ua_bbq_chicken', 'BBQ Chicken Burger', 1),
+('ua_mustard_beef', 'Mustard Beef Burger', 1),
+('ua_glazed_turkey', 'Glazed Turkey Burger', 1),
+('ua_spicy_lamb', 'Spic  Lamb Burger', 1),
+('ua_sweet_smoky_vegan', 'Sweet & Smoky Vegan Burger', 1),
+('ua_butter_fries', 'Butter Fries', 1),
+('ua_spicy_glazed', 'Spicy Glazed Fries', 1),
+('ua_parmesan_fries', 'Parmesan Fries', 1),
+('ua_sweet_cajun', 'Sweet Cajun Fries', 1),
+('ua_garlic_fries', 'Garlic Fries', 1),
+('ua_lemon_fizz', 'Lemon Fizz', 1),
+('ua_mint_cooler', 'Mint Cooler', 1),
+('ua_ginger_punch', 'Ginger Punch', 1),
+('ua_berry_refresher', 'Berry Refresher', 1),
+('ua_tropical_splash', 'Tropica Splash', 1),
+('ua_green_tea', 'Iced Green Tea', 1),
+('ua_ginger_soda', 'Ginger Soda', 1),
+('ua_mint_sparkler', 'Mint Sparkler', 1),
+('ua_berry_soda', 'Berry Soda', 1),
+('ua_pineapple_pop', 'Pineapple Pop', 1),
+('ua_bun', 'Burger Bun', 1),
+('ua_potato', 'Potato', 1),
+('ua_ice', 'Ice', 1),
+('ua_lemon', 'Lemon', 1),
+('ua_bbq_sauce', 'BBQ Sauce', 1),
+('ua_mustard_sauce', 'Mustard Sauce', 1),
+('ua_glaze', 'Glaze Sauce', 1),
+('ua_chili', 'Chili Sauce', 1),
+('ua_smoked', 'Smoked Sauce', 1),
+('ua_butter', 'Butter', 1),
+('ua_parmesan', 'Parmesan Drizzle', 1),
+('ua_cajun', 'Cajun Sauce', 1),
+('ua_garlic', 'Garlic Sauce', 1),
+('ua_lemon_syrup', 'Lemon Syrup', 1),
+('ua_mint', 'Mint', 1),
+('ua_ginger', 'Ginger', 1),
+('ua_berry', 'Berry', 1),
+('ua_tropical', 'Tropica ', 1),
+('ua_pineapple', 'Pineapple', 1),
+('ua_icecubes', 'Ice Cubes', 1),
+('ua_waterbottle', 'Water Bottle', 1),
+('ua_emptycup', 'Empty Cup', 1);
 ```
 
 </details>
@@ -1141,8 +583,8 @@ INSERT INTO `items` (`name`, `label`, `weight`) VALUES
 Add the Following in qb-core/shared/jobs.lua
 
 ```lua
-['pearls'] = {
-    label = 'Pearls',
+['upnatom'] = {
+    label = 'Up n Atom',
     defaultDuty = true,
     grades = {
         ['0'] = {
@@ -1173,8 +615,8 @@ Add the Following in qb-core/shared/jobs.lua
 Added in Qbox->shared->jobs.lua
 
 ```lua
-['pearls'] = {
-    label = 'Pearls',
+['upnatom'] = {
+    label = 'Up n Atom',
     defaultDuty = true,
     grades = {
         [0] = {
@@ -1215,111 +657,62 @@ Add in qb-smallresourcse/config.lua
 ```lua
 --If using old qb-smallresources
 Config.ConsumablesDrink = {
-    ['pearl_espresso'] = math.random(35, 54),
-    ['pearl_americano'] = math.random(35, 54),
-    ['pearl_cappuccino'] = math.random(35, 54),
-    ['pearl_latte'] = math.random(35, 54),
-    ['pearl_mocha'] = math.random(35, 54),
-    ['pearl_iced_coffee'] = math.random(35, 54),
-    ['pearl_brew'] = math.random(35, 54),
-    ['pearl_macchiato'] = math.random(35, 54),
-    ['pearl_flat_white'] = math.random(35, 54),
-    ['pearl_affogato'] = math.random(35, 54),
+    ['ua_green_tea'] = math.random(35, 54),
+    ['ua_mint_cooler'] = math.random(35, 54),
+    ['ua_ginger_punch'] = math.random(35, 54),
+    ['ua_berry_refresher'] = math.random(35, 54),
+    ['ua_tropical_splash'] = math.random(35, 54),
 
-    ['pearl_lemonade'] = math.random(35, 54),
-    ['pearl_iced_tea'] = math.random(35, 54),
-    ['pearl_citrus_water'] = math.random(35, 54),
-    ['pearl_fruit'] = math.random(35, 54),
-    ['pearl_hibiscus_tea'] = math.random(35, 54),
-    ['pearl_coconut_water'] = math.random(35, 54),
-    ['pearl_ale'] = math.random(35, 54),
-    ['pearl_lemon_mint'] = math.random(35, 54),
-    ['pearl_kombucha'] = math.random(35, 54),
-    ['pearl_pineapple_juice'] = math.random(35, 54),
-
-
+    ['ua_lemon_fizz'] = math.random(35, 54),
+    ['ua_ginger_soda'] = math.random(35, 54),
+    ['ua_mint_sparkler'] = math.random(35, 54),
+    ['ua_berry_soda'] = math.random(35, 54),
+    ['ua_pineapple_pop'] = math.random(35, 54),
+    
 }
 
 Config.ConsumablesEat = {
-    ['pearl_grill_salmon'] = math.random(35, 54),
-    ['pearl_seared_cod'] = math.random(35, 54),
-    ['pearl_tilapia'] = math.random(35, 54),
-    ['pearl_red_snapper'] = math.random(35, 54),
-    ['pearl_fish_chips'] = math.random(35, 54),
-    ['pearl_salsa'] = math.random(35, 54),
-    ['pearl_sea_bass'] = math.random(35, 54),
-    ['pearl_tacos'] = math.random(35, 54),
-    ['pearl_broiled_halibut'] = math.random(35, 54),
-    ['pearl_swordfish_steak'] = math.random(35, 54),
+    ['ua_bbq_chicken'] = math.random(35, 54),
+    ['ua_mustard_beef'] = math.random(35, 54),
+    ['ua_glazed_turkey'] = math.random(35, 54),
+    ['ua_spicy_lamb'] = math.random(35, 54),
+    ['ua_sweet_smoky_vegan'] = math.random(35, 54),
 
-
-    ['pearl_ceviche'] = math.random(35, 54),
-    ['pearl_salmon'] = math.random(35, 54),
-    ['pearl_tartar'] = math.random(35, 54),
-    ['pearl_fish_cake'] = math.random(35, 54),
-    ['pearl_shrimp'] = math.random(35, 54),
-    ['pearl_bruschetta'] = math.random(35, 54),
-    ['pearl_skewers'] = math.random(35, 54),
-    ['pearl_samosa'] = math.random(35, 54),
-    ['pearl_calamari'] = math.random(35, 54),
-    ['pearl_tuna_bites'] = math.random(35, 54),
-
-
-    
+    ['ua_butter_fries'] = math.random(35, 54),
+    ['ua_spicy_glazed'] = math.random(35, 54),
+    ['ua_parmesan_fries'] = math.random(35, 54),
+    ['ua_sweet_cajun'] = math.random(35, 54),
+    ['ua_garlic_fries'] = math.random(35, 54),
 }
 
 --If using new qb-smallresources
 Config.Consumables = {
     eat = {
-        ['pearl_grill_salmon'] = math.random(35, 54),
-        ['pearl_seared_cod'] = math.random(35, 54),
-        ['pearl_tilapia'] = math.random(35, 54),
-        ['pearl_red_snapper'] = math.random(35, 54),
-        ['pearl_fish_chips'] = math.random(35, 54),
-        ['pearl_salsa'] = math.random(35, 54),
-        ['pearl_sea_bass'] = math.random(35, 54),
-        ['pearl_tacos'] = math.random(35, 54),
-        ['pearl_broiled_halibut'] = math.random(35, 54),
-        ['pearl_swordfish_steak'] = math.random(35, 54),
+        ['ua_bbq_chicken'] = math.random(35, 54),
+        ['ua_mustard_beef'] = math.random(35, 54),
+        ['ua_glazed_turkey'] = math.random(35, 54),
+        ['ua_spicy_lamb'] = math.random(35, 54),
+        ['ua_sweet_smoky_vegan'] = math.random(35, 54),
 
+        ['ua_butter_fries'] = math.random(35, 54),
+        ['ua_spicy_glazed'] = math.random(35, 54),
+        ['ua_parmesan_fries'] = math.random(35, 54),
+        ['ua_sweet_cajun'] = math.random(35, 54),
+        ['ua_garlic_fries'] = math.random(35, 54),
 
-        ['pearl_ceviche'] = math.random(35, 54),
-        ['pearl_salmon'] = math.random(35, 54),
-        ['pearl_tartar'] = math.random(35, 54),
-        ['pearl_fish_cake'] = math.random(35, 54),
-        ['pearl_shrimp'] = math.random(35, 54),
-        ['pearl_bruschetta'] = math.random(35, 54),
-        ['pearl_skewers'] = math.random(35, 54),
-        ['pearl_samosa'] = math.random(35, 54),
-        ['pearl_calamari'] = math.random(35, 54),
-        ['pearl_tuna_bites'] = math.random(35, 54),
-
-
-        
     },
     drink = {
-        ['pearl_espresso'] = math.random(35, 54),
-        ['pearl_americano'] = math.random(35, 54),
-        ['pearl_cappuccino'] = math.random(35, 54),
-        ['pearl_latte'] = math.random(35, 54),
-        ['pearl_mocha'] = math.random(35, 54),
-        ['pearl_iced_coffee'] = math.random(35, 54),
-        ['pearl_brew'] = math.random(35, 54),
-        ['pearl_macchiato'] = math.random(35, 54),
-        ['pearl_flat_white'] = math.random(35, 54),
-        ['pearl_affogato'] = math.random(35, 54),
+        ['ua_green_tea'] = math.random(35, 54),
+        ['ua_mint_cooler'] = math.random(35, 54),
+        ['ua_ginger_punch'] = math.random(35, 54),
+        ['ua_berry_refresher'] = math.random(35, 54),
+        ['ua_tropical_splash'] = math.random(35, 54),
 
-        ['pearl_lemonade'] = math.random(35, 54),
-        ['pearl_iced_tea'] = math.random(35, 54),
-        ['pearl_citrus_water'] = math.random(35, 54),
-        ['pearl_fruit'] = math.random(35, 54),
-        ['pearl_hibiscus_tea'] = math.random(35, 54),
-        ['pearl_coconut_water'] = math.random(35, 54),
-        ['pearl_ale'] = math.random(35, 54),
-        ['pearl_lemon_mint'] = math.random(35, 54),
-        ['pearl_kombucha'] = math.random(35, 54),
-        ['pearl_pineapple_juice'] = math.random(35, 54),
-
+        ['ua_lemon_fizz'] = math.random(35, 54),
+        ['ua_ginger_soda'] = math.random(35, 54),
+        ['ua_mint_sparkler'] = math.random(35, 54),
+        ['ua_berry_soda'] = math.random(35, 54),
+        ['ua_pineapple_pop'] = math.random(35, 54),
     },
 }
 ```
@@ -1334,47 +727,28 @@ Add the following in jim-consumables/shared/consumables.lua
 
 ```lua
 --jim-consumables/shared/consumables.lua
-pearl_grill_salmon = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20), }},
-pearl_seared_cod = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20), }},
-pearl_tilapia = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20), }},
-pearl_red_snapper = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20), }},
-pearl_fish_chips = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20), }},
-pearl_salsa = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20), }},
-pearl_sea_bass = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20), }},
-pearl_tacos = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20), }},
-pearl_broiled_halibut = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20), }},
-pearl_swordfish_steak = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20), }},
-pearl_ceviche = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20), }},
-pearl_salmon = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20), }},
-pearl_tartar = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20), }},
-pearl_fish_cake = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20), }},
-pearl_shrimp = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20), }},
-pearl_bruschetta = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20), }},
-pearl_skewers = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20), }},
-pearl_samosa = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20), }},
-pearl_calamari = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20), }},
-pearl_tuna_bites = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20), }},
+ua_bbq_chicken = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20) } },
+ua_mustard_beef = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20) } },
+ua_glazed_turkey = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20) } },
+ua_spicy_lamb = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20) } },
+ua_sweet_smoky_vegan = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20) } },
+ua_butter_fries = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20) } },
+ua_spicy_glazed = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20) } },
+ua_parmesan_fries = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20) } },
+ua_sweet_cajun = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20) } },
+ua_garlic_fries = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20) } },
 
-pearl_lemonade = {emote = "drink", 		canRun = false, 	time = math.random(5000, 6000), stress = math.random(2, 4), heal = 0, armor = 0, type = "drink", stats = { thirst = math.random(10,20), }},
-pearl_iced_tea = {emote = "drink", 		canRun = false, 	time = math.random(5000, 6000), stress = math.random(2, 4), heal = 0, armor = 0, type = "drink", stats = { thirst = math.random(10,20), }},
-pearl_citrus_water = {emote = "drink", 		canRun = false, 	time = math.random(5000, 6000), stress = math.random(2, 4), heal = 0, armor = 0, type = "drink", stats = { thirst = math.random(10,20), }},
-pearl_fruit = {emote = "drink", 		canRun = false, 	time = math.random(5000, 6000), stress = math.random(2, 4), heal = 0, armor = 0, type = "drink", stats = { thirst = math.random(10,20), }},
-pearl_hibiscus_tea = {emote = "drink", 		canRun = false, 	time = math.random(5000, 6000), stress = math.random(2, 4), heal = 0, armor = 0, type = "drink", stats = { thirst = math.random(10,20), }},
-pearl_coconut_water = {emote = "drink", 		canRun = false, 	time = math.random(5000, 6000), stress = math.random(2, 4), heal = 0, armor = 0, type = "drink", stats = { thirst = math.random(10,20), }},
-pearl_ale = {emote = "drink", 		canRun = false, 	time = math.random(5000, 6000), stress = math.random(2, 4), heal = 0, armor = 0, type = "drink", stats = { thirst = math.random(10,20), }},
-pearl_lemon_mint = {emote = "drink", 		canRun = false, 	time = math.random(5000, 6000), stress = math.random(2, 4), heal = 0, armor = 0, type = "drink", stats = { thirst = math.random(10,20), }},
-pearl_kombucha = {emote = "drink", 		canRun = false, 	time = math.random(5000, 6000), stress = math.random(2, 4), heal = 0, armor = 0, type = "drink", stats = { thirst = math.random(10,20), }},
-pearl_pineapple_juice = {emote = "drink", 		canRun = false, 	time = math.random(5000, 6000), stress = math.random(2, 4), heal = 0, armor = 0, type = "drink", stats = { thirst = math.random(10,20), }},
-pearl_espresso = {emote = "coffee", 		canRun = false, 	time = math.random(5000, 6000), stress = math.random(2, 4), heal = 0, armor = 0, type = "drink", stats = { thirst = math.random(10,20), }},
-pearl_americano = {emote = "coffee", 		canRun = false, 	time = math.random(5000, 6000), stress = math.random(2, 4), heal = 0, armor = 0, type = "drink", stats = { thirst = math.random(10,20), }},
-pearl_cappuccino = {emote = "coffee", 		canRun = false, 	time = math.random(5000, 6000), stress = math.random(2, 4), heal = 0, armor = 0, type = "drink", stats = { thirst = math.random(10,20), }},
-pearl_latte = {emote = "coffee", 		canRun = false, 	time = math.random(5000, 6000), stress = math.random(2, 4), heal = 0, armor = 0, type = "drink", stats = { thirst = math.random(10,20), }},
-pearl_mocha = {emote = "coffee", 		canRun = false, 	time = math.random(5000, 6000), stress = math.random(2, 4), heal = 0, armor = 0, type = "drink", stats = { thirst = math.random(10,20), }},
-pearl_iced_coffee = {emote = "coffee", 		canRun = false, 	time = math.random(5000, 6000), stress = math.random(2, 4), heal = 0, armor = 0, type = "drink", stats = { thirst = math.random(10,20), }},
-pearl_brew = {emote = "coffee", 		canRun = false, 	time = math.random(5000, 6000), stress = math.random(2, 4), heal = 0, armor = 0, type = "drink", stats = { thirst = math.random(10,20), }},
-pearl_macchiato = {emote = "coffee", 		canRun = false, 	time = math.random(5000, 6000), stress = math.random(2, 4), heal = 0, armor = 0, type = "drink", stats = { thirst = math.random(10,20), }},
-pearl_flat_white = {emote = "coffee", 		canRun = false, 	time = math.random(5000, 6000), stress = math.random(2, 4), heal = 0, armor = 0, type = "drink", stats = { thirst = math.random(10,20), }},
-pearl_affogato = {emote = "coffee", 		canRun = false, 	time = math.random(5000, 6000), stress = math.random(2, 4), heal = 0, armor = 0, type = "drink", stats = { thirst = math.random(10,20), }},
+ua_green_tea = { emote = "coffee", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "drink",stats = { effect = "stamina", time = 10000, thirst = math.random(10,20), }},
+ua_mint_cooler = { emote = "coffee", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "drink",stats = { effect = "stamina", time = 10000, thirst = math.random(10,20), }},
+ua_ginger_punch = { emote = "coffee", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "drink",stats = { effect = "stamina", time = 10000, thirst = math.random(10,20), }},
+ua_berry_refresher = { emote = "coffee", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "drink",stats = { effect = "stamina", time = 10000, thirst = math.random(10,20), }},
+ua_tropical_splash = { emote = "coffee", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "drink",stats = { effect = "stamina", time = 10000, thirst = math.random(10,20), }},
+
+ua_lemon_fizz = { emote = "ecola", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "drink",stats = { effect = "stamina", time = 10000, thirst = math.random(10,20), }},
+ua_ginger_soda = { emote = "ecola", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "drink",stats = { effect = "stamina", time = 10000, thirst = math.random(10,20), }},
+ua_mint_sparkler = { emote = "ecola", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "drink",stats = { effect = "stamina", time = 10000, thirst = math.random(10,20), }},
+ua_berry_soda = { emote = "ecola", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "drink",stats = { effect = "stamina", time = 10000, thirst = math.random(10,20), }},
+ua_pineapple_pop = { emote = "ecola", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "drink",stats = { effect = "stamina", time = 10000, thirst = math.random(10,20), }},
 ```
 
 </details>
@@ -1388,4 +762,8 @@ Copy all the Images folder and paste it in your inventory Images folder
 To enable discord logs make sure to add your webhook in the server->Log.lua File
 
 {% embed url="https://www.youtube.com/watch?pp=ygULI2FwcHlxczIwMjM=&v=fKksxz2Gdnc" %}
+
+### Video of Installation:
+
+{% embed url="https://www.youtube.com/watch?v=rkWxUxoF3_s" %}
 

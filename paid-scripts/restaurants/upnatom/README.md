@@ -1,10 +1,10 @@
-# ⚛️ UpnAtom
+# 🐟 Pearls
 
+{% embed url="https://youtu.be/KaU5mq9hx94" %}
 
+### Purchase Escrow: [\[Click Here\]](https://pulsescripts.com/product/6707935)
 
-### Purchase Escrow: [\[Click Here\]](https://pulsescripts.com/category/escrow)
-
-### Preview: Coming Soon
+### Preview: [Watch Here](https://youtu.be/KaU5mq9hx94)
 
 ### Map Supported by This Script
 
