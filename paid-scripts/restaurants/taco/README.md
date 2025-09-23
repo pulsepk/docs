@@ -1,16 +1,24 @@
 # 🌮 Taco
 
-<figure><img src="../../../.gitbook/assets/Taco shop.png" alt=""><figcaption></figcaption></figure>
+###
 
-### Purchase Escrow: [\[Click Here\]](https://pulsescripts.tebex.io/package/6707937)
+{% embed url="https://youtu.be/uHIc_cJblzA" %}
 
-### Preview: [\[Click Here\]](https://youtu.be/tY72xVzvnD0)
+### Purchase Escrow: [\[Click Here\]](https://pulsescripts.com/product/6707937)
 
-### Map by Pablito- [Download](https://www.gta5-mods.com/maps/taco-restaurant-mlo-add-on-fivem-pablitomamutopaputo)
+### Preview: [Watch Here](https://youtu.be/uHIc_cJblzA)
+
+### Map Supported by This Script
+
+**Pablito :** [\[Click Here\]](https://www.gta5-mods.com/maps/taco-restaurant-mlo-add-on-fivem-pablitomamutopaputo)
+
+**Crux:** [\[Click Here\]](https://crux.tebex.io/package/6239572)
+
+**RFC:** [\[Click Here\]](https://store.rfcmapping.com/package/6268899)
 
 ### Features:
 
-**🍞 24 Consumable Item with unique ingredients**
+**🍞 20 Consumable Item with unique ingredients**
 
 **🏛️ Item Stock Management :-**
 
@@ -50,9 +58,8 @@ Stocked with fresh ingredients—grab what you need to cook up delicious meals!
 
 Master the art of cooking with a variety of delicious treats:
 
-🌮 **Taco** – Packed with bold flavors and fresh ingredients, a perfect bite every time!\
-🌯 **Burritos** – Hearty, stuffed, and wrapped in a warm tortilla for a satisfying meal.\
-🧀 **Nachos** – Crispy tortilla chips loaded with delicious toppings and melted cheese.\
+🍔 **Burger** – Juicy, flavorful, and grilled to perfection. A classic favorite!\
+🍟 **Fries** – Crispy, golden, and perfectly seasoned. The ultimate sidekick!\
 🥤 **Drinks** – Refreshing and thirst-quenching beverages for every occasion.
 
 💰 **Cash Registers:**&#x20;

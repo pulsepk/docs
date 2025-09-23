@@ -1,18 +1,87 @@
 # Preview Config
 
-```etlua
-lib.locale()
+<details>
+
+<summary>Config File</summary>
+
+```lua
+
+--==============================================--
+-- 💬  JOIN OUR DISCORD COMMUNITY               
+--                                             
+-- 🔧  Script Support                         
+-- 🛠️   Devlogs & Sneak Peeks                  
+-- 🔔  Updates & Announcements                 
+--                                             
+-- 🔗  Recommended: https://discord.gg/c6gXmtEf3H  
+--==============================================--
+
+Location = {}
 Config = {}
+
+Config.Framework = 'autodetect' -- 'autodetect' or "esx" ,"qb", "qbox"
+
+Config.FrameworkResources = {
+    esx = {
+        resource = 'es_extended',
+        export = 'getSharedObject'
+    },
+    qb = {
+        resource = 'qb-core',
+        export = 'GetCoreObject'
+    }
+}
+-- Enable auto SQL install on resource start
+Config.AutoInstallSQL = true
+
+Config.Locale = 'en' -- 'en', 'fr', 'de', 'es', 'it', 'pt', 'tr' -- Language
 Config.Debug = {
     PolyZone = false, --Shows Red Boxes for Target
-    DrawSprite = true --Show White Circles above the target locations
+    DrawSprite = true, --Show White Circles above the target locations
+    Prints = true, --Prints debug messages in console
 }
-Config.LogEnable = true --edit the webhook in Server/Log.lua
+--pablito: https://www.gta5-mods.com/maps/taco-restaurant-mlo-add-on-fivem-pablitomamutopaputo
+--crux: https://crux.tebex.io/package/6239572
+--rfc: https://store.rfcmapping.com/package/6268899
+
+Config.location = "pablito" --'pablito', 'crux', 'rfc'   -- Location of the shop
+
+Config.TextUI = 'autodetect' --'autodetect' or 'ox_lib', 'qb-core', 'jg-textui', 'lation_ui', 'esx_textui', 'cd_drawtextui', 'brutal_textui'
+Config.BossMenu = 'autodetect' --'autodetect' or 'esx_society', 'qb-management', 'qbx_management', 'vms_bossmenu'
+Config.Target = 'autodetect' --'autodetect' or 'ox_target', 'qb-target'
+Config.Notify = 'autodetect' --'autodetect' or 'ox_lib', 'esx_notify', 'okokNotify','lation_ui', 'wasabi_notify', 'brutal_notify', 'mythic_notify'
+Config.Progressbar = 'ox_lib' -- 'qb', 'ox_lib', 'ox_lib_circle', 'lation_ui'
+Config.InputDialog = 'ox_lib' -- 'ox_lib', 'lation_ui'
+Config.BillingMenu = 'builtin' --'builtin' or 'autodetect' or 'esx_billing','s1n_billing','okokBilling', 'codem-billing','qb-phone'
+Config.ContextMenu = 'ox_lib' -- 'ox_lib', 'lation_ui'
+Config.Clothing = 'autodetect' --'autodetect' or 'esx_skin', 'illenium-appearance', 'fivem-appearance', 'qb-clothing', 'tgiann-clothing'
+Config.Society = {
+    enable  = true,
+    resourcename = 'autodetect', --'autodetect' or 'esx_addonaccount', 'qb-management', 'qb-banking', 'okokBanking', 'Renewed-Banking'
+}
+
+Config.Logging = {
+    LogEnable = true, -- It will send logs.
+    --'discord' for discord webhook. Edit the Log.lua file to add the webook
+    --'fivemanage'
+    --'fivemerr'
+    LogType = 'discord'
+}
+
 Config.CheckVersion = true
+
+local locationBlips = {
+    pablito = vector3(7.51, -1606.1, 29.37),
+    crux = vector3(7.51, -1606.1, 29.37),
+    rfc = vector3(7.51, -1606.1, 29.37)
+}
+
+local blipcoords = locationBlips[Config.location]
+
 Config.Blip = {
-    BlipName = "Taco Shop", --Blip Name
+    BlipName = "Taco Shop", -- Blip Name
     Enable = true,
-    Coords = vector3(7.51, -1606.1, 29.37),
+    Coords = blipcoords,
     Options = {
         Sprite = 79,
         Color = 5,
@@ -20,32 +89,19 @@ Config.Blip = {
         Display = 4
     }
 }
--- If you want to change the red marker that appears on item processing edit this
+-- If you want to change the white marker that appears on item processing edit this
 Config.MarkerSettings = {
-    type = 2, -- Marker type
-    width = 0.2, -- Marker width
+    type = 21, -- Marker type
+    width = 0.3, -- Marker width
     height = 0.3, -- Marker height
-    color = { r = 255, g = 0, b = 0, a = 100 } -- Marker color
+    color = { r = 255, g = 255, b = 255, a = 120 }, -- Marker color
+    distance = 10, -- Distance to show the marker
+    Interact = 1, -- Distance to interact with the marker
+
 }
-Config.TextUI = 'ox_lib' --'ox_lib', 'qb-core', 'jg-textui', 'esx_textui', 'cd_drawtextui'
-Config.Society = {
-    enable  = true,
-    society_script = "qb-banking", --esx_society, qb-management,qb-banking
-}
-Config.Target = "qb-target" --ox-target, qb-target
-Config.Notify = 'ox' --ox, esx, okok,qb,wasabi,custom
-Config.ShopMode = 'automatic' -- 'self' , 'automatic'
---for ox inventory ox_inventory/web/images/
---for qausar inventory qs-inventory/html/images/
---for qb-inventory qb-inventory/html/images/
---for ps-inventory ps-inventory/html/images/
---for codem inventory codem-inventory/html/images/
---for ak47 inventory ak47_inventory/web/build/images/
-Config.Invimages = 'qb-inventory/html/images/' -- Image path for your inventory
+
+Config.EnableSocietyPayment = false -- If enable you can pay from society for the fridge items
 Config.Jobname = 'taco' -- Job Name
-Config.Progressbar = 'ox_lib' -- qb, ox_lib, ox_lib_circle
---This is remove the green zone markers and enable target
-Config.RemoveMarkers = true
 
 Config.StashInventory = {
     --Stash
@@ -57,11 +113,22 @@ Config.StashInventory = {
     --Counter
     CounterSlot = 10,
     CounterWeight = 20000,
+    --TrashCan
+    TrashCanSlot = 10,
+    TrashCanWeight = 20000,
 }
 
-Config.BillingMenu = 'qb-phone' -- 'esx_billing','qb-phone','s1n_billing','okokBilling'
+Config.MaxStock = 100
+
+Config.IceMachine = {
+    ice_itemname = 'taco_icecubes',
+    water_itemname = 'taco_waterbottle',
+    WaitTime = 560,
+    MaxIce = 10
+}
+
 Config.MaxBillAmount = 1000
-Config.Clothing = 'qb-clothing' --esx_skin,illenium-appearance,fivem-appearance,qb-clothing
+Config.Commission = 5 -- Commission percentage for bill payments
 Config.Uniforms = {
     clothes = {
 		male = {
@@ -88,19 +155,36 @@ Config.Uniforms = {
 		}
 	},
 }
-Config.CheckCanCarryItem = false -- Only for ESX
+
+Config.Delivery = {
+    Enable = true,
+    FuelEnable = true, -- Enable or disable fuel consumption
+    Ped = {
+        model='s_m_m_trucker_01'
+    },
+    VehicleSpawn = {
+        model='burrito'
+    },
+    Payout = 'money', --'money' for cash |'bank' for bank | 'society' for society
+    OrderDelay = 60, -- Time in seconds between orders
+    MaxOrders = 2, -- Maximum number of active orders
+}
+
+Config.SkillCheck = {
+    Use = 'ox_lib', -- 'ox_lib' or 'lation_ui'
+    Enable = true,
+    Difficulty = { 'easy' }, -- For ox_lib: single difficulty or array
+    Keys = { 'w', 'a', 's', 'd' }, -- For ox_lib
+    Lation = { -- For lation_ui
+        Title = 'Crafting',
+        Difficulties = { 'easy', 'easy', 'easy', 'easy' },
+        Keys = { 'W', 'A', 'S', 'D' }
+    }
+}
+
+Config.CheckCanCarryItem = false
+
 Config.Shop = {
-    Clothing = {
-        Coords = vector3(20.08, -1601.67, 29.38),
-    },
-    management = vec3(8.15, -1606.25, 29.37), --Where you can manage your shop
-    fridge = vec3(17.04, -1599.6, 29.38), -- From where you will buy ingrediants
-    process = vec3(14.75, -1601.1, 29.38), --From where you will start making items
-    shop = { --Shop buy menu
-        vector3(11.15, -1605.64, 29.39),
-    },
-    storagestash = vec3(12.64, -1600.39, 29.38),
-    bossmenu = vec3(8.22, -1602.65, 29.371),
     Storage = {
 		label = "Fridge",
 		items = {
@@ -134,417 +218,49 @@ Config.Shop = {
                 { name = "taco_shrimp", label="Taco Shrimp", price = 50, amount = 50},
                 },
             Drinks = {
+                {name = "taco_waterbottle",label="Water Bottle", price = 50, amount = 50},
                 {name = "taco_emptycup",label="Empty Cup", price = 50, amount = 50},
             },
-            }
-        },
-        ItemOrder = {
-            "Taco",
-            "Burrito",
-            "Nachos",
-            "Drinks",
-        },
-        categories = {
-            
-            Taco = { 
-                label = "Taco", --Donot Change
-                icon = "fa-solid fa-utensils",
-                workingcoords = vector3(11.47, -1599.12, 29.38),
-                
-                items = {
-                    taco_carne = {
-                        label="Carne Asada Tacos",
-                        price = 50, --For Starting Price
-                        reward = 1, --item reward on completing
-                        duration = 10000,
-                        required = {  -- required items for crafting
-                        {item = 'taco_grilled_skirt', label="Grilled Skirt", quantity = 1},
-                        {item = 'taco_tortillas', label="taco_tortillas", quantity = 1},
-                        },
-                    },
-                    taco_al_pastor = {
-                        label="Al Pastor Tacos",
-                        price = 50, --For Starting Price
-                        reward = 1, --item reward on completing
-                        duration = 10000,
-                        required = {  -- required items for crafting
-                        {item = 'taco_marinated_pork', label="Marinated Pork", quantity = 1},
-                        {item = 'taco_tortillas', label="taco_tortillas", quantity = 1},
-                        },
-                    },
-                    taco_fish = {
-                        label="Fish Tacos",
-                        price = 50, --For Starting Price
-                        reward = 1, --item reward on completing
-                        duration = 10000,
-                        required = {  -- required items for crafting
-                        {item = 'taco_tilapia', label="taco_tilapia", quantity = 1},
-                        {item = 'taco_tortillas', label="taco_tortillas", quantity = 1},
-                        },
-                    },
-                    taco_carnitas = {
-                        label="Carnitas Tacos",
-                        price = 50, --For Starting Price
-                        reward = 1, --item reward on completing
-                        duration = 10000,
-                        required = {  -- required items for crafting
-                        {item = 'taco_pork_shoulder', label="Pork Shoulder",quantity = 1},
-                        {item = 'taco_tortillas', label="taco_tortillas", quantity = 1},
-                        },
-                    },
-                    taco_barbacoa = {
-                        label="Barbacoa Tacos",
-                        price = 50, --For Starting Price
-                        reward = 1, --item reward on completing
-                        duration = 10000,
-                        required = {  -- required items for crafting
-                        {item = 'taco_cooked_beef',label="Cooked Beef", quantity = 1},
-                        {item = 'taco_tortillas', label="taco_tortillas", quantity = 1},
-                        },
-                    },
-                    taco_chicken = {
-                        label="Chicken Tacos",
-                        price = 50, --For Starting Price
-                        reward = 1, --item reward on completing
-                        duration = 10000,
-                        required = {  -- required items for crafting
-                        {item = 'taco_shredded_chicken',label="Chicken Cooked", quantity = 1},
-                        {item = 'taco_tortillas', label="taco_tortillas", quantity = 1},
-                        },
-                    },
-                    taco_chorizo = {
-                        label="Chorizo Tacos",
-                        price = 50, --For Starting Price
-                        reward = 1, --item reward on completing
-                        duration = 10000,
-                        required = {  -- required items for crafting
-                        {item = 'taco_mexican_sausage',label="Spicy Mexican Chorizo Sausage", quantity = 1},
-                        {item = 'taco_tortillas', label="taco_tortillas", quantity = 1},
-                        },
-                    },
-                    taco_vegetarian = {
-                        label="Vegetarian Tacos",
-                        price = 50, --For Starting Price
-                        reward = 1, --item reward on completing
-                        duration = 10000,
-                        required = {  -- required items for crafting
-                        {item = 'taco_sauteed_vegetables',label="Sauteed Vegetables", quantity = 1},
-                        {item = 'taco_tortillas', label="taco_tortillas", quantity = 1},
-                        },
-                    },
-                    taco_shrimp = {
-                        label="Shrimp Tacos",
-                        price = 50, --For Starting Price
-                        reward = 1, --item reward on completing
-                        duration = 10000,
-                        required = {  -- required items for crafting
-                        {item = 'taco_sauteed_shrimp',label="Shrimp Tacos", quantity = 1},
-                        {item = 'taco_tortillas', label="taco_tortillas", quantity = 1},
-                        },
-                    },
-                    taco_birria = {
-                        label="Birria Tacos",
-                        price = 50, --For Starting Price
-                        reward = 1, --item reward on completing
-                        duration = 10000,
-                        required = {  -- required items for crafting
-                        {item = 'taco_stewed_beef',label="Stewed Beef", quantity = 1},
-                        {item = 'taco_tortillas', label="taco_tortillas", quantity = 1},
-                        },
-                    },
-                }
-            },
-            Burrito = { 
-                label = "Burrito", --Donot Change
-                icon = "fa-solid fa-cheese",
-                workingcoords = vector3(11.47, -1599.12, 29.38),
-                items = {
-                    taco_beef_burrito = {
-                        label="Classic Beef Burrito",
-                        price = 50, --For Starting Price
-                        reward = 1, --item reward on completing
-                        duration = 10000,
-                        required = {  -- required items for crafting
-                        {item = 'taco_ground_beef',label="Ground Beef", quantity = 1},
-                        {item = 'taco_tortillas', label="taco_tortillas", quantity = 1},
-                        },
-                    },
-                    taco_chicken_burrito = {
-                        label="Chicken Burrito",
-                        price = 50, --For Starting Price
-                        reward = 1, --item reward on completing
-                        duration = 10000,
-                        required = {  -- required items for crafting
-                        {item = 'taco_shredded_chicken',label="Chicken Cooked", quantity = 1},
-                        {item = 'taco_tortillas', label="taco_tortillas", quantity = 1},
-                        },
-                    },
-                    taco_vegetarian_burrito = {
-                        label="Vegetarian Burrito",
-                        price = 50, --For Starting Price
-                        reward = 1, --item reward on completing
-                        duration = 10000,
-                        required = {  -- required items for crafting
-                        {item = 'taco_cooked_quinoa',label="Vegetarian Burrito", quantity = 1},
-                        {item = 'taco_tortillas', label="taco_tortillas", quantity = 1},
-                        },
-                    },
-                    taco_breakfast_burrito = {
-                        label="Breakfast Burrito",
-                        price = 50, --For Starting Price
-                        reward = 1, --item reward on completing
-                        duration = 10000,
-                        required = {  -- required items for crafting
-                        {item = 'taco_breakfast_sausage',label="Breakfast Burrito", quantity = 1},
-                        {item = 'taco_tortillas', label="taco_tortillas", quantity = 1},
-                        },
-                    },
-                    taco_carnitas_burrito = {
-                        label="Carnitas Burrito",
-                        price = 50, --For Starting Price
-                        reward = 1, --item reward on completing
-                        duration = 10000,
-                        required = {  -- required items for crafting
-                        {item = 'taco_pork_shoulder', label="Pork Shoulder",quantity = 1},
-                        {item = 'taco_tortillas', label="taco_tortillas", quantity = 1},
-                        },
-                    },
-                    taco_fish_burrito = {
-                        label="Fish Burrito",
-                        price = 50, --For Starting Price
-                        reward = 1, --item reward on completing
-                        duration = 10000,
-                        required = {  -- required items for crafting
-                        {item = 'taco_tilapia', label="taco_tilapia", quantity = 1},
-                        {item = 'taco_tortillas', label="taco_tortillas", quantity = 1},
-                        },
-                    },
-                    taco_steak_burrito = {
-                        label="Steak Burrito",
-                        price = 50, --For Starting Price
-                        reward = 1, --item reward on completing
-                        duration = 10000,
-                        required = {  -- required items for crafting
-                        {item = 'taco_grilled_steak',label="Steak Burrito", quantity = 1},
-                        {item = 'taco_tortillas', label="taco_tortillas", quantity = 1},
-                        },
-                    },
-                    taco_shrimp_burrito = {
-                        label="Shrimp Burrito",
-                        price = 50, --For Starting Price
-                        reward = 1, --item reward on completing
-                        duration = 10000,
-                        required = {  -- required items for crafting
-                        {item = 'taco_sauteed_shrimp',label="Shrimp Burrito", quantity = 1},
-                        {item = 'taco_tortillas', label="taco_tortillas", quantity = 1},
-                        },
-                    },
-                    taco_cheese_burrito = {
-                        label="Bean and Cheese Burrito",
-                        price = 50, --For Starting Price
-                        reward = 1, --item reward on completing
-                        duration = 10000,
-                        required = {  -- required items for crafting
-                        {item = 'taco_refried_beans',label="Bean and Cheese Burrito", quantity = 1},
-                        {item = 'taco_tortillas', label="taco_tortillas", quantity = 1},
-                        },
-                    },
-                    taco_bbqchicken_burrito = {
-                        label="Bbq Chicken Burrito",
-                        price = 50, --For Starting Price
-                        reward = 1, --item reward on completing
-                        duration = 10000,
-                        required = {  -- required items for crafting
-                        {item = 'taco_bbq_chicken',label="Bbq Chicken Burrito", quantity = 1},
-                        {item = 'taco_tortillas', label="taco_tortillas", quantity = 1},
-                        },
-                    },
-                }
-            },
-    
-            Nachos = { 
-                label = "Nachos", --Donot Change
-                icon = "fa-solid fa-cookie",
-                workingcoords = vector3(11.47, -1599.12, 29.38),
-                items = {
-                    taco_classic_nachos = {
-                        label="Classic Nachos",
-                        price = 50, --For Starting Price
-                        reward = 1, --item reward on completing
-                        duration = 10000,
-                        required = {  -- required items for crafting
-                        {item = 'taco_jalapenos',label="Jalapenos", quantity = 1},
-                        {item = 'taco_tortilla_chips',label="Tortilla Chips", quantity = 1},
-                        },
-                    },
-                    taco_beef_nachos = {
-                        label="Loaded Beef Nachos",
-                        price = 50, --For Starting Price
-                        reward = 1, --item reward on completing
-                        duration = 10000,
-                        required = {  -- required items for crafting
-                        {item = 'taco_ground_beef',label="Ground Beef", quantity = 1},
-                        {item = 'taco_tortilla_chips',label="Tortilla Chips", quantity = 1},
-                        },
-                    },
-                    taco_chicken_nachos = {
-                        label="Chicken Nachos",
-                        price = 50, --For Starting Price
-                        reward = 1, --item reward on completing
-                        duration = 10000,
-                        required = {  -- required items for crafting
-                        {item = 'taco_grilled_chicken',label="Grilled Chicken", quantity = 1},
-                        {item = 'taco_tortilla_chips',label="Tortilla Chips", quantity = 1},
-                        },
-                    },
-                    taco_pork_nachos = {
-                        label="Pulled Pork Nachos",
-                        price = 50, --For Starting Price
-                        reward = 1, --item reward on completing
-                        duration = 10000,
-                        required = {  -- required items for crafting
-                        {item = 'taco_pulled_pork',label="Pulled Pork", quantity = 1},
-                        {item = 'taco_tortilla_chips',label="Tortilla Chips", quantity = 1},
-                        },
-                    },
-                    taco_vegetarian_nachos = {
-                        label="Vegetarian Nachos",
-                        price = 50, --For Starting Price
-                        reward = 1, --item reward on completing
-                        duration = 10000,
-                        required = {  -- required items for crafting
-                        {item = 'taco_black_beans',label="Black Beans", quantity = 1},
-                        {item = 'taco_tortilla_chips',label="Tortilla Chips", quantity = 1},
-                        },
-                    },
-                    taco_seafood_nachos = {
-                        label="Seafood Nachos",
-                        price = 50, --For Starting Price
-                        reward = 1, --item reward on completing
-                        duration = 10000,
-                        required = {  -- required items for crafting
-                        {item = 'taco_shrimp',label="Shrimp", quantity = 1},
-                        {item = 'taco_tortilla_chips',label="Tortilla Chips", quantity = 1},
-                        },
-                    },
-                    taco_breakfast_nachos = {
-                        label="Breakfast Nachos",
-                        price = 50, --For Starting Price
-                        reward = 1, --item reward on completing
-                        duration = 10000,
-                        required = {  -- required items for crafting
-                        {item = 'taco_scrambled_eggs',label="Scrambled Eggs", quantity = 1},
-                        {item = 'taco_tortilla_chips',label="Tortilla Chips", quantity = 1},
-                        },
-                    },
-                }
-            },
-            Drinks = {
-                label = "Drinks", -- Do not change
-                icon = "fa-solid fa-mug-saucer",
-                workingcoords = vector3(13.794, -1596.336, 29.378),
-                items = {
-                    taco_jurritos = {
-                        label = "Taco Jurritos", 
-                        price = 50, -- For starting price
-                        reward = 1, -- Item reward on completing
-                        duration = 10000,
-                        required = { -- Required items for crafting
-                        { item = 'taco_emptycup',label="BurgerShot Empty Cup", quantity = 1 },
-                        },
-                    },
-                    taco_chillwave_cola = {
-                        label = "Taco Chillwave Cola",  
-                        price = 50, -- For starting price
-                        reward = 1, -- Item reward on completing
-                        duration = 10000,
-                        required = { -- Required items for crafting
-                        { item = 'taco_emptycup',label="BurgerShot Empty Cup", quantity = 1 },
-                        },
-                    },
-                    taco_fizzberry_splash = {
-                        label = "Taco Fizzberry Splash",  
-                        price = 50, -- For starting price
-                        reward = 1, -- Item reward on completing
-                        duration = 10000,
-                        required = { -- Required items for crafting
-                        { item = 'taco_emptycup',label="BurgerShot Empty Cup", quantity = 1 },
-                        },
-                    },
-                    taco_lemonlush_soda = {
-                        label = "Taco Lemonlush Soda", 
-                        price = 50, -- For starting price
-                        reward = 1, -- Item reward on completing
-                        duration = 10000,
-                        required = { -- Required items for crafting
-                        { item = 'taco_emptycup',label="BurgerShot Empty Cup", quantity = 1 },
-                        },
-                    },
-                    taco_zesty_zing = {
-                        label = "Taco Zesty Zing", 
-                        price = 50, -- For starting price
-                        reward = 1, -- Item reward on completing
-                        duration = 10000,
-                        required = { -- Required items for crafting
-                        { item = 'taco_emptycup',label="BurgerShot Empty Cup", quantity = 1 },
-                        },
-                    },
-                },
-            },
-        },
-    }
-Config.Chairs = {
-    --TableSeating
-	--Table 1
-    { coords = vector4(13.25, -1607.3, 29.4,144.44), stand = vector3(12.51, -1606.55, 29.4), w = 0.20, h = 0.80,},
-	{ coords = vector4(12.51, -1608.01, 29.4, 320.55), stand = vector3(11.9, -1607.52, 29.4), w = 0.20, h = 0.80,},
-    
-	--Table 2
-	{ coords = vector4(11.77, -1608.82, 29.4,144.44), stand = vector3(11.22, -1608.35, 29.4), w = 0.20, h = 0.80,},
-	{ coords = vector4(11.22, -1609.73, 29.4, 320.55), stand = vector3(10.48, -1609.11, 29.4), w = 0.20, h = 0.80,},
-   
-	--Table 3
-	{ coords = vector4(14.91, -1608.69, 29.4,144.44), stand = vector3(14.24, -1608.16, 29.41), w = 0.20, h = 0.80,},
-	{ coords = vector4(14.21, -1609.45, 29.4, 320.55), stand = vector3(13.58, -1608.96, 29.41), w = 0.20, h = 0.80,},
-   
-	--Table 4
-	{ coords = vector4(13.47, -1610.25, 29.4,144.44), stand = vector3(12.88, -1609.79, 29.41), w = 0.20, h = 0.80,},
-	{ coords = vector4(12.87, -1611.04, 29.4, 320.55), stand = vector3(12.22, -1610.57, 29.41), w = 0.20, h = 0.80,},  
+        }
+	},
 }
-Config.Tables = {
-    { name = "Taco's Table 01", coords = vector3(13.1, -1607.8, 29.0), heading = 140, minZ = 28.0, maxZ = 29.2, w = 1.7, h = 0.6, },
-    { name = "Taco's Table 02", coords = vector3(11.69, -1609.43, 29.0), heading = 140, minZ = 28.0, maxZ = 29.2, w = 1.7, h = 0.6, },
-    { name = "Taco's Table 03", coords = vector3(14.57, -1609.18, 29.0), heading = 140, minZ = 28.0, maxZ = 29.2, w = 1.7, h = 0.6, },
-    { name = "Taco's Table 04", coords = vector3(13.25, -1610.75, 29.0), heading = 140, minZ = 28.0, maxZ = 29.2, w = 1.7, h = 0.6, },
-}
-Config.Billing = {
-    { name = "Taco's Billing Counter 1", coords = vector3(9.6, -1605.46, 29.6), heading = 226.53, minZ = 29.0, maxZ = 30.15, w = 0.5, h = 0.4, },
-}
-Config.Counter = {
-    { name = "Taco's Counter 01", coords = vector3(10.38, -1604.83, 29.6), heading = 226.53, minZ = 28.0, maxZ = 30.15, w = 0.5, h = 0.7, },
-}
---This is Used When Config.RemoveMarkers = true
-Config.TargetCoords = {
-    Fridge = {
-    { name = ""..Config.Jobname.." Fridge", coords =vector3(17.25, -1599.25, 29.6),heading=320.0, minZ = 28.4, maxZ = 29.8, w = 0.75, h = 0.6, }
-    },
-    Management = {
-        { name = ""..Config.Jobname.." Management", coords =vec3(8.2, -1607.3, 29.6),heading=4.0, minZ = 29.5, maxZ = 29.8, w = 0.4, h = 0.4, }
-    },
-    Process = {
-        { name = ""..Config.Jobname.." Process", coords =vec3(-1223.579, -1043.018,8.25),heading=107.2, minZ = 8.1, maxZ = 8.4, w = 0.5, h = 0.6, }
-    },
-    Stash = {
-        { name = ""..Config.Jobname.." Stash", coords =vec3(-1225.771, -1035.777, 8.283),heading=94.85, minZ = 8.1, maxZ = 8.4, w = 0.5, h = 1, }
-    },
-    BossMenu = {
-        { name = ""..Config.Jobname.." BossMenu", coords =vec3(8.0, -1602.25, 29.6),heading=320, minZ = 29.5, maxZ = 29.8, w = 0.5, h = 0.5, }
-    },
-    Clothing = {
-        { name = ""..Config.Jobname.." Clothing", coords =vector3(20.25, -1601.5, 29.6),heading=320, minZ = 28.4, maxZ = 29.8, w = 1.0, h = 0.6, }
+
+Config.Emotes = {
+    Drinks= {
+        prop = `prop_food_bs_juice01`,
+        dict = 'mp_ped_interaction',
+        anim = 'handshake_guy_a',
+        bone = 28422,
+        offset = vec3(0.02, 0.0, -0.10),
+        rotation = vec3(0.0, 0.0, -0.50)
     }
 }
 
+Config.DeliveryFood = {
+    {
+        items = {
+            { name = "taco_carne", label = "Carne Asada Tacos", quantity = 1 },
+            { name = "taco_lemonlush_soda", label = "Taco Jurritos", quantity = 1 }, 
+        },
+        total = 200
+    },
+    {
+        items = {
+            { name = "taco_al_pastor", label = "Al Pastor Tacos", quantity = 1 },
+            { name = "taco_chillwave_cola", label = "Taco Chillwave Cola", quantity = 1 },
+        },
+        total = 150
+    },
+    {
+        items = {
+            { name = "taco_fish", label = "Fish Tacos", quantity = 1 },
+            { name = "taco_fizzberry_splash", label = "Taco Fizzberry Splash", quantity = 1 },
+        },
+        total = 135
+    } 
+}
 
 ```
+
+</details>
 
