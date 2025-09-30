@@ -47,7 +47,7 @@
     * [Installation](paid-scripts/restaurants/rusty-browns/installation.md)
     * [Preview Config](paid-scripts/restaurants/rusty-browns/preview-config.md)
     * [Common Issues](paid-scripts/restaurants/rusty-browns/common-issues.md)
-  * [🌮 Taco](paid-scripts/restaurants/taco/README.md)
+  * [🌮 Taco Farmer](paid-scripts/restaurants/taco/README.md)
     * [Installation](paid-scripts/restaurants/taco/installation.md)
     * [Preview Config](paid-scripts/restaurants/taco/preview-config.md)
     * [Common Issues](paid-scripts/restaurants/taco/common-issues.md)
