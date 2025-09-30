@@ -26,7 +26,7 @@ Use this if AutoInstallSQL Fails for some reason and doesn't generates the sql d
 
 ```lua
 CREATE TABLE IF NOT EXISTS `pl_hornyburgers` (
-     `stock` longtext DEFAULT NULL
+     `stock` longtext DEFAULT NULL,
      `state` varchar(5) NOT NULL DEFAULT 'open'
 ) ENGINE=InnoDB DEFAULT CHARSET=armscii8 COLLATE=armscii8_bin;
 
