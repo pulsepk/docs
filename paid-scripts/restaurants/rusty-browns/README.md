@@ -1,16 +1,28 @@
 # 🍩 Rusty Browns
 
-<figure><img src="../../../.gitbook/assets/rusty browns.png" alt=""><figcaption></figcaption></figure>
+{% embed url="https://youtu.be/pyA9oEUcEKE" %}
 
-### Purchase Escrow: [\[Click Here\]](https://pulsescripts.tebex.io/package/6707942)
+### Purchase Escrow: [\[Click Here\]](https://pulsescripts.com/product/burgershot)
 
-### Preview: [\[Click Here\]](https://youtu.be/pyA9oEUcEKE)
+### Preview: [\[Click Here\]](https://youtu.be/ePB-4ZlnF1k)
 
-### Map by e\_49- [Download](https://forum.cfx.re/t/free-mlo-rusty-browns-donuts-cafe/4912809)
+### Map Supported by This Script
+
+**e\_49 (Free) :** [\[Click Here\]](https://forum.cfx.re/t/free-mlo-rusty-browns-donuts-cafe/4912809)
+
+**Map4all Legion :** [\[Click Here\]](https://fivem.map4all-shop.com/package/5139828)
+
+**Map4all Vinewood :** [\[Click Here\]](https://fivem.map4all-shop.com/package/5139828)
+
+**Map4all Mirror Park :** [\[Click Here\]](https://fivem.map4all-shop.com/package/5139828)
+
+### Prop Supported
+
+**DJ Donut Props:** [\[Click Here\]](https://djscollections.com/package/5681293)
 
 ### Features:
 
-**🍞 24 Consumable Item with unique ingredients**
+**🍞 18 Consumable Item with unique ingredients**
 
 **🏛️ Item Stock Management :-**
 
@@ -49,14 +61,6 @@ Stocked with fresh ingredients—grab what you need to cook up delicious meals!
 **🧑‍🍳 Cook:**
 
 Master the art of cooking with a variety of delicious treats:
-
-🍩 **Donuts** – Soft, fluffy, and glazed to perfection, the ultimate sweet treat!
-
-🧊 **Iced Drinks** – Cool, refreshing, and perfect for beating the heat.
-
-🥐 **Pastries** – Freshly baked delights with buttery, flaky goodness in every bite.
-
-📦 **Box of Donuts** – A delicious assortment of donuts, perfect for sharing (or not!).
 
 💰 **Cash Registers:**&#x20;
 

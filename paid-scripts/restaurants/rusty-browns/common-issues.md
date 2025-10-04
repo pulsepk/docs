@@ -2,8 +2,9 @@
 
 <details>
 
-<summary>None</summary>
+<summary>I am getting the “Shop is closed” message.</summary>
 
-
+This is likely because you are using an older version and haven’t reinstalled the new SQL. Drop the `pl_rustybrowns` table from the database and restart the script. It will generate the new SQL database.
 
 </details>
+
