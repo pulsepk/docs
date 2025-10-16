@@ -4,4 +4,4 @@
 
 <figure><img src=".gitbook/assets/Untitled design (21).png" alt=""><figcaption></figcaption></figure>
 
-{% embed url="https://discord.gg/ttSJXVxb" %}
+{% embed url="https://discord.gg/c6gXmtEf3H" %}
