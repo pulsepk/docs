@@ -2,9 +2,11 @@
 
 <figure><img src="../../../.gitbook/assets/uwuthumbnail.jpg" alt=""><figcaption></figcaption></figure>
 
-### Purchase Escrow: [\[Click here\]](https://pulsescripts.tebex.io/package/6706174)
+### Purchase Escrow: [\[Click here\]](https://pulsescripts.com/product/uwucatcafe)
 
-### Preview: [\[Click Here\]](https://youtu.be/VhjqIK_TFHI)
+### Purchase OpenSource: [\[Click here\]](https://pulsescripts.com/category/opensource)
+
+### Preview: [\[Click Here\]](https://youtu.be/3QoFe_Q52bA)
 
 ### Map by Gabz- [Buy Here](https://www.gabzv.com/)
 

@@ -4,6 +4,8 @@
 
 ### Purchase Escrow: [\[Click Here\]](https://pulsescripts.com/product/6707937)
 
+### Purchase OpenSource: [\[Click here\]](https://pulsescripts.com/category/opensource)
+
 ### Preview: [Watch Here](https://youtu.be/ilP2Cvzp_60)
 
 ### Map Supported by This Script

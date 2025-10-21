@@ -6,9 +6,15 @@
 
 ### Purchase Escrow: [\[Click Here\]](https://pulsescripts.com/product/6707931)
 
+### Purchase OpenSource: [\[Click here\]](https://pulsescripts.com/category/opensource)
+
 ### Preview: [\[Click Here\]](https://youtu.be/VhjqIK_TFHI)
 
-### Map by Gabz- [Buy Here](https://www.gabzv.com/)
+### Map Supported by This Script
+
+**Gabz :** [\[Click Here\]](https://fivem.gabzv.com/)
+
+**MXC :** [\[Click Here\]](https://www.markz3d.com/products/maps/base/pizza-this-restaurant)
 
 ### Features:
 
