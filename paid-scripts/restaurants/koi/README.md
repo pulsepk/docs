@@ -1,10 +1,12 @@
 # 🥫 KOI
 
-<figure><img src="../../../.gitbook/assets/koi-restaurant-thumbnail.jfif" alt=""><figcaption></figcaption></figure>
 
-### Purchase Escrow: [\[Click Here\]](https://pulsescripts.com/product/burgershot)
 
-### Preview: Coming Soon
+{% embed url="https://youtu.be/-mhk7ft7oAg" %}
+
+### Purchase Escrow: [\[Click Here\]](https://pulsescripts.com/product/6994012)
+
+### Preview: [\[Click Here\]](https://youtu.be/-mhk7ft7oAg)
 
 ### Map Supported by This Script
 

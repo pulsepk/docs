@@ -1,8 +1,10 @@
 # 🍕 Pizza This
 
-<figure><img src="../../../.gitbook/assets/Pizza this.png" alt=""><figcaption></figcaption></figure>
 
-### Purchase Escrow: [\[Click Here\]](https://pulsescripts.tebex.io/package/6707931)
+
+{% embed url="https://youtu.be/Z-IZt6LPx9Y" %}
+
+### Purchase Escrow: [\[Click Here\]](https://pulsescripts.com/product/6707931)
 
 ### Preview: [\[Click Here\]](https://youtu.be/VhjqIK_TFHI)
 

@@ -2,7 +2,7 @@
 
 {% embed url="https://youtu.be/pyA9oEUcEKE" %}
 
-### Purchase Escrow: [\[Click Here\]](https://pulsescripts.com/product/burgershot)
+### Purchase Escrow: [\[Click Here\]](https://pulsescripts.com/product/6707942)
 
 ### Preview: [\[Click Here\]](https://youtu.be/ePB-4ZlnF1k)
 

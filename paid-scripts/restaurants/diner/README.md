@@ -1,10 +1,10 @@
 # 🍽️ Diner
 
+{% embed url="https://youtu.be/WEz2isbNxds" %}
 
+### Purchase Escrow: [\[Click Here\]](https://pulsescripts.com/product/7007587)
 
-### Purchase Escrow: [\[Click Here\]](https://pulsescripts.com/product/burgershot)
-
-### Preview: Coming Soon
+### Preview: [\[Click Here\]](https://youtu.be/WEz2isbNxds)
 
 ### Map Supported by This Script
 

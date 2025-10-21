@@ -1,10 +1,12 @@
 # ☕ Bean Machine
 
-<figure><img src="../../../.gitbook/assets/Bean Machine.png" alt=""><figcaption></figcaption></figure>
 
-### Purchase Escrow: [\[Click Here\]](https://pulsescripts.tebex.io/package/6731403)
 
-### Preview: [\[Click Here\]](https://youtu.be/CaW-8S8WRLU)
+{% embed url="https://youtu.be/JxY8Gp4eNOw" %}
+
+### Purchase Escrow: [\[Click Here\]](https://pulsescripts.com/product/6741732)
+
+### Preview: [\[Click Here\]](https://youtu.be/JxY8Gp4eNOw)
 
 ### Map Supported By the Script
 

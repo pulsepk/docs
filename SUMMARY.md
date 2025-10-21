@@ -67,10 +67,10 @@
     * [Installation](paid-scripts/restaurants/koi/installation.md)
     * [Preview Config](paid-scripts/restaurants/koi/preview-config.md)
     * [Common Issues](paid-scripts/restaurants/koi/common-issues.md)
-  * [🧋 BubbleGum Cafe](paid-scripts/restaurants/bubblegum-cafe/README.md)
-    * [Installation](paid-scripts/restaurants/bubblegum-cafe/installation.md)
-    * [Preview Config](paid-scripts/restaurants/bubblegum-cafe/preview-config.md)
-    * [Common Issues](paid-scripts/restaurants/bubblegum-cafe/common-issues.md)
+  * [🧋 BubbleGum Cafe](paid-scripts/restaurants/bubblegumcafe/README.md)
+    * [Installation](paid-scripts/restaurants/bubblegumcafe/installation.md)
+    * [Preview Config](paid-scripts/restaurants/bubblegumcafe/preview-config.md)
+    * [Common Issues](paid-scripts/restaurants/bubblegumcafe/common-issues.md)
 
 ## 🆓 Free Scripts
 

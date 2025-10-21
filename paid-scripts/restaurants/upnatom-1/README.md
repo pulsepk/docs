@@ -2,9 +2,11 @@
 
 
 
-### Purchase Escrow: [\[Click Here\]](https://pulsescripts.com/category/escrow)
+###
 
-### Preview: Coming Soon
+{% embed url="https://youtu.be/CaW-8S8WRLU" %}
+
+### Purchase Escrow: [\[Click Here\]](https://pulsescripts.com/product/6749404)
 
 ### Map Supported by This Script
 
