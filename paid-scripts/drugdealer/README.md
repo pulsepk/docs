@@ -6,7 +6,7 @@ description: An Advanced Drug Selling Script that Supports ESX, QBCore, Qbox Fra
 
 {% embed url="https://youtu.be/ricegpc0CW0" %}
 
-[**Buy Here**](https://pulsescripts.tebex.io/package/6668084)
+[**Buy Here**](https://pulsescripts.com/product/drugsellingv2)
 
 [**Forum Post**](https://forum.cfx.re/t/npc-drug-selling-v2-qb-esx-paid/5235587)
 
