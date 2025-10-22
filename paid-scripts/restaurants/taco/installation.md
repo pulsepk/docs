@@ -26,25 +26,25 @@ Use this if AutoInstallSQL Fails for some reason and doesn't generates the sql d
 
 ```lua
 CREATE TABLE IF NOT EXISTS `pl_tacoshop` (
-          `stock` longtext DEFAULT NULL
+          `stock` longtext DEFAULT NULL,
           `state` varchar(5) NOT NULL DEFAULT 'open'
         ) ENGINE=InnoDB DEFAULT CHARSET=armscii8 COLLATE=armscii8_bin;
 
-        INSERT INTO `addon_account` (name, label, shared) VALUES
-	        ('society_taco', 'Taco', 1);
+INSERT INTO `addon_account` (name, label, shared) VALUES
+	('society_taco', 'Taco', 1);
 
-        INSERT INTO `datastore` (name, label, shared) VALUES
-        	('society_taco', 'Taco', 1);
+ INSERT INTO `datastore` (name, label, shared) VALUES
+        ('society_taco', 'Taco', 1);
 
-        INSERT INTO `jobs` (name, label,whitelisted) VALUES
-        	('taco', 'Taco',1);
+INSERT INTO `jobs` (name, label,whitelisted) VALUES
+        ('taco', 'Taco',1);
 
-        INSERT INTO `job_grades` (job_name, grade, name, label, salary, skin_male, skin_female) VALUES
-        	('taco',0,'cashier','Cashier',20,'{}','{}'),
-        	('taco',1,'cook','Cook',40,'{}','{}'),
-        	('taco',2,'staff','Staff',60,'{}','{}'),
-        	('taco',3,'manager','Manager',85,'{}','{}'),
-        	('taco',4,'boss','Owner',100,'{}','{}');
+INSERT INTO `job_grades` (job_name, grade, name, label, salary, skin_male, skin_female) VALUES
+        ('taco',0,'cashier','Cashier',20,'{}','{}'),
+        ('taco',1,'cook','Cook',40,'{}','{}'),
+        ('taco',2,'staff','Staff',60,'{}','{}'),
+        ('taco',3,'manager','Manager',85,'{}','{}'),
+        ('taco',4,'boss','Owner',100,'{}','{}');
 ```
 
 </details>
@@ -55,9 +55,9 @@ CREATE TABLE IF NOT EXISTS `pl_tacoshop` (
 
 ```lua
 CREATE TABLE IF NOT EXISTS `pl_tacoshop` (
-            `stock` LONGTEXT DEFAULT NULL,
-            `state` VARCHAR(5) NOT NULL DEFAULT 'open'
-        ) ENGINE=InnoDB DEFAULT CHARSET=armscii8 COLLATE=armscii8_bin;
+   `stock` LONGTEXT DEFAULT NULL,
+   `state` VARCHAR(5) NOT NULL DEFAULT 'open'
+) ENGINE=InnoDB DEFAULT CHARSET=armscii8 COLLATE=armscii8_bin;
 ```
 
 </details>
