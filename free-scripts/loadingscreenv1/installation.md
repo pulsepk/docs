@@ -12,12 +12,11 @@
 
 ### 2. Set Your Background Video
 
-* By default, the loading screen supports **YouTube videos** or **direct video files**.
-* To use a **direct video file** instead of a YouTube link:
+* By default, the loading screen supports **direct video files**.
+* To use a **direct video setup proper link**
 
 ```javascript
 url: "assets/video/background.mp4",
-//youtube: "https://www.youtube.com/watch?v=f1MAEDPcUC0",
 ```
 
 Make sure your video file is placed inside the `assets/video/` folder.

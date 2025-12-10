@@ -88,3 +88,4 @@
   * [Installation](free-scripts/check-player-money/installation.md)
 * [📺 LoadingScreen V1](free-scripts/loadingscreenv1/README.md)
   * [Installation](free-scripts/loadingscreenv1/installation.md)
+  * [Know Issues](free-scripts/loadingscreenv1/know-issues.md)
