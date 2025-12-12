@@ -18,5 +18,7 @@ But don’t worry — here’s the simple fix:
 
 After doing this, your background video should load correctly in FiveM.
 
+### Video Tutorial
 
+{% embed url="https://youtu.be/vfsgxu7nMd4" %}
 
