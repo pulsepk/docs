@@ -4,17 +4,11 @@ description: Christ Script that Supports ESX, QBCore, Qbox Frameworks
 
 # 🎅 Christmas
 
-{% embed url="https://youtu.be/bqJGctkl2bE" %}
-
 [**Buy Escrow**](https://pulsescripts.com/product/6516858)
 
 [**Buy Open Source**](https://pulsescripts.com/category/opensource)
 
 [**Forum Post**](https://forum.cfx.re/t/halloween-script-2025-trick-o-treat-collect-pumpkins-halloween-delivery-esx-qbcore-qbox/5278609)
-
-{% hint style="info" %}
-This script **REQUIRES** [**OX\_LIB**](https://github.com/overextended/ox_lib) as **Dependency**
-{% endhint %}
 
 ### Features
 
