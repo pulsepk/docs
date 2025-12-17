@@ -4,11 +4,11 @@ description: Christmas Script that Supports ESX, QBCore, Qbox Frameworks
 
 # 🎅 Christmas
 
-[**Buy Escrow**](https://pulsescripts.com/product/6516858)
+**Buy Escrow**
 
-[**Buy Open Source**](https://pulsescripts.com/category/opensource)
+**Buy Open Source**
 
-[**Forum Post**](https://forum.cfx.re/t/halloween-script-2025-trick-o-treat-collect-pumpkins-halloween-delivery-esx-qbcore-qbox/5278609)
+**Forum Post**
 
 ### Features
 
