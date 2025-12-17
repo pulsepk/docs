@@ -1,5 +1,5 @@
 ---
-description: Christ Script that Supports ESX, QBCore, Qbox Frameworks
+description: Christmas Script that Supports ESX, QBCore, Qbox Frameworks
 ---
 
 # 🎅 Christmas
