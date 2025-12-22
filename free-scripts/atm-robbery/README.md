@@ -1,6 +1,6 @@
 # 🏧 ATM Robbery
 
-{% embed url="https://youtu.be/nknpd4pe5xo" %}
+{% embed url="https://youtu.be/KgvpmNxQmlo" %}
 
 ## Github Download: [\[Click Here\]](https://github.com/pulsepk/pl-atmrob)
 
