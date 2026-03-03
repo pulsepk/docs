@@ -6,7 +6,7 @@
 * Here you can customize:
   * **Server Name**
   * **Music URL** (MP3, OGG, etc.)
-  * **Server Updates**
+  * **Server Keybinds**
   * **Staff Member List**
   * **Any other display text or settings**
 
@@ -16,10 +16,10 @@
 * To use a **direct video setup proper link**
 
 ```javascript
-url: "assets/video/background.mp4",
+url: "assets/background.mp4",
 ```
 
-Make sure your video file is placed inside the `assets/video/` folder.
+Make sure your video file is placed inside the `assets` folder.
 
 ### 3. Add Other Assets
 
