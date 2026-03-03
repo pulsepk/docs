@@ -93,3 +93,6 @@
 * [📺 LoadingScreen V1](free-scripts/loadingscreenv1/README.md)
   * [Installation](free-scripts/loadingscreenv1/installation.md)
   * [Know Issues](free-scripts/loadingscreenv1/know-issues.md)
+* [📺 LoadingScreen V2](free-scripts/loadingscreenv2/README.md)
+  * [Installation](free-scripts/loadingscreenv2/installation.md)
+  * [Know Issues](free-scripts/loadingscreenv2/know-issues.md)
