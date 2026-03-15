@@ -1,45 +1,126 @@
 # Installation
 
-## 📦 Installation Guide
+{% stepper %}
+{% step %}
+### Step 1 — Install Dependencies
 
-Follow these simple steps to set up the Wheel Lock on your FiveM server.
-
-***
-
-### Step 1: Install Dependencies
-
-* Add the following resources to your `server.cfg`:
-  * [ox\_lib](https://github.com/overextended/ox_lib)
-
-### Step 2: Add Items
-
-* Open the file:
+Add the following to your `server.cfg`:
 
 ```
-items_ox_inventory.lua, items_qb_inventory.lua
+ensure ox_lib
+ensure pl_wheelclamper
+```
+{% endstep %}
+
+{% step %}
+### Step 2 — Add Items
+
+Open one of the following files from the `Install/` folder depending on your inventory:
+
+| Inventory     | File to open             |
+| ------------- | ------------------------ |
+| ox\_inventory | `items_ox_inventory.lua` |
+| QBCore        | `items_qb_inventory.lua` |
+
+Copy its contents into your inventory item configuration:
+
+| Inventory     | Destination file              |
+| ------------- | ----------------------------- |
+| QBCore        | `qb-core/shared/items.lua`    |
+| ox\_inventory | `ox_inventory/data/items.lua` |
+{% endstep %}
+
+{% step %}
+### Step 3 — Add Inventory Images
+
+Open the folder:
+
+```
+Install/Img
 ```
 
-* Copy its contents into your inventory item configuration:
-  * **For QBCore**: `qb-core/shared/items.lua`
-  * **For ox\_inventory**: `ox_inventory/data/items.lua`
+Copy all images into your inventory's image directory:
 
-### Step 3: Add Inventory Images
+| Inventory     | Destination directory       |
+| ------------- | --------------------------- |
+| QBCore        | `qb-inventory/html/images/` |
+| ox\_inventory | `ox_inventory/web/images/`  |
+{% endstep %}
 
-* Open the folder:\
-  `Install/Img`
-* Copy all images and paste them into your inventory's image directory:
-  * **For QBCore**: `qb-inventory/html/images/`
-  * **For ox\_inventory**: `ox_inventory/web/images/`
+{% step %}
+### Step 4 — Garage Compatibility
 
-### Step 4: Configure the Script
+To show the wheel clamp visual when a clamped vehicle is spawned from a garage, add one export call inside your garage resource.
 
-* Open the `config.lua` file in the script directory.
-* Adjust the settings according to your server's setup:
-  * **Choose the framework:** `esx` or `qbcore or qbox`
-  * **Choose the target system:** `qb-target or ox_target`
-  * **Select the dispatch system:** `ps-dispatch`, `aty_dispatch, qbcore`
+> This step is only required if you use a garage script.
 
-{% hint style="info" %}
-[Join the Discord in case you need Additional Support.](https://discord.gg/c6gXmtEf3H)
-{% endhint %}
+#### esx\_garage
 
+**File:** `esx_garage/server/main.lua` — Line \~23\
+**Event:** `esx_garage:updateOwnedVehicle`
+
+Add inside the event handler:
+
+```lua
+exports.pl_wheelclamper:OnVehicleSpawned(source, data.vehicleProps.plate)
+exports.pl_wheelclamper:OnVehicleStored(source, data.vehicleProps.plate)
+```
+
+#### Before
+
+<figure><img src="../../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+
+#### After
+
+<figure><img src="../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+
+#### qb-garages
+
+**File:** `qb-garages/server/main.lua` — Line \~124 & 145\
+**Callback:** `qb-garages:server:spawnvehicle, qb-garages:server:canDeposit`
+
+Add at the end of the event handler:
+
+```lua
+exports.pl_wheelclamper:OnVehicleSpawned(source, plate)
+exports.pl_wheelclamper:OnVehicleStored(source, plate)
+```
+
+#### Before
+
+<figure><img src="../../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+
+#### After
+
+<figure><img src="../../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
+
+#### qbx\_garage
+
+**File:** `qbx_garage/server/spawn-vehicle.lua` **- Line 32 ,** `qbx_garage/server/main.lua` **- Line 202**
+
+**Callback:** `qbx_garages:server:spawnVehicle, qbx_garages:server:parkVehicle`
+
+Add before the `return` at the end of the callback:
+
+```lua
+exports.pl_wheelclamper:OnVehicleSpawned(source, playerVehicle.props.plate)
+exports.pl_wheelclamper:OnVehicleStored(source, GetVehicleNumberPlateText(vehicle))
+```
+
+#### Before
+
+<figure><img src="../../.gitbook/assets/image (10).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../../.gitbook/assets/image (13).png" alt=""><figcaption></figcaption></figure>
+
+#### After
+
+<figure><img src="../../.gitbook/assets/image (11).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../../.gitbook/assets/image (12).png" alt=""><figcaption></figcaption></figure>
+{% endstep %}
+{% endstepper %}

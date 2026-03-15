@@ -2,33 +2,113 @@
 description: An Advanced Wheel Lock Script that Supports ESX, QBCore, Qbox Frameworks
 ---
 
-# 🔓 Wheel Lock
+# 🔓 Wheel Clamper
 
-{% embed url="https://www.youtube.com/watch?v=5YLMkrpMgSM" %}
+{% embed url="https://youtu.be/5YLMkrpMgSM" %}
 
-[**Buy Escrow**](https://pulsescripts.tebex.io/package/6805299)
+## Purchase
 
-[**Buy Open Source**](https://pulsescripts.tebex.io/package/6805303)
+> **Escrow Version** available on our store.\
+> [Buy Here](https://pulsescripts.com/product/6805299)
 
-{% hint style="info" %}
-This script **REQUIRES** [**OX\_LIB**](https://github.com/overextended/ox_lib) as **Dependency**
-{% endhint %}
+> **Open Source Version** available on our store.\
+> [Buy Here](https://pulsescripts.com/product/6805303)
 
-### Features
 
-* **Custom Vehicle Clamp & Wheel Lock Script**: A highly functional system designed to immobilize vehicles using a realistic wheel lock mechanism.
-* **Custom Props:** Realistic Custom Prop for Wheel Clamp.
-* **Police Job Integration**: Assign permissions to specific jobs (e.g., police) to allow usage of the clamp or wheel lock for enforcing the law.
-* **Interactive Cutter Mechanism**: Players can use a cutter tool to break the wheel lock or clamp, adding an engaging gameplay element.
-* **Emergency Vehicle Immunity**: Emergency vehicles are immune to the wheel lock and clamp, preserving their special function.
-* **Preconfigured Custom Items**: Includes **wheel clamper** and **clamper cutter** with images for easy identification and use.
-* **Command-Based System**: Don't want to use target system, use commands which can be set from the config.
 
-### **🛠️ Support & Compatibility:**
+***
 
-🔹 **Supported Frameworks**: Fully compatible with **ESX**, **QBCore**, and **QBox Framework.**
+## Features
 
-🔹 **Target Systems**: Integrates smoothly with **qb-target** and **ox\_target** for intuitive player interactions.\
-🔹 **Dispatch Systems**: Compatible with **PS-Dispatch**, **ATY\_Dispatch**, and **QBCore Default** dispatch  systems for real-time alerts when a vehicle lock is cutting.\
-🔹 **Progress Bar**: ox\_lib\
-🔹 **Inventory Support**: Fully supports **ESX**, **QBCore**, and **QBox** inventories.
+* Officers can place a wheel clamp on any registered player vehicle
+* Clamp prop visually attaches to the vehicle wheel
+* Vehicle owner receives a notification when their vehicle is clamped
+* Fine amount is set by the officer at the time of clamping
+* Vehicle owner can pay the fine directly to have the clamp removed
+* Vehicle owner can use a `wheel_clamp_cutter` item to remove the clamp themselves (own vehicle only)
+* Officers can remove clamps and collect the fine from their bank account
+* Full clamp list visible to police via target interaction
+* Clamp visual persists across garage spawns (with garage export integration)
+* Clamp visual is removed when a vehicle is stored back into a garage
+* Society / treasury payment support — fines can be paid into a shared account
+* Dispatch alert support when a clamp is placed
+* Webhook logging for all clamp events (placed, removed, fine paid)
+* Auto SQL install on resource start
+* Version checker on resource start
+
+***
+
+## Compatibility
+
+### Frameworks
+
+| Framework | Supported |
+| --------- | --------- |
+| ESX       | Yes       |
+| QBCore    | Yes       |
+| QBox      | Yes       |
+
+### Target
+
+| Resource             | Supported |
+| -------------------- | --------- |
+| ox\_target           | Yes       |
+| qb-target            | Yes       |
+| Commands (no target) | Yes       |
+
+### Inventory
+
+| Resource              | Supported |
+| --------------------- | --------- |
+| ox\_inventory         | Yes       |
+| qb-inventory          | Yes       |
+| ESX default inventory | Yes       |
+
+### Notify
+
+| Resource       | Supported |
+| -------------- | --------- |
+| ox\_lib        | Yes       |
+| esx\_notify    | Yes       |
+| okokNotify     | Yes       |
+| wasabi\_notify | Yes       |
+| brutal\_notify | Yes       |
+| mythic\_notify | Yes       |
+| lation\_ui     | Yes       |
+
+### UI
+
+| Feature      | Resource                                    | Supported |
+| ------------ | ------------------------------------------- | --------- |
+| Context Menu | ox\_lib / lation\_ui                        | Yes       |
+| Input Dialog | ox\_lib / lation\_ui                        | Yes       |
+| Alert Dialog | ox\_lib / lation\_ui                        | Yes       |
+| Progress Bar | ox\_lib / ox\_lib\_circle / qb / lation\_ui | Yes       |
+
+### Dispatch
+
+| Resource        | Supported |
+| --------------- | --------- |
+| ps-dispatch     | Yes       |
+| aty\_dispatch   | Yes       |
+| op-dispatch     | Yes       |
+| rcore dispatch  | Yes       |
+| cd\_dispatch    | Yes       |
+| QBCore built-in | Yes       |
+| Custom          | Yes       |
+
+### Society / Treasury
+
+| Resource             | Supported |
+| -------------------- | --------- |
+| addon\_account (ESX) | Yes       |
+| qb-management        | Yes       |
+| qb-banking           | Yes       |
+
+***
+
+## Support
+
+Join our Discord for script support, devlogs, and update announcements.
+
+[discord.gg/c6gXmtEf3H](https://discord.gg/c6gXmtEf3H)
