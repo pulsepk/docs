@@ -972,7 +972,7 @@ To enable discord logs make sure to add your webhook in the server->Log.lua File
 
 If you have purchased the DJ Burgershot Props [https://djscollections.com/package/6098332](https://djscollections.com/package/6098332) just install it and set the Config.UseDjItems = true
 
-<figure><img src="../../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Video of Installation:
 

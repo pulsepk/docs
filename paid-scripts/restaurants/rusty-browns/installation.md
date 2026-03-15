@@ -1098,4 +1098,4 @@ To enable discord logs make sure to add your webhook in the server->Log.lua File
 
 If you have purchased the DJ Donut Props [https://djscollections.com/package/5681293](https://djscollections.com/package/5681293)  just install it and set the Config.UseDjItems = true&#x20;
 
-<figure><img src="../../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>

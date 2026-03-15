@@ -855,4 +855,4 @@ If you have purchased the DJ Chinese Props [Click Here](https://djscollections.c
 
 &#x20;just install it and set the Config.UseDjItems = true
 
-<figure><img src="../../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>

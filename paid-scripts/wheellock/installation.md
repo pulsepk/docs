@@ -115,12 +115,58 @@ exports.pl_wheelclamper:OnVehicleStored(source, GetVehicleNumberPlateText(vehicl
 
 <figure><img src="../../.gitbook/assets/image (10).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/image (13).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
 #### After
 
 <figure><img src="../../.gitbook/assets/image (11).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/image (12).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+
+#### JG Advanced Garages
+
+**File:** `jg-advancedgarages->config-config-cl.lua` , `jg-advancedgarages->config-config-sv.lua`
+
+**Event:** `jg-advancedgarages:client:InsertVehicle:config`  ,  `jg-advancedgarages:client:TakeOutVehicle:config`
+
+**Modify both events like below**
+
+```lua
+---@param vehicle integer Vehicle entity
+---@param vehicleDbData table Vehicle row from the database
+---@param type "personal" | "job" | "gang"
+RegisterNetEvent("jg-advancedgarages:client:InsertVehicle:config", function(vehicle, vehicleDbData, type)
+  -- Code placed in here will be run when the player inserts their vehicle (if the vehicle is owned; and passes all the checks)
+  TriggerServerEvent("jg-advancedgarages:server:wheelclamper:vehicleStored", vehicleDbData.plate)
+end)
+
+---@param vehicle integer Vehicle entity
+---@param vehicleDbData table Vehicle row from the database
+---@param type "personal" | "job" | "gang"
+RegisterNetEvent("jg-advancedgarages:client:TakeOutVehicle:config", function(vehicle, vehicleDbData, type)
+  -- Code placed in here will be run after a vehicle has been taken out of a garage
+  TriggerServerEvent("jg-advancedgarages:server:wheelclamper:vehicleSpawned", vehicleDbData.plate)
+end)
+
+```
+
+**Paste the code in the file jg-advancegarages->config-config-sv.lua**
+
+```lua
+-- Add your own server code in here for custom functionality
+
+RegisterNetEvent("jg-advancedgarages:server:wheelclamper:vehicleStored", function(plate)
+  local source = source
+
+  exports.pl_wheelclamper:OnVehicleStored(source, plate)
+end)
+
+RegisterNetEvent("jg-advancedgarages:server:wheelclamper:vehicleSpawned", function(plate)
+  local source = source
+
+  exports.pl_wheelclamper:OnVehicleSpawned(source, plate)
+end)
+
+```
 {% endstep %}
 {% endstepper %}
