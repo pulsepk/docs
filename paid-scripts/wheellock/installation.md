@@ -4,10 +4,15 @@
 {% step %}
 ### Step 1 — Install Dependencies
 
+[ox\_lib](https://github.com/communityox/ox_lib/releases)
+
+[pl\_wheelclamper\_assets](https://portal.cfx.re/)
+
 Add the following to your `server.cfg`:
 
 ```
 ensure ox_lib
+ensure pl_wheelclamper_assets
 ensure pl_wheelclamper
 ```
 {% endstep %}
