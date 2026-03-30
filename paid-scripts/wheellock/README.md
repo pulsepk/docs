@@ -4,7 +4,7 @@ description: An Advanced Wheel Lock Script that Supports ESX, QBCore, Qbox Frame
 
 # 🔓 Wheel Clamper
 
-{% embed url="https://youtu.be/5YLMkrpMgSM" %}
+{% embed url="https://youtu.be/N10_lA9NkbM" %}
 
 ## Purchase
 
