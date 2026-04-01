@@ -25,26 +25,25 @@ Use this if AutoInstallSQL Fails for some reason and doesn't generates the sql d
 <summary>ESX</summary>
 
 ```lua
-CREATE TABLE IF NOT EXISTS `pl_upnatom` (
-    `stock` longtext DEFAULT NULL,
-    `state` varchar(5) NOT NULL DEFAULT 'open'
+CREATE TABLE IF NOT EXISTS `pl_hornyburgers` (
+     `stock` longtext DEFAULT NULL,
+     `state` varchar(5) NOT NULL DEFAULT 'open'
 ) ENGINE=InnoDB DEFAULT CHARSET=armscii8 COLLATE=armscii8_bin;
 
- INSERT INTO `addon_account` (name, label, shared) VALUES
-	('society_upnatom', 'Up n Atom', 1);
-
+INSERT INTO `addon_account` (name, label, shared) VALUES
+     ('society_hornyburgers', 'Horny Burgers', 1);
 INSERT INTO `datastore` (name, label, shared) VALUES
-        ('society_upnatom', 'Up n Atom', 1);
+     ('society_hornyburgers', 'Horny Burgers', 1);
 
 INSERT INTO `jobs` (name, label,whitelisted) VALUES
-       ('upnatom', 'Up n Atom',1);
+     ('hornyburgers', 'Horny Burgers',1);
 
- INSERT INTO `job_grades` (job_name, grade, name, label, salary, skin_male, skin_female) VALUES
-        ('upnatom',0,'cashier','Cashier',20,'{}','{}'),
-        ('upnatom',1,'cook','Cook',40,'{}','{}'),
-        ('upnatom',2,'staff','Staff',60,'{}','{}'),
-        ('upnatom',3,'manager','Manager',85,'{}','{}'),
-        ('upnatom',4,'boss','Owner',100,'{}','{}');
+INSERT INTO `job_grades` (job_name, grade, name, label, salary, skin_male, skin_female) VALUES
+     ('hornyburgers',0,'cashier','Cashier',20,'{}','{}'),
+     ('hornyburgers',1,'cook','Cook',40,'{}','{}'),
+     ('hornyburgers',2,'staff','Staff',60,'{}','{}'),
+     ('hornyburgers',3,'manager','Manager',85,'{}','{}'),
+     ('hornyburgers',4,'boss','Owner',100,'{}','{}');
 ```
 
 </details>
@@ -54,10 +53,10 @@ INSERT INTO `jobs` (name, label,whitelisted) VALUES
 <summary>QBCore or Qbox</summary>
 
 ```lua
-CREATE TABLE IF NOT EXISTS `pl_upnatom` (
-     `stock` LONGTEXT DEFAULT NULL,
-     `state` VARCHAR(5) NOT NULL DEFAULT 'open'
-) ENGINE=InnoDB DEFAULT CHARSET=armscii8 COLLATE=armscii8_bin;
+CREATE TABLE IF NOT EXISTS `pl_hornyburgers` (
+      `stock` LONGTEXT DEFAULT NULL,
+      `state` VARCHAR(5) NOT NULL DEFAULT 'open'
+ ) ENGINE=InnoDB DEFAULT CHARSET=armscii8 COLLATE=armscii8_bin;
 ```
 
 </details>
@@ -71,8 +70,8 @@ Add the items into your server
 <summary>Ox Inventory</summary>
 
 ```lua
-["ua_bbq_chicken"] = {
-    label = "BBQ Chicken Burger",
+["hb_classic_burger"] = {
+    label = "Classic Burger",
     weight = 1,
     client = {
 			status = { hunger = 200000 },
@@ -82,8 +81,8 @@ Add the items into your server
 			notification = 'You ate a delicious burger'
 		},
 },
-["ua_mustard_beef"] = {
-    label = "Mustard Beef Burger",
+["hb_spicy_burger"] = {
+    label = "Spicy Burger",
     weight = 1,
     client = {
 			status = { hunger = 200000 },
@@ -93,8 +92,8 @@ Add the items into your server
 			notification = 'You ate a delicious burger'
 		},
 },
-["ua_glazed_turkey"] = {
-    label = "Glazed Turkey Burger",
+["hb_cheesy_burger"] = {
+    label = "Cheesy Burger",
     weight = 1,
     client = {
 			status = { hunger = 200000 },
@@ -104,8 +103,8 @@ Add the items into your server
 			notification = 'You ate a delicious burger'
 		},
 },
-["ua_spicy_lamb"] = {
-    label = "Spic  Lamb Burger",
+["hb_bacon_burger"] = {
+    label = "Bacon Burger",
     weight = 1,
     client = {
 			status = { hunger = 200000 },
@@ -115,8 +114,8 @@ Add the items into your server
 			notification = 'You ate a delicious burger'
 		},
 },
-["ua_sweet_smoky_vegan"] = {
-    label = "Sweet & Smoky Vegan Burger",
+["hb_double_burger"] = {
+    label = "Double Burger",
     weight = 1,
     client = {
 			status = { hunger = 200000 },
@@ -126,63 +125,8 @@ Add the items into your server
 			notification = 'You ate a delicious burger'
 		},
 },
-["ua_butter_fries"] = {
-    label = "Butter Fries",
-    weight = 1,
-    client = {
-			status = { hunger = 200000 },
-			anim = 'eating',
-			prop = 'burger',
-			usetime = 2500,
-			notification = 'You ate a delicious burger'
-		},
-},
-["ua_spicy_glazed"] = {
-    label = "Spicy Glazed Fries",
-    weight = 1,
-    client = {
-			status = { hunger = 200000 },
-			anim = 'eating',
-			prop = 'burger',
-			usetime = 2500,
-			notification = 'You ate a delicious burger'
-		},
-},
-["ua_parmesan_fries"] = {
-    label = "Parmesan Fries",
-    weight = 1,
-    client = {
-			status = { hunger = 200000 },
-			anim = 'eating',
-			prop = 'burger',
-			usetime = 2500,
-			notification = 'You ate a delicious burger'
-		},
-},
-["ua_sweet_cajun"] = {
-    label = "Sweet Cajun Fries",
-    weight = 1,
-    client = {
-			status = { hunger = 200000 },
-			anim = 'eating',
-			prop = 'burger',
-			usetime = 2500,
-			notification = 'You ate a delicious burger'
-		},
-},
-["ua_garlic_fries"] = {
-    label = "Garlic Fries",
-    weight = 1,
-    client = {
-			status = { hunger = 200000 },
-			anim = 'eating',
-			prop = 'burger',
-			usetime = 2500,
-			notification = 'You ate a delicious burger'
-		},
-},
-["ua_lemon_fizz"] = {
-    label = "Lemon Fizz",
+["hb_milkshake"] = {
+    label = "Milkshake",
     weight = 1,
     client = {
 			status = { thirst = 200000 },
@@ -192,14 +136,14 @@ Add the items into your server
 			notification = 'You quenched your thirst with a sprunk'
 		},
 },
-["ua_mint_cooler"] = {
-    label = "Mint Cooler",
+["hb_lemonade"] = {
+    label = "Lemonade",
     weight = 1,
     stack = true,
     close = true,
 },
-["ua_ginger_punch"] = {
-    label = "Ginger Punch",
+["hb_iced_coffee"] = {
+    label = "Iced Coffee",
     weight = 1,
     client = {
 			status = { thirst = 200000 },
@@ -209,8 +153,8 @@ Add the items into your server
 			notification = 'You quenched your thirst with a sprunk'
 		},
 },
-["ua_berry_refresher"] = {
-    label = "Berry Refresher",
+["hb_smoothie"] = {
+    label = "Smoothie",
     weight = 1,
     client = {
 			status = { thirst = 200000 },
@@ -220,8 +164,8 @@ Add the items into your server
 			notification = 'You quenched your thirst with a sprunk'
 		},
 },
-["ua_tropical_splash"] = {
-    label = "Tropica Splash",
+["hb_energy_drink"] = {
+    label = "Energy Drink",
     weight = 1,
     client = {
 			status = { thirst = 200000 },
@@ -231,8 +175,63 @@ Add the items into your server
 			notification = 'You quenched your thirst with a sprunk'
 		},
 },
-["ua_green_tea"] = {
-    label = "Iced Green Tea",
+["hb_classic_fries"] = {
+    label = "Classic Fries",
+    weight = 1,
+    client = {
+			status = { hunger = 200000 },
+			anim = 'eating',
+			prop = 'burger',
+			usetime = 2500,
+			notification = 'You ate a delicious burger'
+		},
+},
+["hb_cheesy_fries"] = {
+    label = "Cheesy Fries",
+    weight = 1,
+    client = {
+			status = { hunger = 200000 },
+			anim = 'eating',
+			prop = 'burger',
+			usetime = 2500,
+			notification = 'You ate a delicious burger'
+		},
+},
+["hb_spicy_fries"] = {
+    label = "Spicy Fries",
+    weight = 1,
+    client = {
+			status = { hunger = 200000 },
+			anim = 'eating',
+			prop = 'burger',
+			usetime = 2500,
+			notification = 'You ate a delicious burger'
+		},
+},
+["hb_bacon_fries"] = {
+    label = "Bacon Fries",
+    weight = 1,
+    client = {
+			status = { hunger = 200000 },
+			anim = 'eating',
+			prop = 'burger',
+			usetime = 2500,
+			notification = 'You ate a delicious burger'
+		},
+},
+["hb_loaded_fries"] = {
+    label = "Loaded Fries",
+    weight = 1,
+    client = {
+			status = { hunger = 200000 },
+			anim = 'eating',
+			prop = 'burger',
+			usetime = 2500,
+			notification = 'You ate a delicious burger'
+		},
+},
+["hb_cola"] = {
+    label = "Cola",
     weight = 1,
     client = {
 			status = { thirst = 200000 },
@@ -242,8 +241,8 @@ Add the items into your server
 			notification = 'You quenched your thirst with a sprunk'
 		},
 },
-["ua_ginger_soda"] = {
-    label = "Ginger Soda",
+["hb_root_beer"] = {
+    label = "Root Beer",
     weight = 1,
     client = {
 			status = { thirst = 200000 },
@@ -253,8 +252,8 @@ Add the items into your server
 			notification = 'You quenched your thirst with a sprunk'
 		},
 },
-["ua_mint_sparkler"] = {
-    label = "Mint Sparkler",
+["hb_orange_soda"] = {
+    label = "Orange Soda",
     weight = 1,
     client = {
 			status = { thirst = 200000 },
@@ -264,8 +263,8 @@ Add the items into your server
 			notification = 'You quenched your thirst with a sprunk'
 		},
 },
-["ua_berry_soda"] = {
-    label = "Berry Soda",
+["hb_grape_soda"] = {
+    label = "Grape Soda",
     weight = 1,
     client = {
 			status = { thirst = 200000 },
@@ -275,8 +274,8 @@ Add the items into your server
 			notification = 'You quenched your thirst with a sprunk'
 		},
 },
-["ua_pineapple_pop"] = {
-    label = "Pineapple Pop",
+["hb_lemonlime"] = {
+    label = "Lemon-Lime",
     weight = 1,
     client = {
 			status = { thirst = 200000 },
@@ -286,133 +285,193 @@ Add the items into your server
 			notification = 'You quenched your thirst with a sprunk'
 		},
 },
-["ua_bun"] = {
+["hb_bun"] = {
     label = "Burger Bun",
     weight = 1,
     stack = true,
     close = true,
 },
-["ua_potato"] = {
-    label = "Potato",
+["hb_sauce"] = {
+    label = "Horny Sauce",
     weight = 1,
     stack = true,
     close = true,
 },
-["ua_ice"] = {
-    label = "Ice",
+["hb_jalapeno_relish"] = {
+    label = "Jalapeno Relish",
     weight = 1,
     stack = true,
     close = true,
 },
-["ua_lemon"] = {
-    label = "Lemon",
+["hb_melted_cheddar"] = {
+    label = "Melted Cheddar",
     weight = 1,
     stack = true,
     close = true,
 },
-["ua_bbq_sauce"] = {
-    label = "BBQ Sauce",
+["hb_crispy_bacon"] = {
+    label = "Crispy Bacon",
     weight = 1,
     stack = true,
     close = true,
 },
-["ua_mustard_sauce"] = {
-    label = "Mustard Sauce",
+["hb_double_beef_patty"] = {
+    label = "Double Beef Patty",
     weight = 1,
     stack = true,
     close = true,
 },
-["ua_glaze"] = {
-    label = "Glaze Sauce",
+["hb_bbq_sauce"] = {
+    label = "Special BBQ Sauce",
     weight = 1,
     stack = true,
     close = true,
 },
-["ua_chili"] = {
-    label = "Chili Sauce",
+["hb_milk"] = {
+    label = "Milk",
     weight = 1,
     stack = true,
     close = true,
 },
-["ua_smoked"] = {
-    label = "Smoked Sauce",
+["hb_chocolate_syrup"] = {
+    label = "Chocolate Syrup",
     weight = 1,
     stack = true,
     close = true,
 },
-["ua_butter"] = {
-    label = "Butter",
+["hb_fresh_lemon_juice"] = {
+    label = "Fresh Lemon",
     weight = 1,
     stack = true,
     close = true,
 },
-["ua_parmesan"] = {
-    label = "Parmesan Drizzle",
+["hb_mint_infusion"] = {
+    label = "Mint Infusion",
     weight = 1,
     stack = true,
     close = true,
 },
-["ua_cajun"] = {
-    label = "Cajun Sauce",
+["hb_coffee"] = {
+    label = "Coffee",
     weight = 1,
     stack = true,
     close = true,
 },
-["ua_garlic"] = {
-    label = "Garlic Sauce",
+["hb_caramel_drizzle"] = {
+    label = "Caramel Drizzle",
     weight = 1,
     stack = true,
     close = true,
 },
-["ua_lemon_syrup"] = {
-    label = "Lemon Syrup",
+["hb_mixed_berries"] = {
+    label = "Mixed Berries",
     weight = 1,
     stack = true,
     close = true,
 },
-["ua_mint"] = {
-    label = "Mint",
+["hb_honey"] = {
+    label = "Honey",
     weight = 1,
     stack = true,
     close = true,
 },
-["ua_ginger"] = {
-    label = "Ginger",
+["hb_caffeine_base"] = {
+    label = "Caffeine Base",
     weight = 1,
     stack = true,
     close = true,
 },
-["ua_berry"] = {
-    label = "Berry",
+["hb_citrus_blend"] = {
+    label = "Citrus Blend",
     weight = 1,
     stack = true,
     close = true,
 },
-["ua_tropical"] = {
-    label = "Tropica ",
+["hb_potato_fries"] = {
+    label = "Potato Fries",
     weight = 1,
     stack = true,
     close = true,
 },
-["ua_pineapple"] = {
-    label = "Pineapple",
+["hb_sea_salt"] = {
+    label = "Sea Salt & Pepper",
     weight = 1,
     stack = true,
     close = true,
 },
-["ua_icecubes"] = {
+["hb_melted_cheese"] = {
+    label = "Melted Cheese",
+    weight = 1,
+    stack = true,
+    close = true,
+},
+["hb_sriracha"] = {
+    label = "Sriracha",
+    weight = 1,
+    stack = true,
+    close = true,
+},
+["hb_crispy_bacon"] = {
+    label = "Crispy Bacon",
+    weight = 1,
+    stack = true,
+    close = true,
+},
+["hb_sour_cream_chives"] = {
+    label = "Sour Cream & Chives",
+    weight = 1,
+    stack = true,
+    close = true,
+},
+["hb_carbonated_water"] = {
+    label = "Carbonated Water",
+    weight = 1,
+    stack = true,
+    close = true,
+},
+["hb_cola_flavor"] = {
+    label = "Cola Flavoring",
+    weight = 1,
+    stack = true,
+    close = true,
+},
+["hb_root_beer_extract"] = {
+    label = "Root Beer Extract",
+    weight = 1,
+    stack = true,
+    close = true,
+},
+["hb_orange_syrup"] = {
+    label = "Orange Syrup",
+    weight = 1,
+    stack = true,
+    close = true,
+},
+["hb_grape_syrup"] = {
+    label = "Grape Syrup",
+    weight = 1,
+    stack = true,
+    close = true,
+},
+["hb_fresh_lemon"] = {
+    label = "Fresh Lemon",
+    weight = 1,
+    stack = true,
+    close = true,
+},
+["hb_icecubes"] = {
     label = "Ice Cubes",
     weight = 1,
     stack = true,
     close = true,
 },
-["ua_waterbottle"] = {
+["hb_waterbottle"] = {
     label = "Water Bottle",
     weight = 1,
     stack = true,
     close = true,
 },
-["ua_emptycup"] = {
+["hb_emptycup"] = {
     label = "Empty Cup",
     weight = 1,
     stack = true,
@@ -427,48 +486,55 @@ Add the items into your server
 <summary>QB Inventory</summary>
 
 ```lua
-['ua_bbq_chicken'] = {['name'] = 'ua_bbq_chicken', ['label'] = 'BBQ Chicken Burger', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_bbq_chicken.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_mustard_beef'] = {['name'] = 'ua_mustard_beef', ['label'] = 'Mustard Beef Burger', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_mustard_beef.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_glazed_turkey'] = {['name'] = 'ua_glazed_turkey', ['label'] = 'Glazed Turkey Burger', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_glazed_turkey.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_spicy_lamb'] = {['name'] = 'ua_spicy_lamb', ['label'] = 'Spicy Lamb Burger', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_spicy_lamb.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_sweet_smoky_vegan'] = {['name'] = 'ua_sweet_smoky_vegan', ['label'] = 'Sweet & Smoky Vegan Burger', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_sweet_smoky_vegan.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_butter_fries'] = {['name'] = 'ua_butter_fries', ['label'] = 'Butter Fries', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_butter_fries.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_spicy_glazed'] = {['name'] = 'ua_spicy_glazed', ['label'] = 'Spicy Glazed Fries', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_spicy_glazed.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_parmesan_fries'] = {['name'] = 'ua_parmesan_fries', ['label'] = 'Parmesan Fries', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_parmesan_fries.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_sweet_cajun'] = {['name'] = 'ua_sweet_cajun', ['label'] = 'Sweet Cajun Fries', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_sweet_cajun.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_garlic_fries'] = {['name'] = 'ua_garlic_fries', ['label'] = 'Garlic Fries', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_garlic_fries.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_green_tea'] = {['name'] = 'ua_green_tea', ['label'] = 'Iced Green Tea', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_green_tea.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_mint_cooler'] = {['name'] = 'ua_mint_cooler', ['label'] = 'Mint Cooler', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_mint_cooler.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_ginger_punch'] = {['name'] = 'ua_ginger_punch', ['label'] = 'Ginger Punch', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_ginger_punch.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_berry_refresher'] = {['name'] = 'ua_berry_refresher', ['label'] = 'Berry Refresher', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_berry_refresher.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_tropical_splash'] = {['name'] = 'ua_tropical_splash', ['label'] = 'Tropical Splash', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_tropical_splash.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_lemon_fizz'] = {['name'] = 'ua_lemon_fizz', ['label'] = 'Lemon Fizz', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_lemon_fizz.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_ginger_soda'] = {['name'] = 'ua_ginger_soda', ['label'] = 'Ginger Soda', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_ginger_soda.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_mint_sparkler'] = {['name'] = 'ua_mint_sparkler', ['label'] = 'Mint Sparkler', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_mint_sparkler.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_berry_soda'] = {['name'] = 'ua_berry_soda', ['label'] = 'Berry Soda', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_berry_soda.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_pineapple_pop'] = {['name'] = 'ua_pineapple_pop', ['label'] = 'Pineapple Pop', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_pineapple_pop.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_bun'] = {['name'] = 'ua_bun', ['label'] = 'Burger Bun', ['weight'] = 10, ['type'] = 'item', ['image'] = 'burger_ua_bun.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_potato'] = {['name'] = 'ua_potato', ['label'] = 'Potato', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_potato.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_ice'] = {['name'] = 'ua_ice', ['label'] = 'Ice', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_ice.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_lemon'] = {['name'] = 'ua_lemon', ['label'] = 'Lemon', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_lemon.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_bbq_sauce'] = {['name'] = 'ua_bbq_sauce', ['label'] = 'BBQ Sauce', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_bbq_sauce.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_mustard_sauce'] = {['name'] = 'ua_mustard_sauce', ['label'] = 'Mustard Sauce', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_mustard_sauce.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_glaze'] = {['name'] = 'ua_glaze', ['label'] = 'Glaze Sauce', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_glaze.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_chili'] = {['name'] = 'ua_chili', ['label'] = 'Chili Sauce', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_chili.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_smoked'] = {['name'] = 'ua_smoked', ['label'] = 'Smoked Sauce', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_smoked.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_butter'] = {['name'] = 'ua_butter', ['label'] = 'Butter', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_butter.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_parmesan'] = {['name'] = 'ua_parmesan', ['label'] = 'Parmesan Drizzle', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_parmesan.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_cajun'] = {['name'] = 'ua_cajun', ['label'] = 'Cajun Sauce', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_cajun.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_garlic'] = {['name'] = 'ua_garlic', ['label'] = 'Garlic Sauce', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_garlic.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_lemon_syrup'] = {['name'] = 'ua_lemon_syrup', ['label'] = 'Lemon Syrup', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_lemon_syrup.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_mint'] = {['name'] = 'ua_mint', ['label'] = 'Mint', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_mint.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_ginger'] = {['name'] = 'ua_ginger', ['label'] = 'Ginger', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_ginger.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_berry'] = {['name'] = 'ua_berry', ['label'] = 'Berry', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_berry.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_tropical'] = {['name'] = 'ua_tropical', ['label'] = 'Tropical', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_tropical.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_pineapple'] = {['name'] = 'ua_pineapple', ['label'] = 'Pineapple', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_pineapple.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_icecubes'] = {['name'] = 'ua_icecubes', ['label'] = 'Ice Cubes', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_icecubes.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_waterbottle'] = {['name'] = 'ua_waterbottle', ['label'] = 'Water Bottle', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_waterbottle.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_emptycup'] = {['name'] = 'ua_emptycup', ['label'] = 'Empty Cup', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_emptycup.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_classic_burger'] = {['name'] = 'hb_classic_burger', ['label'] = 'Classic Burger', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_classic_burger.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_spicy_burger'] = {['name'] = 'hb_spicy_burger', ['label'] = 'Spicy Burger', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_spicy_burger.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_cheesy_burger'] = {['name'] = 'hb_cheesy_burger', ['label'] = 'Cheesy Burger', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_cheesy_burger.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_bacon_burger'] = {['name'] = 'hb_bacon_burger', ['label'] = 'Bacon Burger', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_bacon_burger.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_double_burger'] = {['name'] = 'hb_double_burger', ['label'] = 'Double Burger', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_double_burger.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_milkshake'] = {['name'] = 'hb_milkshake', ['label'] = 'Milkshake', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_milkshake.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_iced_coffee'] = {['name'] = 'hb_iced_coffee', ['label'] = 'Iced Coffee', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_iced_coffee.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_smoothie'] = {['name'] = 'hb_smoothie', ['label'] = 'Smoothie', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_smoothie.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_energy_drink'] = {['name'] = 'hb_energy_drink', ['label'] = 'Energy Drink', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_energy_drink.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_classic_fries'] = {['name'] = 'hb_classic_fries', ['label'] = 'Classic Fries', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_classic_fries.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_cheesy_fries'] = {['name'] = 'hb_cheesy_fries', ['label'] = 'Cheesy Fries', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_cheesy_fries.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_spicy_fries'] = {['name'] = 'hb_spicy_fries', ['label'] = 'Spicy Fries', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_spicy_fries.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_bacon_fries'] = {['name'] = 'hb_bacon_fries', ['label'] = 'Bacon Fries', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_bacon_fries.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_loaded_fries'] = {['name'] = 'hb_loaded_fries', ['label'] = 'Loaded Fries', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_loaded_fries.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_cola'] = {['name'] = 'hb_cola', ['label'] = 'Cola', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_cola.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_root_beer'] = {['name'] = 'hb_root_beer', ['label'] = 'Root Beer', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_root_beer.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_orange_soda'] = {['name'] = 'hb_orange_soda', ['label'] = 'Orange Soda', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_orange_soda.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_grape_soda'] = {['name'] = 'hb_grape_soda', ['label'] = 'Grape Soda', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_grape_soda.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_lemonlime'] = {['name'] = 'hb_lemonlime', ['label'] = 'Lemon-Lime', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_lemonlime.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_bun'] = {['name'] = 'hb_bun', ['label'] = 'Burger Bun', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_bun.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_sauce'] = {['name'] = 'hb_sauce', ['label'] = 'Horny Sauce', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_sauce.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_jalapeno_relish'] = {['name'] = 'hb_jalapeno_relish', ['label'] = 'Jalapeno Relish', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_jalapeno_relish.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_melted_cheddar'] = {['name'] = 'hb_melted_cheddar', ['label'] = 'Melted Cheddar', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_melted_cheddar.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_double_beef_patty'] = {['name'] = 'hb_double_beef_patty', ['label'] = 'Double Beef Patty', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_double_beef_patty.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_bbq_sauce'] = {['name'] = 'hb_bbq_sauce', ['label'] = 'Special BBQ Sauce', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_bbq_sauce.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_milk'] = {['name'] = 'hb_milk', ['label'] = 'Milk', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_milk.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_chocolate_syrup'] = {['name'] = 'hb_chocolate_syrup', ['label'] = 'Chocolate Syrup', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_chocolate_syrup.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_fresh_lemon'] = {['name'] = 'hb_fresh_lemon', ['label'] = 'Fresh Lemon', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_fresh_lemon_juice.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_mint_infusion'] = {['name'] = 'hb_mint_infusion', ['label'] = 'Mint Infusion', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_mint_infusion.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_coffee'] = {['name'] = 'hb_coffee', ['label'] = 'Coffee', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_coffee.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_caramel_drizzle'] = {['name'] = 'hb_caramel_drizzle', ['label'] = 'Caramel Drizzle', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_caramel_drizzle.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_mixed_berries'] = {['name'] = 'hb_mixed_berries', ['label'] = 'Mixed Berries', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_mixed_berries.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_honey'] = {['name'] = 'hb_honey', ['label'] = 'Honey', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_honey.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_caffeine_base'] = {['name'] = 'hb_caffeine_base', ['label'] = 'Caffeine Base', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_caffeine_base.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_citrus_blend'] = {['name'] = 'hb_citrus_blend', ['label'] = 'Citrus Blend', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_citrus_blend.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_potato_fries'] = {['name'] = 'hb_potato_fries', ['label'] = 'Potato Fries', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_potato_fries.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_sea_salt'] = {['name'] = 'hb_sea_salt', ['label'] = 'Sea Salt & Pepper', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_sea_salt.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_melted_cheese'] = {['name'] = 'hb_melted_cheese', ['label'] = 'Melted Cheese', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_melted_cheese.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_sriracha'] = {['name'] = 'hb_sriracha', ['label'] = 'Sriracha', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_sriracha.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_crispy_bacon'] = {['name'] = 'hb_crispy_bacon', ['label'] = 'Crispy Bacon', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_crispy_bacon.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_sour_cream_chives'] = {['name'] = 'hb_sour_cream_chives', ['label'] = 'Sour Cream & Chives', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_sour_cream_chives.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_carbonated_water'] = {['name'] = 'hb_carbonated_water', ['label'] = 'Carbonated Water', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_carbonated_water.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_cola_flavor'] = {['name'] = 'hb_cola_flavor', ['label'] = 'Cola Flavoring', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_cola_flavor.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_root_beer_extract'] = {['name'] = 'hb_root_beer_extract', ['label'] = 'Root Beer Extract', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_root_beer_extract.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_orange_syrup'] = {['name'] = 'hb_orange_syrup', ['label'] = 'Orange Syrup', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_orange_syrup.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_grape_syrup'] = {['name'] = 'hb_grape_syrup', ['label'] = 'Grape Syrup', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_grape_syrup.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_icecubes'] = {['name'] = 'hb_icecubes', ['label'] = 'Ice Cubes', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_icecubes.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_waterbottle'] = {['name'] = 'hb_waterbottle', ['label'] = 'Water Bottle', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_waterbottle.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_emptycup'] = {['name'] = 'hb_emptycup', ['label'] = 'Empty Cup', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_emptycup.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
 ```
 
 </details>
@@ -478,48 +544,55 @@ Add the items into your server
 <summary>Quasar Inventory</summary>
 
 ```lua
-['ua_bbq_chicken'] = {['name'] = 'ua_bbq_chicken', ['label'] = 'BBQ Chicken Burger', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_bbq_chicken.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_mustard_beef'] = {['name'] = 'ua_mustard_beef', ['label'] = 'Mustard Beef Burger', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_mustard_beef.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_glazed_turkey'] = {['name'] = 'ua_glazed_turkey', ['label'] = 'Glazed Turkey Burger', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_glazed_turkey.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_spicy_lamb'] = {['name'] = 'ua_spicy_lamb', ['label'] = 'Spicy Lamb Burger', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_spicy_lamb.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_sweet_smoky_vegan'] = {['name'] = 'ua_sweet_smoky_vegan', ['label'] = 'Sweet & Smoky Vegan Burger', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_sweet_smoky_vegan.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_butter_fries'] = {['name'] = 'ua_butter_fries', ['label'] = 'Butter Fries', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_butter_fries.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_spicy_glazed'] = {['name'] = 'ua_spicy_glazed', ['label'] = 'Spicy Glazed Fries', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_spicy_glazed.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_parmesan_fries'] = {['name'] = 'ua_parmesan_fries', ['label'] = 'Parmesan Fries', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_parmesan_fries.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_sweet_cajun'] = {['name'] = 'ua_sweet_cajun', ['label'] = 'Sweet Cajun Fries', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_sweet_cajun.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_garlic_fries'] = {['name'] = 'ua_garlic_fries', ['label'] = 'Garlic Fries', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_garlic_fries.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_green_tea'] = {['name'] = 'ua_green_tea', ['label'] = 'Iced Green Tea', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_green_tea.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_mint_cooler'] = {['name'] = 'ua_mint_cooler', ['label'] = 'Mint Cooler', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_mint_cooler.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_ginger_punch'] = {['name'] = 'ua_ginger_punch', ['label'] = 'Ginger Punch', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_ginger_punch.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_berry_refresher'] = {['name'] = 'ua_berry_refresher', ['label'] = 'Berry Refresher', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_berry_refresher.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_tropical_splash'] = {['name'] = 'ua_tropical_splash', ['label'] = 'Tropical Splash', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_tropical_splash.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_lemon_fizz'] = {['name'] = 'ua_lemon_fizz', ['label'] = 'Lemon Fizz', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_lemon_fizz.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_ginger_soda'] = {['name'] = 'ua_ginger_soda', ['label'] = 'Ginger Soda', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_ginger_soda.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_mint_sparkler'] = {['name'] = 'ua_mint_sparkler', ['label'] = 'Mint Sparkler', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_mint_sparkler.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_berry_soda'] = {['name'] = 'ua_berry_soda', ['label'] = 'Berry Soda', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_berry_soda.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_pineapple_pop'] = {['name'] = 'ua_pineapple_pop', ['label'] = 'Pineapple Pop', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_pineapple_pop.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_bun'] = {['name'] = 'ua_bun', ['label'] = 'Burger Bun', ['weight'] = 10, ['type'] = 'item', ['image'] = 'burger_ua_bun.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_potato'] = {['name'] = 'ua_potato', ['label'] = 'Potato', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_potato.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_ice'] = {['name'] = 'ua_ice', ['label'] = 'Ice', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_ice.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_lemon'] = {['name'] = 'ua_lemon', ['label'] = 'Lemon', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_lemon.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_bbq_sauce'] = {['name'] = 'ua_bbq_sauce', ['label'] = 'BBQ Sauce', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_bbq_sauce.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_mustard_sauce'] = {['name'] = 'ua_mustard_sauce', ['label'] = 'Mustard Sauce', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_mustard_sauce.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_glaze'] = {['name'] = 'ua_glaze', ['label'] = 'Glaze Sauce', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_glaze.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_chili'] = {['name'] = 'ua_chili', ['label'] = 'Chili Sauce', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_chili.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_smoked'] = {['name'] = 'ua_smoked', ['label'] = 'Smoked Sauce', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_smoked.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_butter'] = {['name'] = 'ua_butter', ['label'] = 'Butter', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_butter.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_parmesan'] = {['name'] = 'ua_parmesan', ['label'] = 'Parmesan Drizzle', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_parmesan.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_cajun'] = {['name'] = 'ua_cajun', ['label'] = 'Cajun Sauce', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_cajun.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_garlic'] = {['name'] = 'ua_garlic', ['label'] = 'Garlic Sauce', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_garlic.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_lemon_syrup'] = {['name'] = 'ua_lemon_syrup', ['label'] = 'Lemon Syrup', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_lemon_syrup.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_mint'] = {['name'] = 'ua_mint', ['label'] = 'Mint', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_mint.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_ginger'] = {['name'] = 'ua_ginger', ['label'] = 'Ginger', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_ginger.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_berry'] = {['name'] = 'ua_berry', ['label'] = 'Berry', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_berry.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_tropical'] = {['name'] = 'ua_tropical', ['label'] = 'Tropical', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_tropical.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_pineapple'] = {['name'] = 'ua_pineapple', ['label'] = 'Pineapple', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_pineapple.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_icecubes'] = {['name'] = 'ua_icecubes', ['label'] = 'Ice Cubes', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_icecubes.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_waterbottle'] = {['name'] = 'ua_waterbottle', ['label'] = 'Water Bottle', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_waterbottle.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['ua_emptycup'] = {['name'] = 'ua_emptycup', ['label'] = 'Empty Cup', ['weight'] = 10, ['type'] = 'item', ['image'] = 'ua_emptycup.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_classic_burger'] = {['name'] = 'hb_classic_burger', ['label'] = 'Classic Burger', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_classic_burger.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_spicy_burger'] = {['name'] = 'hb_spicy_burger', ['label'] = 'Spicy Burger', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_spicy_burger.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_cheesy_burger'] = {['name'] = 'hb_cheesy_burger', ['label'] = 'Cheesy Burger', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_cheesy_burger.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_bacon_burger'] = {['name'] = 'hb_bacon_burger', ['label'] = 'Bacon Burger', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_bacon_burger.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_double_burger'] = {['name'] = 'hb_double_burger', ['label'] = 'Double Burger', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_double_burger.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_milkshake'] = {['name'] = 'hb_milkshake', ['label'] = 'Milkshake', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_milkshake.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_iced_coffee'] = {['name'] = 'hb_iced_coffee', ['label'] = 'Iced Coffee', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_iced_coffee.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_smoothie'] = {['name'] = 'hb_smoothie', ['label'] = 'Smoothie', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_smoothie.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_energy_drink'] = {['name'] = 'hb_energy_drink', ['label'] = 'Energy Drink', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_energy_drink.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_classic_fries'] = {['name'] = 'hb_classic_fries', ['label'] = 'Classic Fries', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_classic_fries.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_cheesy_fries'] = {['name'] = 'hb_cheesy_fries', ['label'] = 'Cheesy Fries', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_cheesy_fries.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_spicy_fries'] = {['name'] = 'hb_spicy_fries', ['label'] = 'Spicy Fries', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_spicy_fries.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_bacon_fries'] = {['name'] = 'hb_bacon_fries', ['label'] = 'Bacon Fries', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_bacon_fries.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_loaded_fries'] = {['name'] = 'hb_loaded_fries', ['label'] = 'Loaded Fries', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_loaded_fries.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_cola'] = {['name'] = 'hb_cola', ['label'] = 'Cola', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_cola.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_root_beer'] = {['name'] = 'hb_root_beer', ['label'] = 'Root Beer', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_root_beer.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_orange_soda'] = {['name'] = 'hb_orange_soda', ['label'] = 'Orange Soda', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_orange_soda.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_grape_soda'] = {['name'] = 'hb_grape_soda', ['label'] = 'Grape Soda', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_grape_soda.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_lemonlime'] = {['name'] = 'hb_lemonlime', ['label'] = 'Lemon-Lime', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_lemonlime.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_bun'] = {['name'] = 'hb_bun', ['label'] = 'Burger Bun', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_bun.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_sauce'] = {['name'] = 'hb_sauce', ['label'] = 'Horny Sauce', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_sauce.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_jalapeno_relish'] = {['name'] = 'hb_jalapeno_relish', ['label'] = 'Jalapeno Relish', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_jalapeno_relish.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_melted_cheddar'] = {['name'] = 'hb_melted_cheddar', ['label'] = 'Melted Cheddar', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_melted_cheddar.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_double_beef_patty'] = {['name'] = 'hb_double_beef_patty', ['label'] = 'Double Beef Patty', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_double_beef_patty.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_bbq_sauce'] = {['name'] = 'hb_bbq_sauce', ['label'] = 'Special BBQ Sauce', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_bbq_sauce.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_milk'] = {['name'] = 'hb_milk', ['label'] = 'Milk', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_milk.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_chocolate_syrup'] = {['name'] = 'hb_chocolate_syrup', ['label'] = 'Chocolate Syrup', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_chocolate_syrup.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_fresh_lemon'] = {['name'] = 'hb_fresh_lemon', ['label'] = 'Fresh Lemon', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_fresh_lemon_juice.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_mint_infusion'] = {['name'] = 'hb_mint_infusion', ['label'] = 'Mint Infusion', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_mint_infusion.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_coffee'] = {['name'] = 'hb_coffee', ['label'] = 'Coffee', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_coffee.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_caramel_drizzle'] = {['name'] = 'hb_caramel_drizzle', ['label'] = 'Caramel Drizzle', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_caramel_drizzle.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_mixed_berries'] = {['name'] = 'hb_mixed_berries', ['label'] = 'Mixed Berries', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_mixed_berries.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_honey'] = {['name'] = 'hb_honey', ['label'] = 'Honey', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_honey.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_caffeine_base'] = {['name'] = 'hb_caffeine_base', ['label'] = 'Caffeine Base', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_caffeine_base.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_citrus_blend'] = {['name'] = 'hb_citrus_blend', ['label'] = 'Citrus Blend', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_citrus_blend.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_potato_fries'] = {['name'] = 'hb_potato_fries', ['label'] = 'Potato Fries', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_potato_fries.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_sea_salt'] = {['name'] = 'hb_sea_salt', ['label'] = 'Sea Salt & Pepper', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_sea_salt.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_melted_cheese'] = {['name'] = 'hb_melted_cheese', ['label'] = 'Melted Cheese', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_melted_cheese.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_sriracha'] = {['name'] = 'hb_sriracha', ['label'] = 'Sriracha', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_sriracha.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_crispy_bacon'] = {['name'] = 'hb_crispy_bacon', ['label'] = 'Crispy Bacon', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_crispy_bacon.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_sour_cream_chives'] = {['name'] = 'hb_sour_cream_chives', ['label'] = 'Sour Cream & Chives', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_sour_cream_chives.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_carbonated_water'] = {['name'] = 'hb_carbonated_water', ['label'] = 'Carbonated Water', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_carbonated_water.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_cola_flavor'] = {['name'] = 'hb_cola_flavor', ['label'] = 'Cola Flavoring', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_cola_flavor.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_root_beer_extract'] = {['name'] = 'hb_root_beer_extract', ['label'] = 'Root Beer Extract', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_root_beer_extract.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_orange_syrup'] = {['name'] = 'hb_orange_syrup', ['label'] = 'Orange Syrup', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_orange_syrup.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_grape_syrup'] = {['name'] = 'hb_grape_syrup', ['label'] = 'Grape Syrup', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_grape_syrup.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_icecubes'] = {['name'] = 'hb_icecubes', ['label'] = 'Ice Cubes', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_icecubes.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_waterbottle'] = {['name'] = 'hb_waterbottle', ['label'] = 'Water Bottle', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_waterbottle.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
+['hb_emptycup'] = {['name'] = 'hb_emptycup', ['label'] = 'Empty Cup', ['weight'] = 10, ['type'] = 'item', ['image'] = 'hb_emptycup.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
 ```
 
 </details>
@@ -530,48 +603,58 @@ Add the items into your server
 
 ```lua
 INSERT INTO `items` (`name`, `label`, `weight`) VALUES
-('ua_bbq_chicken', 'BBQ Chicken Burger', 1),
-('ua_mustard_beef', 'Mustard Beef Burger', 1),
-('ua_glazed_turkey', 'Glazed Turkey Burger', 1),
-('ua_spicy_lamb', 'Spic  Lamb Burger', 1),
-('ua_sweet_smoky_vegan', 'Sweet & Smoky Vegan Burger', 1),
-('ua_butter_fries', 'Butter Fries', 1),
-('ua_spicy_glazed', 'Spicy Glazed Fries', 1),
-('ua_parmesan_fries', 'Parmesan Fries', 1),
-('ua_sweet_cajun', 'Sweet Cajun Fries', 1),
-('ua_garlic_fries', 'Garlic Fries', 1),
-('ua_lemon_fizz', 'Lemon Fizz', 1),
-('ua_mint_cooler', 'Mint Cooler', 1),
-('ua_ginger_punch', 'Ginger Punch', 1),
-('ua_berry_refresher', 'Berry Refresher', 1),
-('ua_tropical_splash', 'Tropica Splash', 1),
-('ua_green_tea', 'Iced Green Tea', 1),
-('ua_ginger_soda', 'Ginger Soda', 1),
-('ua_mint_sparkler', 'Mint Sparkler', 1),
-('ua_berry_soda', 'Berry Soda', 1),
-('ua_pineapple_pop', 'Pineapple Pop', 1),
-('ua_bun', 'Burger Bun', 1),
-('ua_potato', 'Potato', 1),
-('ua_ice', 'Ice', 1),
-('ua_lemon', 'Lemon', 1),
-('ua_bbq_sauce', 'BBQ Sauce', 1),
-('ua_mustard_sauce', 'Mustard Sauce', 1),
-('ua_glaze', 'Glaze Sauce', 1),
-('ua_chili', 'Chili Sauce', 1),
-('ua_smoked', 'Smoked Sauce', 1),
-('ua_butter', 'Butter', 1),
-('ua_parmesan', 'Parmesan Drizzle', 1),
-('ua_cajun', 'Cajun Sauce', 1),
-('ua_garlic', 'Garlic Sauce', 1),
-('ua_lemon_syrup', 'Lemon Syrup', 1),
-('ua_mint', 'Mint', 1),
-('ua_ginger', 'Ginger', 1),
-('ua_berry', 'Berry', 1),
-('ua_tropical', 'Tropica ', 1),
-('ua_pineapple', 'Pineapple', 1),
-('ua_icecubes', 'Ice Cubes', 1),
-('ua_waterbottle', 'Water Bottle', 1),
-('ua_emptycup', 'Empty Cup', 1);
+('hb_classic_burger', 'Classic Burger', 1),
+('hb_spicy_burger', 'Spicy Burger', 1),
+('hb_cheesy_burger', 'Cheesy Burger', 1),
+('hb_bacon_burger', 'Bacon Burger', 1),
+('hb_double_burger', 'Double Burger', 1),
+('hb_milkshake', 'Milkshake', 1),
+('hb_lemonade', 'Lemonade', 1),
+('hb_iced_coffee', 'Iced Coffee', 1),
+('hb_smoothie', 'Smoothie', 1),
+('hb_energy_drink', 'Energy Drink', 1),
+('hb_classic_fries', 'Classic Fries', 1),
+('hb_cheesy_fries', 'Cheesy Fries', 1),
+('hb_spicy_fries', 'Spicy Fries', 1),
+('hb_bacon_fries', 'Bacon Fries', 1),
+('hb_loaded_fries', 'Loaded Fries', 1),
+('hb_cola', 'Cola', 1),
+('hb_root_beer', 'Root Beer', 1),
+('hb_orange_soda', 'Orange Soda', 1),
+('hb_grape_soda', 'Grape Soda', 1),
+('hb_lemonlime', 'Lemon-Lime', 1),
+('hb_bun', 'Burger Bun', 1),
+('hb_sauce', 'Horny Sauce', 1),
+('hb_jalapeno_relish', 'Jalapeno Relish', 1),
+('hb_melted_cheddar', 'Melted Cheddar', 1),
+('hb_crispy_bacon', 'Crispy Bacon', 1),
+('hb_double_beef_patty', 'Double Beef Patty', 1),
+('hb_bbq_sauce', 'Special BBQ Sauce', 1),
+('hb_milk', 'Milk', 1),
+('hb_chocolate_syrup', 'Chocolate Syrup', 1),
+('hb_fresh_lemon_juice', 'Fresh Lemon', 1),
+('hb_mint_infusion', 'Mint Infusion', 1),
+('hb_coffee', 'Coffee', 1),
+('hb_caramel_drizzle', 'Caramel Drizzle', 1),
+('hb_mixed_berries', 'Mixed Berries', 1),
+('hb_honey', 'Honey', 1),
+('hb_caffeine_base', 'Caffeine Base', 1),
+('hb_citrus_blend', 'Citrus Blend', 1),
+('hb_potato_fries', 'Potato Fries', 1),
+('hb_sea_salt', 'Sea Salt & Pepper', 1),
+('hb_melted_cheese', 'Melted Cheese', 1),
+('hb_sriracha', 'Sriracha', 1),
+('hb_crispy_bacon', 'Crispy Bacon', 1),
+('hb_sour_cream_chives', 'Sour Cream & Chives', 1),
+('hb_carbonated_water', 'Carbonated Water', 1),
+('hb_cola_flavor', 'Cola Flavoring', 1),
+('hb_root_beer_extract', 'Root Beer Extract', 1),
+('hb_orange_syrup', 'Orange Syrup', 1),
+('hb_grape_syrup', 'Grape Syrup', 1),
+('hb_fresh_lemon', 'Fresh Lemon', 1),
+('hb_icecubes', 'Ice Cubes', 1),
+('hb_waterbottle', 'Water Bottle', 1),
+('hb_emptycup', 'Empty Cup', 1);
 ```
 
 </details>
@@ -583,8 +666,8 @@ INSERT INTO `items` (`name`, `label`, `weight`) VALUES
 Add the Following in qb-core/shared/jobs.lua
 
 ```lua
-['upnatom'] = {
-    label = 'Up n Atom',
+['hornyburgers'] = {
+    label = 'Horny Burgers',
     defaultDuty = true,
     grades = {
         ['0'] = {
@@ -615,8 +698,8 @@ Add the Following in qb-core/shared/jobs.lua
 Added in Qbox->shared->jobs.lua
 
 ```lua
-['upnatom'] = {
-    label = 'Up n Atom',
+['hornyburgers'] = {
+    label = 'Horny Burgers',
     defaultDuty = true,
     grades = {
         [0] = {
@@ -642,6 +725,7 @@ Added in Qbox->shared->jobs.lua
         },
     },
 },
+
 ```
 {% endtab %}
 {% endtabs %}
@@ -657,62 +741,61 @@ Add in qb-smallresourcse/config.lua
 ```lua
 --If using old qb-smallresources
 Config.ConsumablesDrink = {
-    ['ua_green_tea'] = math.random(35, 54),
-    ['ua_mint_cooler'] = math.random(35, 54),
-    ['ua_ginger_punch'] = math.random(35, 54),
-    ['ua_berry_refresher'] = math.random(35, 54),
-    ['ua_tropical_splash'] = math.random(35, 54),
+    ['hb_cola'] = math.random(35, 54),
+    ['hb_root_beer'] = math.random(35, 54),
+    ['hb_orange_soda'] = math.random(35, 54),
+    ['hb_grape_soda'] = math.random(35, 54),
+    ['hb_lemonlime'] = math.random(35, 54),
 
-    ['ua_lemon_fizz'] = math.random(35, 54),
-    ['ua_ginger_soda'] = math.random(35, 54),
-    ['ua_mint_sparkler'] = math.random(35, 54),
-    ['ua_berry_soda'] = math.random(35, 54),
-    ['ua_pineapple_pop'] = math.random(35, 54),
-    
+    ['hb_milkshake'] = math.random(35, 54),
+    ['hb_iced_coffee'] = math.random(35, 54),
+    ['hb_smoothie'] = math.random(35, 54),
+    ['hb_energy'] = math.random(35, 54),
 }
 
 Config.ConsumablesEat = {
-    ['ua_bbq_chicken'] = math.random(35, 54),
-    ['ua_mustard_beef'] = math.random(35, 54),
-    ['ua_glazed_turkey'] = math.random(35, 54),
-    ['ua_spicy_lamb'] = math.random(35, 54),
-    ['ua_sweet_smoky_vegan'] = math.random(35, 54),
+    ['hb_classic_burger'] = math.random(35, 54),
+    ['hb_spicy_burger'] = math.random(35, 54),
+    ['hb_cheesy_burger'] = math.random(35, 54),
+    ['hb_bacon_burger'] = math.random(35, 54),
+    ['hb_double_burger'] = math.random(35, 54),
 
-    ['ua_butter_fries'] = math.random(35, 54),
-    ['ua_spicy_glazed'] = math.random(35, 54),
-    ['ua_parmesan_fries'] = math.random(35, 54),
-    ['ua_sweet_cajun'] = math.random(35, 54),
-    ['ua_garlic_fries'] = math.random(35, 54),
+    ['hb_classic_fries'] = math.random(35, 54),
+    ['hb_cheesy_fries'] = math.random(35, 54),
+    ['hb_spicy_fries'] = math.random(35, 54),
+    ['hb_bacon_fries'] = math.random(35, 54),
+    ['hb_loaded_fries'] = math.random(35, 54),
+
 }
 
 --If using new qb-smallresources
 Config.Consumables = {
     eat = {
-        ['ua_bbq_chicken'] = math.random(35, 54),
-        ['ua_mustard_beef'] = math.random(35, 54),
-        ['ua_glazed_turkey'] = math.random(35, 54),
-        ['ua_spicy_lamb'] = math.random(35, 54),
-        ['ua_sweet_smoky_vegan'] = math.random(35, 54),
+        ['hb_classic_burger'] = math.random(35, 54),
+        ['hb_spicy_burger'] = math.random(35, 54),
+        ['hb_cheesy_burger'] = math.random(35, 54),
+        ['hb_bacon_burger'] = math.random(35, 54),
+        ['hb_double_burger'] = math.random(35, 54),
 
-        ['ua_butter_fries'] = math.random(35, 54),
-        ['ua_spicy_glazed'] = math.random(35, 54),
-        ['ua_parmesan_fries'] = math.random(35, 54),
-        ['ua_sweet_cajun'] = math.random(35, 54),
-        ['ua_garlic_fries'] = math.random(35, 54),
+        ['hb_classic_fries'] = math.random(35, 54),
+        ['hb_cheesy_fries'] = math.random(35, 54),
+        ['hb_spicy_fries'] = math.random(35, 54),
+        ['hb_bacon_fries'] = math.random(35, 54),
+        ['hb_loaded_fries'] = math.random(35, 54),
 
     },
     drink = {
-        ['ua_green_tea'] = math.random(35, 54),
-        ['ua_mint_cooler'] = math.random(35, 54),
-        ['ua_ginger_punch'] = math.random(35, 54),
-        ['ua_berry_refresher'] = math.random(35, 54),
-        ['ua_tropical_splash'] = math.random(35, 54),
+        ['hb_cola'] = math.random(35, 54),
+        ['hb_root_beer'] = math.random(35, 54),
+        ['hb_orange_soda'] = math.random(35, 54),
+        ['hb_grape_soda'] = math.random(35, 54),
+        ['hb_lemonlime'] = math.random(35, 54),
+        
+        ['hb_milkshake'] = math.random(35, 54),
+        ['hb_iced_coffee'] = math.random(35, 54),
+        ['hb_smoothie'] = math.random(35, 54),
+        ['hb_energy'] = math.random(35, 54),
 
-        ['ua_lemon_fizz'] = math.random(35, 54),
-        ['ua_ginger_soda'] = math.random(35, 54),
-        ['ua_mint_sparkler'] = math.random(35, 54),
-        ['ua_berry_soda'] = math.random(35, 54),
-        ['ua_pineapple_pop'] = math.random(35, 54),
     },
 }
 ```
@@ -727,28 +810,26 @@ Add the following in jim-consumables/shared/consumables.lua
 
 ```lua
 --jim-consumables/shared/consumables.lua
-ua_bbq_chicken = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20) } },
-ua_mustard_beef = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20) } },
-ua_glazed_turkey = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20) } },
-ua_spicy_lamb = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20) } },
-ua_sweet_smoky_vegan = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20) } },
-ua_butter_fries = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20) } },
-ua_spicy_glazed = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20) } },
-ua_parmesan_fries = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20) } },
-ua_sweet_cajun = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20) } },
-ua_garlic_fries = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20) } },
+hb_classic_burger = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20) } },
+hb_spicy_burger = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20) } },
+hb_cheesy_burger = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20) } },
+hb_bacon_burger = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20) } },
+hb_double_burger = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20) } },
+hb_classic_fries = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20) } },
+hb_cheesy_fries = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20) } },
+hb_spicy_fries = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20) } },
+hb_bacon_fries = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20) } },
+hb_loaded_fries = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20) } },
 
-ua_green_tea = { emote = "coffee", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "drink",stats = { effect = "stamina", time = 10000, thirst = math.random(10,20), }},
-ua_mint_cooler = { emote = "coffee", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "drink",stats = { effect = "stamina", time = 10000, thirst = math.random(10,20), }},
-ua_ginger_punch = { emote = "coffee", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "drink",stats = { effect = "stamina", time = 10000, thirst = math.random(10,20), }},
-ua_berry_refresher = { emote = "coffee", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "drink",stats = { effect = "stamina", time = 10000, thirst = math.random(10,20), }},
-ua_tropical_splash = { emote = "coffee", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "drink",stats = { effect = "stamina", time = 10000, thirst = math.random(10,20), }},
-
-ua_lemon_fizz = { emote = "ecola", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "drink",stats = { effect = "stamina", time = 10000, thirst = math.random(10,20), }},
-ua_ginger_soda = { emote = "ecola", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "drink",stats = { effect = "stamina", time = 10000, thirst = math.random(10,20), }},
-ua_mint_sparkler = { emote = "ecola", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "drink",stats = { effect = "stamina", time = 10000, thirst = math.random(10,20), }},
-ua_berry_soda = { emote = "ecola", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "drink",stats = { effect = "stamina", time = 10000, thirst = math.random(10,20), }},
-ua_pineapple_pop = { emote = "ecola", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "drink",stats = { effect = "stamina", time = 10000, thirst = math.random(10,20), }},
+hb_cola = { emote = "drink", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20) } },
+hb_root_beer = { emote = "drink", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20) } },
+hb_orange_soda = { emote = "drink", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20) } },
+hb_grape_soda = { emote = "drink", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20) } },
+hb_lemonlime = { emote = "drink", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20) } },
+hb_milkshake = { emote = "drink", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20) } },
+hb_iced_coffee = { emote = "drink", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20) } },
+hb_smoothie = { emote = "drink", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20) } },
+hb_energy = { emote = "drink", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20) } },
 ```
 
 </details>
@@ -762,8 +843,6 @@ Copy all the Images folder and paste it in your inventory Images folder
 To enable discord logs make sure to add your webhook in the server->Log.lua File
 
 {% embed url="https://www.youtube.com/watch?pp=ygULI2FwcHlxczIwMjM=&v=fKksxz2Gdnc" %}
-
-### Video of Installation:
 
 {% embed url="https://www.youtube.com/watch?v=rkWxUxoF3_s" %}
 

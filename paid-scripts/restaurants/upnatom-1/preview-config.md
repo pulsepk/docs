@@ -36,7 +36,7 @@ Config.AutoInstallSQL = true
 
 Config.Locale = 'en' -- 'en', 'fr', 'de', 'es', 'it', 'pt', 'tr' -- Language
 Config.Debug = {
-    PolyZone = true, --Shows Red Boxes for Target
+    PolyZone = false, --Shows Red Boxes for Target
     DrawSprite = true, --Show White Circles above the target locations
     Prints = true, --Prints debug messages in console
 }
@@ -69,21 +69,18 @@ Config.Logging = {
 Config.CheckVersion = true
 
 local locationBlips = {
-    gabz = vec3(119.69, -1036.463, 29.278),
-    slth = vec3(281.29, -971.83, 29.42),
-    unlcejust = vec3(-627.23, 234.89, 86.33),
-    fm = vec3(119.69, -1036.463, 29.278)
+    gabz = vector3(1242.684, -360.787, 69.082)
 }
 
 local blipcoords = locationBlips[Config.location]
 
 Config.Blip = {
-    BlipName = "UpNAtom", -- Blip Name
+    BlipName = "Horny Burgers", -- Blip Name
     Enable = true,
     Coords = blipcoords,
     Options = {
-        Sprite = 106,
-        Color = 12,
+        Sprite = 80,
+        Color = 2,
         Scale = 0.8,
         Display = 4
     }
@@ -100,7 +97,7 @@ Config.MarkerSettings = {
 }
 
 Config.EnableSocietyPayment = false -- If enable you can pay from society for the fridge items
-Config.Jobname = 'upnatom' -- Job Name
+Config.Jobname = 'hornyburgers' -- Job Name
 
 Config.StashInventory = {
     --Stash
@@ -120,8 +117,8 @@ Config.StashInventory = {
 Config.MaxStock = 100
 
 Config.IceMachine = {
-    ice_itemname = 'ua_icecubes',
-    water_itemname = 'ua_waterbottle',
+    ice_itemname = 'hb_icecubes',
+    water_itemname = 'hb_waterbottle',
     WaitTime = 560,
     MaxIce = 10
 }
@@ -188,36 +185,43 @@ Config.Shop = {
 		label = "Fridge",
 		items = {
             Burgers = {
-                { name = "ua_bun", label = "Burger Bun", price = 50, amount = 50 },
-                { name = "ua_bbq_sauce", label = "BBQ Sauce", price = 50, amount = 50 },
-                { name = "ua_mustard_sauce", label = "Mustard Sauce", price = 50, amount = 50 },
-                { name = "ua_glaze", label = "Glaze Sauce", price = 50, amount = 50 },
-                { name = "ua_chili", label = "Chili Sauce", price = 50, amount = 50 },
-                { name = "ua_smoked", label = "Smoked Sauce", price = 50, amount = 50 }
+                { name = "hb_bun", label = "Burger Bun", price = 50, amount = 50},
+                { name = "hb_sauce", label = "Horny Sauce", price = 50, amount = 50},
+                { name = "hb_jalapeno_relish", label = "Jalapeno Relish", price = 50, amount = 50},
+                { name = "hb_melted_cheddar", label = "Melted Cheddar", price = 50, amount = 50},
+                { name = "hb_crispy_bacon", label = "Crispy Bacon", price = 50, amount = 50},
+                { name = "hb_bbq_sauce", label = "Special BBQ Sauce", price = 50, amount = 50},
             },
-            Fries = {
-                { name = "ua_potato", label = "Potato", price = 50, amount = 50 },
-                { name = "ua_butter", label = "Butter", price = 50, amount = 50 },
-                { name = "ua_chili", label = "Chili Glaze", price = 50, amount = 50 },
-                { name = "ua_parmesan", label = "Parmesan Drizzle", price = 50, amount = 50 },
-                { name = "ua_cajun", label = "Cajun Sauce", price = 50, amount = 50 },
-                { name = "ua_garlic", label = "Garlic Sauce", price = 50, amount = 50 }
-            },
+            
             Drinks = {
-                { name = "ua_mint", label = "Mint Syrup", price = 50, amount = 50 },
-                { name = "ua_ginger", label = "Ginger Syrup", price = 50, amount = 50 },
-                { name = "ua_berry", label = "Berry Syrup", price = 50, amount = 50 },
-                { name = "ua_tropical", label = "Tropical", price = 50, amount = 50 },
-                { name = "ua_emptycup", label = "Empty Cup", price = 50, amount = 50 },
-                { name = "ua_waterbottle", label = "Water Bottle", price = 50, amount = 50 },
+                { name = "hb_chocolate_syrup", label = "Chocolate Syrup", price = 50, amount = 50},
+                { name = "hb_caramel_drizzle", label = "Caramel Drizzle", price = 50, amount = 50},
+                { name = "hb_honey", label = "Honey", price = 50, amount = 50},
+                { name = "hb_citrus_blend", label = "Citrus Blend", price = 50, amount = 50},
+                { name = "hb_milk", label = "Milk", price = 50, amount = 50},
+                { name = "hb_coffee", label = "Coffee", price = 50, amount = 50},
+                { name = "hb_mixed_berries", label = "Mixed Berries", price = 50, amount = 50},
+                { name = "hb_caffeine_base", label = "Caffeine Base", price = 50, amount = 50},
+                { name = "hb_emptycup", label = "Emtpy Cup", price = 50, amount = 50},
+                { name = "hb_waterbottle", label = "Water Bottle", price = 50, amount = 50},
             },
+            
+            Fries = {
+                { name = "hb_potato_fries", label = "Potato Fries", price = 50, amount = 50},
+                { name = "hb_sea_salt", label = "Sea Salt", price = 50, amount = 50},
+                { name = "hb_melted_cheese", label = "Melted Cheese", price = 50, amount = 50},
+                { name = "hb_sriracha", label = "Sriracha", price = 50, amount = 50},
+                { name = "hb_crispy_bacon", label = "Crispy Bacon", price = 50, amount = 50},
+                { name = "hb_sour_cream_chives", label = "Sour Cream & Chives", price = 50, amount = 50},
+            },
+            
             Sodas = {
-                { name = "ua_lemon", label = "Lemon", price = 50, amount = 50 },
-                { name = "ua_lemon_syrup", label = "Lemon Syrup", price = 50, amount = 50 },
-                { name = "ua_ginger", label = "Ginger", price = 50, amount = 50 },
-                { name = "ua_mint", label = "Mint", price = 50, amount = 50 },
-                { name = "ua_berry", label = "Berry", price = 50, amount = 50 },
-                { name = "ua_pineapple", label = "Pineapple", price = 50, amount = 50 }
+                { name = "hb_carbonated_water", label = "Carbonated Water", price = 50, amount = 50},
+                { name = "hb_cola_flavor", label = "Cola Flavoring", price = 50, amount = 50},
+                { name = "hb_root_beer_extract", label = "Root Beer Extract", price = 50, amount = 50},
+                { name = "hb_orange_syrup", label = "Orange Syrup", price = 50, amount = 50},
+                { name = "hb_grape_syrup", label = "Grape Syrup", price = 50, amount = 50},
+                { name = "hb_fresh_lemon", label = "Fresh Lemon", price = 50, amount = 50},
             },
         }
 	},
@@ -261,25 +265,25 @@ Config.Emotes = {
 Config.DeliveryFood = {
     {
         items = {
-            { name = "ua_bbq_chicken", label = "BBQ Chicken Burger", quantity = 1 },
-            { name = "ua_butter_fries", label = "Butter Fries", quantity = 1 },
-            { name = "ua_lemon_fizz", label = "Lemon Fizz", quantity = 1 }, 
+            { name = "hb_classic_burger", label = "Classic Burger", quantity = 1 },
+            { name = "hb_classic_fries", label = "Classic Fries", quantity = 1 }, 
+            { name = "hb_lemonlime", label = "Lemon Lime", quantity = 1 },
         },
         total = 200
     },
     {
         items = {
-            { name = "ua_mustard_beef", label = "Mustard Beef Burger", quantity = 1 },
-            { name = "ua_spicy_glazed", label = "Spicy Glazed Fries", quantity = 1 },
-            { name = "ua_ginger_soda", label = "Ginger Soda", quantity = 1 },
+            { name = "hb_spicy_burger", label = "Spicy Burger", quantity = 1 },
+            { name = "hb_cheesy_fries", label = "Cheesy Fries", quantity = 1 },
+            { name = "hb_orange_soda", label = "Orange Soda", quantity = 1 },
         },
         total = 150
     },
     {
         items = {
-            { name = "ua_glazed_turkey", label = "Glazed Turkey Burger", quantity = 1 },
-            { name = "ua_parmesan_fries", label = "Parmesan Fries", quantity = 1 },
-            { name = "ua_mint_sparkler", label = "Mint Sparkler", quantity = 1 },
+            { name = "hb_cheesy_burger", label = "Cheesy Burger", quantity = 1 },
+            { name = "hb_spicy_fries", label = "Spicy Fries", quantity = 1 },
+            { name = "hb_cola", label = "Cola", quantity = 1 },
         },
         total = 135
     } 
