@@ -89,6 +89,7 @@
 * [🏧 ATM Robbery](free-scripts/atm-robbery/README.md)
   * [Installation](free-scripts/atm-robbery/installation.md)
   * [Config File](free-scripts/atm-robbery/config-file.md)
+  * [Common Issues](free-scripts/atm-robbery/common-issues.md)
 * [💲 Check Player Money](free-scripts/check-player-money/README.md)
   * [Installation](free-scripts/check-player-money/installation.md)
 * [📺 LoadingScreen V1](free-scripts/loadingscreenv1/README.md)
