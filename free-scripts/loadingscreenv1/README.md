@@ -1,12 +1,39 @@
-# 📺 LoadingScreen V1
+# 📺 Loading Screen V1
 
 {% embed url="https://youtu.be/uMkgQKcV278" %}
 
-✅ Features Included:
+***
 
-* Add any background video using a direct MP4/WebM files
-* Add different background music with the option to change tracks or mute
-* Display real-time server updates
-* Showcase staff members
-* Add a server logo for branding
-* Include buttons linking to Discord, YouTube, X (Twitter), and Instagram
+## Download
+
+This script is available in two versions:
+
+| | **Escrow** | **Open Source** |
+|---|---|---|
+| **Price** | Free | Paid |
+| **JS files** | Locked (escrow) | Fully unlocked |
+| **Edit core JS** | ❌ | ✅ |
+| **Download** | [**🛒 Get Escrow (Free)**](https://pulsescripts.com/product/loadingscreenv1) | [**🛒 Get Open Source**](https://pulsescripts.com/product/6985323) |
+
+{% hint style="warning" %}
+**Escrow vs Open Source — what's the difference?**
+
+The **Escrow version is free** and fully functional, but the core JavaScript files are locked and cannot be edited. The **Open Source version is paid** — every single file is unlocked, including the core JS, so you can modify the loading screen at the code level to fit your exact needs.
+{% endhint %}
+
+***
+
+## Features
+
+* 🎬 **Background video** — use any local MP4/WebM file
+* 🎵 **Background music** — multiple tracks with mute toggle and track switching
+* 📢 **Server updates** — display real-time news or announcements
+* 👥 **Staff showcase** — list your staff members on the loading screen
+* 🖼️ **Server logo** — add your branding
+* 🔗 **Social links** — Discord, YouTube, X (Twitter), and Instagram buttons
+
+***
+
+{% hint style="info" %}
+[Join the Discord for support and updates.](https://discord.gg/c6gXmtEf3H)
+{% endhint %}

@@ -101,3 +101,7 @@
 * [📺 LoadingScreen V2](free-scripts/loadingscreenv2/README.md)
   * [Installation](free-scripts/loadingscreenv2/installation.md)
   * [Know Issues](free-scripts/loadingscreenv2/know-issues.md)
+* [🎮 HUD V1](free-scripts/hud/README.md)
+  * [Installation](free-scripts/hud/installation.md)
+  * [Config File](free-scripts/hud/config-file.md)
+  * [Common Issues](free-scripts/hud/common-issues.md)
