@@ -1,32 +1,113 @@
 # Installation
 
-## Steps
+## 📦 Installation Guide
 
-1. Extract the script to your server resources folder.
-2. Configure Config.lua according to your liking.
-3. Goto installfolder and execute the database.sql file into your server database using heidisql or phpmyadmin.
-4. For QBCore copy the items from items\_QBCore.lua and paste into qb-core->shared->items.lua.
+Follow these steps to install the Printer script on your FiveM server. If you run into problems, check the [Common Issues](common-issues.md) page or join the [Discord](https://discord.gg/c6gXmtEf3H).
 
-> If you are using older version of qb-inventory like less then 2.0.0. You need to add the below code in qb-inventory/html/js/app.js
+***
 
-```javascript
-} else if (itemData.name == "paper") {
-            $(".item-info-title").html("<p>" + itemData.label + "</p>");
-            $(".item-info-description").html(
-                "<p><strong>ID: </strong><span>" +
-                itemData.info.id +
-                "</span></p>"
-            );
+### Step 1 — Install Dependencies
+
+**pl\_lib** and **oxmysql** are required. Install them if you haven't already.
+
+* [pl\_lib](https://github.com/pulsepk/pl_lib) — framework bridge (handles notifications, inventory, framework detection)
+* [oxmysql](https://github.com/overextended/oxmysql/releases) — database connector for storing print history
+
+Place both folders inside your resources directory.
+
+***
+
+### Step 2 — Run the Database Migration
+
+Open the `installfolder/database.sql` file and run it against your server database using HeidiSQL, phpMyAdmin, or any SQL client. This creates the table used to store printed documents.
+
+***
+
+### Step 3 — Add the Paper Item
+
+Open the `installfolder` folder. Use the file that matches your inventory system.
+
+{% tabs %}
+{% tab title="ox\_inventory" %}
+Open `installfolder/items_Oxinventory.lua` and paste the contents into:
+
+```
+ox_inventory/data/items.lua
 ```
 
-5. For Ox\_inventory add the items in ox\_inventory->data->items.lua.
-6. Copy the image paper.png and add it to your inventory images folder.
-7. Make sure you have OX\_LIB Installed already.
-8. ensure 'pl\_printer' in the server.cfg
+```lua
+["paper"] = {
+    label   = "Paper",
+    weight  = 1,
+    stack   = false,
+    close   = true,
+    consume = 0,
+    server  = {
+        export = 'pl_printer.paper'
+    }
+},
+```
 
-> This Script only supports with metadata
+{% hint style="warning" %}
+The `server.export` line is required — it tells ox\_inventory to call the printer's export when the item is used, which displays the document content. Do not remove it.
+{% endhint %}
+{% endtab %}
 
-{% hint style="info" %}
-[Join the Discord in case you need Additional Support.](https://discord.gg/c6gXmtEf3H)
+{% tab title="QBCore (qb-inventory)" %}
+Open `installfolder/items_QBCore.lua` and paste the contents into:
+
+```
+qb-core/shared/items.lua
+```
+{% endtab %}
+
+{% tab title="ESX" %}
+ESX does not require a separate item file. Paper items are created dynamically via the database. No item registration step needed.
+{% endtab %}
+{% endtabs %}
+
+***
+
+### Step 4 — Add the Paper Image
+
+Copy `installfolder/paper.png` into your inventory's image directory:
+
+| Inventory | Image Directory |
+|---|---|
+| ox\_inventory | `ox_inventory/web/images/` |
+| qb-inventory | `qb-inventory/html/images/` |
+
+Restart your inventory resource after copying.
+
+***
+
+### Step 5 — Add to server.cfg
+
+```cfg
+ensure oxmysql
+ensure pl_lib
+ensure pl_printer
+```
+
+***
+
+### Step 6 — Configure the Script
+
+Open `config.lua` and adjust the settings. See the [Config File](config-file.md) page for a full breakdown.
+
+Key settings to check:
+
+* `Config.Print.Price` — how much is deducted per print
+* `Config.Print.Account` — `'bank'` or `'cash'`
+* `Config.EnableLocation` — `true` to spawn printers at fixed coords, `false` for portable item mode
+* `Config.Locations` — add printer spawn locations when `EnableLocation = true`
+
+***
+
+{% hint style="success" %}
+Done! Players can now interact with printer props to print documents.
 {% endhint %}
 
+{% hint style="info" %}
+[Join the Discord in case you need additional support.](https://discord.gg/c6gXmtEf3H)
+{% endhint %}

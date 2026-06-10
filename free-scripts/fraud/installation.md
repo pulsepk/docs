@@ -2,49 +2,145 @@
 
 ## 📦 Installation Guide
 
-Follow these simple steps to set up the Fraud Script on your FiveM server.
+Follow these steps to install the Fraud script on your FiveM server. If you run into problems, check the [Common Issues](common-issues.md) page or join the [Discord](https://discord.gg/c6gXmtEf3H).
 
 ***
 
-### Step 1: Install Dependencies
+### Step 1 — Install Dependencies
 
-* Add the following resources to your `server.cfg`:
-  * [ox\_lib](https://github.com/overextended/ox_lib)
-  * [datacrack](https://github.com/utkuali/datacrack)
-  * ```cfg
-    ensure ox_lib
-    ensure datacrack
-    ```
+**pl\_lib** and **ox\_lib** are required.
 
-### Step 2: Add Items
+* [pl\_lib](https://github.com/pulsepk/pl_lib) — framework bridge (handles notifications, targets, framework detection)
+* [ox\_lib](https://github.com/overextended/ox_lib/releases) — required for callbacks and progress bars
 
-* Open the file:
+Place both folders inside your resources directory.
+
+***
+
+### Step 2 — Install the Hacking Minigame
+
+Install the minigame you plan to use. You only need one.
+
+| Minigame | Download |
+|---|---|
+| [datacrack](https://github.com/utkuali/datacrack) | Default — required unless you switch to another |
+| [ps-ui](https://github.com/Project-Sloth/ps-ui) | Required if using any `ps-ui-*` minigame |
+
+***
+
+### Step 3 — Add Items to Your Inventory
+
+Open the `Install` folder inside the script. Use the file that matches your inventory system.
+
+{% tabs %}
+{% tab title="ox\_inventory" %}
+Open `Install/items_ox_inventory.lua` and paste the contents into:
 
 ```
-Install/items.lua
+ox_inventory/data/items.lua
 ```
 
-* Copy its contents into your inventory item configuration:
-  * **For QBCore**: `qb-core/shared/items.lua`
-  * **For ox\_inventory**: `ox_inventory/data/items.lua`
+```lua
+["clone_card"] = {
+    label  = "Clone Card",
+    weight = 5,
+    stack  = true,
+    close  = true,
+},
+["fuelcan"] = {
+    label  = "Fuel Can",
+    weight = 10,
+    stack  = true,
+    close  = true,
+},
+["laptop"] = {
+    label  = "Laptop",
+    weight = 10,
+    stack  = true,
+    close  = true,
+    server = { export = "pl_fraud.laptop" }
+},
+["printer"] = {
+    label  = "Printer",
+    weight = 10,
+    stack  = true,
+    close  = true,
+    server = { export = "pl_fraud.printer" }
+},
+["generator"] = {
+    label  = "Generator",
+    weight = 10,
+    stack  = true,
+    close  = true,
+    server = { export = "pl_fraud.generator" }
+},
+```
+{% endtab %}
 
-### Step 3: Add Inventory Images
+{% tab title="QBCore (qb-inventory)" %}
+Open `Install/items_qb-inventory.lua` and paste the contents into:
 
-* Open the folder:\
-  `Install/Img`
-* Copy all images and paste them into your inventory's image directory:
-  * **For QBCore**: `qb-inventory/html/images/`
-  * **For ox\_inventory**: `ox_inventory/web/images/`
+```
+qb-core/shared/items.lua
+```
+{% endtab %}
 
-### Step 4: Configure the Script
+{% tab title="ESX" %}
+Open `Install/items.sql` and run it against your server database using HeidiSQL or phpMyAdmin.
+{% endtab %}
+{% endtabs %}
 
-* Open the `config.lua` file in the script directory.
-* Adjust the settings according to your server's setup:
-  * Choose the target system: `qb-target` or `ox_target`
-  * Select the dispatch system: `ps-dispatch`, `aty`, `rcore`, or `quasar`
-  * Set the notification system: e.g., `ox_lib`, `okok`, `wasabi`, etc.
+***
 
-{% hint style="info" %}
-[Join the Discord in case you need Additional Support.](https://discord.gg/c6gXmtEf3H)
+### Step 4 — Add Item Images
+
+Copy all images from `Install/Img/` into your inventory's image directory:
+
+| Inventory | Image Directory |
+|---|---|
+| ox\_inventory | `ox_inventory/web/images/` |
+| qb-inventory | `qb-inventory/html/images/` |
+| esx\_inventory | `esx_inventory/html/img/items/` |
+
+The images to copy are: `clone_card.png`, `fuelcan.png`, `laptop.png`, `printer.png`, `generator.png`
+
+Restart your inventory resource after copying.
+
+***
+
+### Step 5 — Add to server.cfg
+
+```cfg
+ensure ox_lib
+ensure pl_lib
+
+# Minigame — only include the one you use
+ensure datacrack
+# ensure ps-ui
+
+ensure pl_fraud
+```
+
+***
+
+### Step 6 — Configure the Script
+
+Open `config.lua` and adjust the settings. See the [Config File](config-file.md) page for a full breakdown.
+
+Key things to check first:
+
+* `Config.Hacking.Minigame` — set to the minigame resource you installed
+* `Config.Rewards.amount` — payout for a successful fraud
+* `Config.Rewards.moneytype` — `'money'`, `'black_money'`, or `'markedbills'`
+* `Config.Shop.coords` — move the NPC shop to a location that suits your server
+* `Config.Dispatch.enable` — set to `true` if you want police alerts
+
+***
+
+{% hint style="success" %}
+Done! Players can now purchase fraud items from the shop and begin scam operations near ATMs.
 {% endhint %}
 
+{% hint style="info" %}
+[Join the Discord in case you need additional support.](https://discord.gg/c6gXmtEf3H)
+{% endhint %}
