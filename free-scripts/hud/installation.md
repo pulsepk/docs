@@ -6,7 +6,7 @@
 
 ### Step 1 — Download
 
-Choose your version from the [README](README.md):
+Choose your version from the [README](./):
 
 * **Escrow (Free)** — [pulsescripts.com/product/hudv1](https://pulsescripts.com/product/hudv1)
 * **Open Source (Paid)** — [pulsescripts.com/product/hudv1opensource](https://pulsescripts.com/product/hudv1opensource)
@@ -33,17 +33,20 @@ ensure pl_hud
 Open `shared/config.lua` and adjust the settings to your server:
 
 **Minimap**
+
 ```lua
 Config.AlwaysShowMinimap = false  -- true = always visible, false = only in vehicles
 Config.Maptype           = 'square'  -- 'square' or 'circle'
 ```
 
 **Speed**
+
 ```lua
 Config.SpeedUnit = 'mph'  -- 'mph' or 'kmh'
 ```
 
 **Seatbelt**
+
 ```lua
 Config.SeatbeltEnabled      = true   -- enable/disable the seatbelt mechanic entirely
 Config.SeatbeltNotification = true   -- show a notification when seatbelt is toggled
@@ -51,6 +54,7 @@ Config.SeatbeltToggleKey    = 29     -- 29 = B key
 ```
 
 **Lights toggle key**
+
 ```lua
 Config.LightToggleKey = 74  -- 74 = H key
 ```
@@ -75,11 +79,18 @@ end
 {% tab title="ox_fuel" %}
 ```lua
 GetVehFuel = function(veh)
-    return Entity(veh).state.fuel
+    return exports['ox_fuel']:GetFuel(veh)
 end
 ```
 {% endtab %}
 
+{% tab title="ps-fuel" %}
+```lua
+GetVehFuel = function(veh)
+    return exports['ps-fuel']:GetFuel(veh)
+end
+```
+{% endtab %}
 
 {% tab title="Default (no custom fuel)" %}
 ```lua
