@@ -8,6 +8,18 @@
 * [Failed to verify protected resource](useful-information/failed-to-verify-protected-resource.md)
 * [Error parsing script <\1>](useful-information/error-parsing-script-less-than-1-greater-than.md)
 
+## pl\_lib
+
+* [📦 pl\_lib](pl_lib/pl_lib/README.md)
+  * [Installation](pl_lib/pl_lib/installation.md)
+  * [Configuration](pl_lib/pl_lib/configuration.md)
+  * [Notifications & UI](pl_lib/pl_lib/notifications-and-ui.md)
+  * [Target System](pl_lib/pl_lib/target.md)
+  * [Minigames](pl_lib/pl_lib/minigames.md)
+  * [Inventory](pl_lib/pl_lib/inventory.md)
+  * [Server API](pl_lib/pl_lib/server-api.md)
+  * [Utilities](pl_lib/pl_lib/utilities.md)
+
 ## Paid Scripts
 
 * [💰 Drug Dealer V2](paid-scripts/drugdealer/README.md)
