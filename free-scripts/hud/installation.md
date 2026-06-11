@@ -79,15 +79,7 @@ end
 {% tab title="ox_fuel" %}
 ```lua
 GetVehFuel = function(veh)
-    return exports['ox_fuel']:GetFuel(veh)
-end
-```
-{% endtab %}
-
-{% tab title="ps-fuel" %}
-```lua
-GetVehFuel = function(veh)
-    return exports['ps-fuel']:GetFuel(veh)
+    return Entity(veh).state.fuel
 end
 ```
 {% endtab %}
