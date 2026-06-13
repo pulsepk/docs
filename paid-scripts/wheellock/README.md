@@ -1,5 +1,5 @@
 ---
-description: An Advanced Wheel Lock Script that Supports ESX, QBCore, Qbox Frameworks
+description: A paid FiveM wheel clamper script for police — supports ESX, QBCore, and Qbox via pl_lib
 ---
 
 # 🔓 Wheel Clamper
@@ -14,101 +14,51 @@ description: An Advanced Wheel Lock Script that Supports ESX, QBCore, Qbox Frame
 > **Open Source Version** available on our store.\
 > [Buy Here](https://pulsescripts.com/product/6805303)
 
+***
 
+A **paid FiveM police script** that lets officers place physical wheel clamps on player vehicles. Set a fine amount at the time of clamping — the vehicle owner can pay the fine to remove it, or cut the clamp themselves with the cutter item. Clamp visuals persist across garage spawns and sync to all clients in real time.
+
+Powered by [pl\_lib](https://github.com/pulsepk/pl_lib) for automatic framework, inventory, target, notification, dispatch, and society banking detection. Works with **ESX**, **QBCore**, and **Qbox** out of the box — no manual compatibility config required.
 
 ***
 
 ## Features
 
-* Officers can place a wheel clamp on any registered player vehicle
-* Clamp prop visually attaches to the vehicle wheel
-* Vehicle owner receives a notification when their vehicle is clamped
-* Fine amount is set by the officer at the time of clamping
-* Vehicle owner can pay the fine directly to have the clamp removed
-* Vehicle owner can use a `wheel_clamp_cutter` item to remove the clamp themselves (own vehicle only)
-* Officers can remove clamps and collect the fine from their bank account
-* Full clamp list visible to police via target interaction
-* Clamp visual persists across garage spawns (with garage export integration)
-* Clamp visual is removed when a vehicle is stored back into a garage
-* Society / treasury payment support — fines can be paid into a shared account
-* Dispatch alert support when a clamp is placed
-* Webhook logging for all clamp events (placed, removed, fine paid)
-* Auto SQL install on resource start
-* Version checker on resource start
+### 🚗 Vehicle Clamping
+Officers place a physical clamp prop on any registered player vehicle. The fine amount is set by the officer at the time of clamping and stored server-side — clients never control the fine value.
+
+### 💰 Fine System
+Vehicle owners can pay the fine directly from their bank to have the clamp removed. Officers collect the fine from their bank when they manually remove a clamp.
+
+### ✂️ Clamp Cutter
+Players can use a `wheel_clamp_cutter` item to remove a clamp from their **own vehicle** without paying the fine. Server verifies ownership before allowing this.
+
+### 🗺️ Target & Command Support
+Interactions use your installed target system (ox\_target or qb-target). Set `Config.DisableTarget = true` to switch to commands instead — configurable command names included.
+
+### 🏦 Society / Treasury Integration
+Optionally route collected fines into a shared police society account instead of the individual officer's bank. Configured via pl\_lib.
+
+### 🚨 Dispatch Alert
+Optional dispatch notification when a clamp is cut. Auto-detected from your installed dispatch resource via pl\_lib.
+
+### 🔄 Garage Integration
+Clamp visuals automatically re-apply when a clamped vehicle is spawned from a garage, and are removed when stored — without touching the database record. See the [Installation](installation.md) guide for the export calls.
+
+### 📋 Police Clamp List
+Officers can view all currently clamped vehicles via the `clampedvehicles` command — showing plate, owner, fine amount, and clamping officer.
+
+### 🪝 Server Exports
+Full export API for garage scripts and admin tools: `IsVehicleClamped`, `AddClamp`, `RemoveClamp`, `OnVehicleSpawned`, `OnVehicleStored`. See the [API](api.md) page.
+
+### 📝 Webhook Logging
+All clamp events (placed, officer removed, fine paid) are logged to a Discord webhook.
+
+### ⚙️ Auto SQL Install
+Database table is created automatically on resource start — no manual SQL import needed.
 
 ***
 
-## Compatibility
-
-### Frameworks
-
-| Framework | Supported |
-| --------- | --------- |
-| ESX       | Yes       |
-| QBCore    | Yes       |
-| QBox      | Yes       |
-
-### Target
-
-| Resource             | Supported |
-| -------------------- | --------- |
-| ox\_target           | Yes       |
-| qb-target            | Yes       |
-| Commands (no target) | Yes       |
-
-### Inventory
-
-| Resource              | Supported |
-| --------------------- | --------- |
-| ox\_inventory         | Yes       |
-| qb-inventory          | Yes       |
-| ESX default inventory | Yes       |
-
-### Notify
-
-| Resource       | Supported |
-| -------------- | --------- |
-| ox\_lib        | Yes       |
-| esx\_notify    | Yes       |
-| okokNotify     | Yes       |
-| wasabi\_notify | Yes       |
-| brutal\_notify | Yes       |
-| mythic\_notify | Yes       |
-| lation\_ui     | Yes       |
-
-### UI
-
-| Feature      | Resource                                    | Supported |
-| ------------ | ------------------------------------------- | --------- |
-| Context Menu | ox\_lib / lation\_ui                        | Yes       |
-| Input Dialog | ox\_lib / lation\_ui                        | Yes       |
-| Alert Dialog | ox\_lib / lation\_ui                        | Yes       |
-| Progress Bar | ox\_lib / ox\_lib\_circle / qb / lation\_ui | Yes       |
-
-### Dispatch
-
-| Resource        | Supported |
-| --------------- | --------- |
-| ps-dispatch     | Yes       |
-| aty\_dispatch   | Yes       |
-| op-dispatch     | Yes       |
-| rcore dispatch  | Yes       |
-| cd\_dispatch    | Yes       |
-| QBCore built-in | Yes       |
-| Custom          | Yes       |
-
-### Society / Treasury
-
-| Resource             | Supported |
-| -------------------- | --------- |
-| addon\_account (ESX) | Yes       |
-| qb-management        | Yes       |
-| qb-banking           | Yes       |
-
-***
-
-## Support
-
-Join our Discord for script support, devlogs, and update announcements.
-
-[discord.gg/c6gXmtEf3H](https://discord.gg/c6gXmtEf3H)
+{% hint style="info" %}
+[Join the Discord for support and updates.](https://discord.gg/c6gXmtEf3H)
+{% endhint %}

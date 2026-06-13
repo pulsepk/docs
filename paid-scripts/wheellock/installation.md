@@ -4,17 +4,24 @@
 {% step %}
 ### Step 1 — Install Dependencies
 
-[ox\_lib](https://github.com/communityox/ox_lib/releases)
+Download and place all three resources inside your server's `resources` directory:
 
-[pl\_wheelclamper\_assets](https://portal.cfx.re/)
+* [ox\_lib](https://github.com/communityox/ox_lib/releases)
+* [pl\_lib](https://github.com/pulsepk/pl_lib)
+* [pl\_wheelclamper\_assets](https://portal.cfx.re/)
 
-Add the following to your `server.cfg`:
+Add the following to your `server.cfg`. **Order matters** — dependencies must start before `pl_wheelclamper`.
 
-```
+```cfg
 ensure ox_lib
+ensure pl_lib
 ensure pl_wheelclamper_assets
 ensure pl_wheelclamper
 ```
+
+{% hint style="info" %}
+Framework, notifications, target system, dispatch, and society banking are all auto-detected by pl\_lib. Configure them in `pl_lib/config/config.lua` if you need to force a specific system.
+{% endhint %}
 {% endstep %}
 
 {% step %}
@@ -137,41 +144,25 @@ exports.pl_wheelclamper:OnVehicleStored(source, GetVehicleNumberPlateText(vehicl
 **Modify both events like below**
 
 ```lua
----@param vehicle integer Vehicle entity
----@param vehicleDbData table Vehicle row from the database
----@param type "personal" | "job" | "gang"
 RegisterNetEvent("jg-advancedgarages:client:InsertVehicle:config", function(vehicle, vehicleDbData, type)
-  -- Code placed in here will be run when the player inserts their vehicle (if the vehicle is owned; and passes all the checks)
   TriggerServerEvent("jg-advancedgarages:server:wheelclamper:vehicleStored", vehicleDbData.plate)
 end)
 
----@param vehicle integer Vehicle entity
----@param vehicleDbData table Vehicle row from the database
----@param type "personal" | "job" | "gang"
 RegisterNetEvent("jg-advancedgarages:client:TakeOutVehicle:config", function(vehicle, vehicleDbData, type)
-  -- Code placed in here will be run after a vehicle has been taken out of a garage
   TriggerServerEvent("jg-advancedgarages:server:wheelclamper:vehicleSpawned", vehicleDbData.plate)
 end)
-
 ```
 
-**Paste the code in the file jg-advancegarages->config-config-sv.lua**
+**Paste the code in the file `jg-advancedgarages->config-config-sv.lua`:**
 
 ```lua
--- Add your own server code in here for custom functionality
-
 RegisterNetEvent("jg-advancedgarages:server:wheelclamper:vehicleStored", function(plate)
-  local source = source
-
-  exports.pl_wheelclamper:OnVehicleStored(source, plate)
+    exports.pl_wheelclamper:OnVehicleStored(source, plate)
 end)
 
 RegisterNetEvent("jg-advancedgarages:server:wheelclamper:vehicleSpawned", function(plate)
-  local source = source
-
-  exports.pl_wheelclamper:OnVehicleSpawned(source, plate)
+    exports.pl_wheelclamper:OnVehicleSpawned(source, plate)
 end)
-
 ```
 {% endstep %}
 {% endstepper %}
