@@ -15,15 +15,16 @@ Give an item to a player.
 local success = exports.pl_lib:AddItem(src, item, amount)
 ```
 
-| Parameter | Type | Description |
-|---|---|---|
-| `src` | number | Player server ID |
-| `item` | string | Item name (must match your inventory's item name exactly) |
-| `amount` | number | Quantity to add |
+| Parameter | Type   | Description                                               |
+| --------- | ------ | --------------------------------------------------------- |
+| `src`     | number | Player server ID                                          |
+| `item`    | string | Item name (must match your inventory's item name exactly) |
+| `amount`  | number | Quantity to add                                           |
 
 Returns `true` on success, `false` if the operation failed.
 
 **Example:**
+
 ```lua
 local given = exports.pl_lib:AddItem(src, 'clone_card', 1)
 if not given then
@@ -45,6 +46,7 @@ local success = exports.pl_lib:RemoveItem(src, item, amount)
 Returns `true` on success, `false` if the player doesn't have enough.
 
 **Example:**
+
 ```lua
 local removed = exports.pl_lib:RemoveItem(src, 'lockpick', 1)
 ```
@@ -62,6 +64,7 @@ local count = exports.pl_lib:HasItem(src, item)
 ```
 
 **Example:**
+
 ```lua
 local picks = exports.pl_lib:HasItem(src, 'lockpick')
 if picks < 1 then
@@ -81,12 +84,13 @@ Register a callback that fires when a player uses an item from their inventory.
 exports.pl_lib:RegisterUsableItem(name, cb)
 ```
 
-| Parameter | Type | Description |
-|---|---|---|
-| `name` | string | Item name |
-| `cb` | function | `function(src, item)` — fires on use |
+| Parameter | Type     | Description                          |
+| --------- | -------- | ------------------------------------ |
+| `name`    | string   | Item name                            |
+| `cb`      | function | `function(src, item)` — fires on use |
 
 **Example:**
+
 ```lua
 exports.pl_lib:RegisterUsableItem('lockpick', function(src, item)
     TriggerClientEvent('lockpick:start', src)
@@ -104,12 +108,13 @@ Open a stash/secondary inventory for the local player.
 exports.pl_lib:OpenStashInventory(stashName, opts)
 ```
 
-| Parameter | Type | Description |
-|---|---|---|
-| `stashName` | string | Unique stash identifier |
-| `opts` | table | `{ weight (number), slots (number), label (string) }` |
+| Parameter   | Type   | Description                                           |
+| ----------- | ------ | ----------------------------------------------------- |
+| `stashName` | string | Unique stash identifier                               |
+| `opts`      | table  | `{ weight (number), slots (number), label (string) }` |
 
 **Example:**
+
 ```lua
 exports.pl_lib:OpenStashInventory('atm_stash_' .. netId, {
     weight = 100000,

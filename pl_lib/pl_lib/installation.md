@@ -6,7 +6,7 @@
 
 Clone or download from GitHub:
 
-[https://github.com/pulsepk/pl_lib](https://github.com/pulsepk/pl_lib)
+[https://github.com/pulsepk/pl\_lib](https://github.com/pulsepk/pl_lib)
 
 Place the `pl_lib` folder inside your server's `resources` directory.
 

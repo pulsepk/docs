@@ -11,23 +11,23 @@ Run a hacking/skill minigame. The callback always fires exactly once with a `suc
 exports.pl_lib:DoMinigame(callback, opts)
 ```
 
-| Parameter | Type | Description |
-|---|---|---|
-| `callback` | function | `function(success)` — called when minigame ends |
-| `opts` | table | Optional. Override system and pass per-system settings |
+| Parameter  | Type     | Description                                            |
+| ---------- | -------- | ------------------------------------------------------ |
+| `callback` | function | `function(success)` — called when minigame ends        |
+| `opts`     | table    | Optional. Override system and pass per-system settings |
 
 **`opts` fields:**
 
-| Field | Type | Description |
-|---|---|---|
-| `system` | string | Force a specific minigame (overrides `PLLib.Minigame`). See values below. |
-| `ox_lib` | table | ox\_lib skill check options |
-| `utk_fingerprint` | table | utk\_fingerprint options |
-| `ps-ui-circle` | table | ps-ui circle options |
-| `ps-ui-maze` | table | ps-ui maze options |
-| `ps-ui-scrambler` | table | ps-ui scrambler options |
+| Field             | Type   | Description                                                               |
+| ----------------- | ------ | ------------------------------------------------------------------------- |
+| `system`          | string | Force a specific minigame (overrides `PLLib.Minigame`). See values below. |
+| `ox_lib`          | table  | ox\_lib skill check options                                               |
+| `utk_fingerprint` | table  | utk\_fingerprint options                                                  |
+| `ps-ui-circle`    | table  | ps-ui circle options                                                      |
+| `ps-ui-maze`      | table  | ps-ui maze options                                                        |
+| `ps-ui-scrambler` | table  | ps-ui scrambler options                                                   |
 
-**Supported `system` values:** `'ox_lib'` \| `'utk_fingerprint'` \| `'ps-ui-circle'` \| `'ps-ui-maze'` \| `'ps-ui-scrambler'` \| `'M-drilling'`
+**Supported `system` values:** `'ox_lib'` | `'utk_fingerprint'` | `'ps-ui-circle'` | `'ps-ui-maze'` | `'ps-ui-scrambler'` | `'M-drilling'`
 
 {% hint style="warning" %}
 `M-drilling` is **not** included in `'autodetect'`. Scripts must explicitly pass `opts.system = 'M-drilling'` or set it in the dependent script's own config.
@@ -105,15 +105,16 @@ Show a progress bar with an optional animation. Returns `true` when complete.
 local done = exports.pl_lib:ProgressBar(label, duration, animDict, anim, opts)
 ```
 
-| Parameter | Type | Description |
-|---|---|---|
-| `label` | string | Text shown on the progress bar |
-| `duration` | number | Duration in milliseconds |
-| `animDict` | string \| nil | Animation dictionary to play (pass `nil` for none) |
-| `anim` | string \| nil | Animation clip name |
-| `opts` | table | Disable controls during progress: `{ move, car, combat, mouse }` — set `false` to allow |
+| Parameter  | Type          | Description                                                                             |
+| ---------- | ------------- | --------------------------------------------------------------------------------------- |
+| `label`    | string        | Text shown on the progress bar                                                          |
+| `duration` | number        | Duration in milliseconds                                                                |
+| `animDict` | string \| nil | Animation dictionary to play (pass `nil` for none)                                      |
+| `anim`     | string \| nil | Animation clip name                                                                     |
+| `opts`     | table         | Disable controls during progress: `{ move, car, combat, mouse }` — set `false` to allow |
 
 **Example:**
+
 ```lua
 exports.pl_lib:ProgressBar('Picking lock...', 5000, 'anim@amb@clubhouse@tutorial@bkr_tut_ig3@', 'machinic_loop_mechandplayer', {
     move   = false,
@@ -136,11 +137,12 @@ Run a skill check mini-interaction. Returns `true` if passed, `false` if failed.
 local passed = exports.pl_lib:DoSkillCheck(opts)
 ```
 
-| Parameter | Type | Description |
-|---|---|---|
-| `opts` | table | See per-system options below |
+| Parameter | Type  | Description                  |
+| --------- | ----- | ---------------------------- |
+| `opts`    | table | See per-system options below |
 
 **ox\_lib opts:**
+
 ```lua
 {
     difficulty = { 'easy', 'medium' },  -- array of difficulty stages
@@ -149,6 +151,7 @@ local passed = exports.pl_lib:DoSkillCheck(opts)
 ```
 
 **lation\_ui opts:**
+
 ```lua
 {
     lation = {
@@ -160,6 +163,7 @@ local passed = exports.pl_lib:DoSkillCheck(opts)
 ```
 
 **Example:**
+
 ```lua
 local passed = exports.pl_lib:DoSkillCheck({
     difficulty = { 'easy', 'medium' },

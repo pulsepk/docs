@@ -18,6 +18,7 @@ local dispatch = exports.pl_lib:GetDispatch()
 ```
 
 **Check if a specific resource is running:**
+
 ```lua
 local ok = exports.pl_lib:CheckDependency('ox_inventory', '2.0.0')
 -- returns true if the resource is running and meets minimum version
@@ -51,14 +52,15 @@ exports.pl_lib:AddPlayerMoney(src, account, amount, reason)
 exports.pl_lib:RemovePlayerMoney(src, account, amount, reason)
 ```
 
-| Parameter | Type | Description |
-|---|---|---|
-| `src` | number | Player server ID |
-| `account` | string | `'money'` (cash) \| `'bank'` \| `'dirty'` |
-| `amount` | number | Amount to add/remove |
-| `reason` | string | Transaction reason (optional, used for logs) |
+| Parameter | Type   | Description                                  |
+| --------- | ------ | -------------------------------------------- |
+| `src`     | number | Player server ID                             |
+| `account` | string | `'money'` (cash) \| `'bank'` \| `'dirty'`    |
+| `amount`  | number | Amount to add/remove                         |
+| `reason`  | string | Transaction reason (optional, used for logs) |
 
 **Check if a player has enough:**
+
 ```lua
 -- SERVER ONLY
 local hasEnough = exports.pl_lib:GetPlayerAccountMoney(src, 'bank', 500)
@@ -66,6 +68,7 @@ local hasEnough = exports.pl_lib:GetPlayerAccountMoney(src, 'bank', 500)
 ```
 
 **Examples:**
+
 ```lua
 -- Pay a player $1,000 in cash
 exports.pl_lib:AddPlayerMoney(src, 'money', 1000, 'ATM robbery reward')
@@ -92,13 +95,14 @@ Modify a player's hunger and thirst.
 exports.pl_lib:SetPlayerStatus(src, hunger, thirst)
 ```
 
-| Parameter | Type | Description |
-|---|---|---|
-| `src` | number | Player server ID |
-| `hunger` | number | Points to ADD to hunger (0 = no change) |
-| `thirst` | number | Points to ADD to thirst (0 = no change) |
+| Parameter | Type   | Description                             |
+| --------- | ------ | --------------------------------------- |
+| `src`     | number | Player server ID                        |
+| `hunger`  | number | Points to ADD to hunger (0 = no change) |
+| `thirst`  | number | Points to ADD to thirst (0 = no change) |
 
 **Example:**
+
 ```lua
 -- Increase hunger by 20, leave thirst unchanged
 exports.pl_lib:SetPlayerStatus(src, 20, 0)
@@ -117,12 +121,13 @@ exports.pl_lib:RemoveSocietyMoney(account, amount)
 local balance = exports.pl_lib:GetSocietyMoney(account)
 ```
 
-| Parameter | Type | Description |
-|---|---|---|
+| Parameter | Type   | Description                                           |
+| --------- | ------ | ----------------------------------------------------- |
 | `account` | string | Society account name (e.g. `'police'`, `'ambulance'`) |
-| `amount` | number | Amount to add/remove |
+| `amount`  | number | Amount to add/remove                                  |
 
 **Example:**
+
 ```lua
 -- Fine collected — add to police society
 exports.pl_lib:AddSocietyMoney('police', 500)
@@ -146,20 +151,21 @@ Send an alert to police dispatch.
 exports.pl_lib:SendDispatch(opts)
 ```
 
-| Field | Type | Default | Description |
-|---|---|---|---|
-| `title` | string | — | Alert title shown to officers |
-| `code` | string | — | Police code (e.g. `'10-90'`) |
-| `message` | string | — | Alert description |
-| `coords` | vector3 | player position | Location of the incident |
-| `jobs` | table | `{ 'police' }` | Which jobs receive the alert |
-| `sprite` | number | `431` | Map blip sprite |
-| `color` | number | `1` | Map blip color |
-| `scale` | number | `1.0` | Map blip scale |
-| `radius` | number | `0` | Blip radius |
-| `length` | number | `3` | Blip duration in minutes |
+| Field     | Type    | Default         | Description                   |
+| --------- | ------- | --------------- | ----------------------------- |
+| `title`   | string  | —               | Alert title shown to officers |
+| `code`    | string  | —               | Police code (e.g. `'10-90'`)  |
+| `message` | string  | —               | Alert description             |
+| `coords`  | vector3 | player position | Location of the incident      |
+| `jobs`    | table   | `{ 'police' }`  | Which jobs receive the alert  |
+| `sprite`  | number  | `431`           | Map blip sprite               |
+| `color`   | number  | `1`             | Map blip color                |
+| `scale`   | number  | `1.0`           | Map blip scale                |
+| `radius`  | number  | `0`             | Blip radius                   |
+| `length`  | number  | `3`             | Blip duration in minutes      |
 
 **Example:**
+
 ```lua
 exports.pl_lib:SendDispatch({
     title   = 'ATM Robbery',
@@ -186,15 +192,16 @@ Log events to Discord, fivemanage, or fivemerr.
 exports.pl_lib:Log(message, opts)
 ```
 
-| Field | Type | Description |
-|---|---|---|
-| `message` | string | Log message |
-| `opts.type` | string | `'fivemanage'` \| `'fivemerr'` \| `'discord'` |
-| `opts.enable` | bool | Whether logging is active |
+| Field          | Type   | Description                                         |
+| -------------- | ------ | --------------------------------------------------- |
+| `message`      | string | Log message                                         |
+| `opts.type`    | string | `'fivemanage'` \| `'fivemerr'` \| `'discord'`       |
+| `opts.enable`  | bool   | Whether logging is active                           |
 | `opts.webhook` | string | Discord webhook URL (required for `'discord'` type) |
-| `opts.jobname` | string | Tag/category label |
+| `opts.jobname` | string | Tag/category label                                  |
 
 **Example:**
+
 ```lua
 exports.pl_lib:Log('Player robbed ATM #' .. atmId, {
     type    = 'discord',

@@ -10,13 +10,14 @@ Send a notification to the player. Routes automatically to the configured notify
 exports.pl_lib:Notify(title, message, type)
 ```
 
-| Parameter | Type | Description |
-|---|---|---|
-| `title` | string | Notification title |
-| `message` | string | Notification body text |
-| `type` | string | `'success'` \| `'error'` \| `'info'` \| `'warning'` (default: `'success'`) |
+| Parameter | Type   | Description                                                                |
+| --------- | ------ | -------------------------------------------------------------------------- |
+| `title`   | string | Notification title                                                         |
+| `message` | string | Notification body text                                                     |
+| `type`    | string | `'success'` \| `'error'` \| `'info'` \| `'warning'` (default: `'success'`) |
 
 **Example:**
+
 ```lua
 exports.pl_lib:Notify('Bank', 'You received $500', 'success')
 exports.pl_lib:Notify('Error', 'Not enough money', 'error')
@@ -40,12 +41,13 @@ exports.pl_lib:TextUIHide()
 local isOpen, currentText = exports.pl_lib:TextUIIsOpen()
 ```
 
-| Parameter | Type | Description |
-|---|---|---|
-| `text` | string | Text to display |
-| `opts` | table | Optional — `{ position, icon, style, align, color }` (ox\_lib fields) |
+| Parameter | Type   | Description                                                           |
+| --------- | ------ | --------------------------------------------------------------------- |
+| `text`    | string | Text to display                                                       |
+| `opts`    | table  | Optional — `{ position, icon, style, align, color }` (ox\_lib fields) |
 
 **Example:**
+
 ```lua
 exports.pl_lib:TextUIShow('[E] Rob ATM', { position = 'right-center', icon = 'hand' })
 
@@ -67,13 +69,14 @@ local result = exports.pl_lib:ShowInputDialog(title, options, submitText)
 -- returns table of values, or nil if cancelled
 ```
 
-| Parameter | Type | Description |
-|---|---|---|
-| `title` | string | Dialog title |
-| `options` | table | Array of input fields — follows ox\_lib `inputDialog` field spec |
-| `submitText` | string | Submit button label (optional) |
+| Parameter    | Type   | Description                                                      |
+| ------------ | ------ | ---------------------------------------------------------------- |
+| `title`      | string | Dialog title                                                     |
+| `options`    | table  | Array of input fields — follows ox\_lib `inputDialog` field spec |
+| `submitText` | string | Submit button label (optional)                                   |
 
 **Example:**
+
 ```lua
 local result = exports.pl_lib:ShowInputDialog('Transfer Money', {
     { type = 'number', label = 'Amount', required = true },
@@ -99,16 +102,17 @@ Register and open an ox\_lib-style context menu.
 exports.pl_lib:ContextMenu(id, title, options, menu, header, description)
 ```
 
-| Parameter | Type | Description |
-|---|---|---|
-| `id` | string | Unique menu ID |
-| `title` | string | Menu title |
-| `options` | table | Array of menu items — follows ox\_lib `registerContext` spec |
-| `menu` | string | Parent menu ID (optional, for back navigation) |
-| `header` | string | Header text (optional) |
-| `description` | string | Description text (optional) |
+| Parameter     | Type   | Description                                                  |
+| ------------- | ------ | ------------------------------------------------------------ |
+| `id`          | string | Unique menu ID                                               |
+| `title`       | string | Menu title                                                   |
+| `options`     | table  | Array of menu items — follows ox\_lib `registerContext` spec |
+| `menu`        | string | Parent menu ID (optional, for back navigation)               |
+| `header`      | string | Header text (optional)                                       |
+| `description` | string | Description text (optional)                                  |
 
 **Example:**
+
 ```lua
 exports.pl_lib:ContextMenu('atm_menu', 'ATM Options', {
     { title = 'Withdraw', description = 'Take cash from your bank', event = 'bank:withdraw' },
@@ -129,14 +133,15 @@ Open a simple scrollable list menu. Fires a client event when an item is selecte
 exports.pl_lib:RegisterListMenu(id, title, items, position)
 ```
 
-| Parameter | Type | Description |
-|---|---|---|
-| `id` | string | Unique menu ID |
-| `title` | string | Menu title |
-| `items` | table | Array of strings or `{ label = '...' }` tables |
+| Parameter  | Type   | Description                                                          |
+| ---------- | ------ | -------------------------------------------------------------------- |
+| `id`       | string | Unique menu ID                                                       |
+| `title`    | string | Menu title                                                           |
+| `items`    | table  | Array of strings or `{ label = '...' }` tables                       |
 | `position` | string | `'top-right'` \| `'top-left'` \| `'bottom-right'` \| `'bottom-left'` |
 
 **Selection event:**
+
 ```lua
 AddEventHandler('pl_lib:listMenuSelected', function(id, index)
     -- id    = the menu ID passed to RegisterListMenu
@@ -145,6 +150,7 @@ end)
 ```
 
 **Example:**
+
 ```lua
 exports.pl_lib:RegisterListMenu('player_list', 'Nearby Players', { 'Alice', 'Bob', 'Charlie' }, 'top-right')
 

@@ -14,6 +14,7 @@ local ok = exports.pl_lib:EnsureModel(model)
 ```
 
 **Example:**
+
 ```lua
 if exports.pl_lib:EnsureModel('prop_atm_01') then
     -- safe to use the model
@@ -31,6 +32,7 @@ local entity = exports.pl_lib:NetToEnt(netId)
 ```
 
 **Example:**
+
 ```lua
 local atmEntity = exports.pl_lib:NetToEnt(atmNetId)
 if atmEntity ~= 0 then
@@ -50,6 +52,7 @@ local ok = exports.pl_lib:TryRequestControl(entity, timeoutMs)
 ```
 
 **Example:**
+
 ```lua
 if exports.pl_lib:TryRequestControl(atmEntity, 1000) then
     SetEntityDynamic(atmEntity, true)
@@ -76,17 +79,18 @@ Play an animation on an entity.
 exports.pl_lib:PlayAnim(entity, dict, anim, blendIn, blendOut, duration, flags)
 ```
 
-| Parameter | Type | Default | Description |
-|---|---|---|---|
-| `entity` | number | — | Entity handle |
-| `dict` | string | — | Animation dictionary |
-| `anim` | string | — | Animation clip name |
-| `blendIn` | number | `8.0` | Blend in speed |
-| `blendOut` | number | `-8.0` | Blend out speed |
-| `duration` | number | `-1` | Duration in ms (`-1` = loop) |
-| `flags` | number | `49` | Animation flags |
+| Parameter  | Type   | Default | Description                  |
+| ---------- | ------ | ------- | ---------------------------- |
+| `entity`   | number | —       | Entity handle                |
+| `dict`     | string | —       | Animation dictionary         |
+| `anim`     | string | —       | Animation clip name          |
+| `blendIn`  | number | `8.0`   | Blend in speed               |
+| `blendOut` | number | `-8.0`  | Blend out speed              |
+| `duration` | number | `-1`    | Duration in ms (`-1` = loop) |
+| `flags`    | number | `49`    | Animation flags              |
 
 **Example:**
+
 ```lua
 exports.pl_lib:PlayAnim(PlayerPedId(), 'amb@world_human_hang_out_street@female_variant_01@base', 'base', 8.0, -8.0, -1, 49)
 ```
@@ -112,6 +116,7 @@ exports.pl_lib:SetVehicleFuel(vehicle, level)
 ```
 
 **Example:**
+
 ```lua
 exports.pl_lib:SetVehicleFuel(GetVehiclePedIsIn(PlayerPedId(), false), 100.0)
 ```
@@ -129,6 +134,7 @@ exports.pl_lib:GiveVehicleKeys(vehicle)
 ```
 
 **Example:**
+
 ```lua
 local veh = GetVehiclePedIsIn(PlayerPedId(), false)
 exports.pl_lib:GiveVehicleKeys(veh)

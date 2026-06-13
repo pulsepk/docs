@@ -10,15 +10,15 @@
 
 ## pl\_lib
 
-* [📦 pl\_lib](pl_lib/README.md)
-  * [Installation](pl_lib/installation.md)
-  * [Configuration](pl_lib/configuration.md)
-  * [Notifications & UI](pl_lib/notifications-and-ui.md)
-  * [Target System](pl_lib/target.md)
-  * [Minigames](pl_lib/minigames.md)
-  * [Inventory](pl_lib/inventory.md)
-  * [Server API](pl_lib/server-api.md)
-  * [Utilities](pl_lib/utilities.md)
+* [📦 pl\_lib](pl_lib/pl_lib/README.md)
+  * [Installation](pl_lib/pl_lib/installation.md)
+  * [Configuration](pl_lib/pl_lib/configuration.md)
+  * [Notifications & UI](pl_lib/pl_lib/notifications-and-ui.md)
+  * [Target System](pl_lib/pl_lib/target.md)
+  * [Minigames](pl_lib/pl_lib/minigames.md)
+  * [Inventory](pl_lib/pl_lib/inventory.md)
+  * [Server API](pl_lib/pl_lib/server-api.md)
+  * [Utilities](pl_lib/pl_lib/utilities.md)
 
 ## Paid Scripts
 
