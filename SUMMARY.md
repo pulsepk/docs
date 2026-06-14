@@ -19,7 +19,6 @@
   * [Inventory](pl_lib/pl_lib/inventory.md)
   * [Server API](pl_lib/pl_lib/server-api.md)
   * [Utilities](pl_lib/pl_lib/utilities.md)
-  * [Phone](pl_lib/pl_lib/phone.md)
 
 ## Paid Scripts
 
