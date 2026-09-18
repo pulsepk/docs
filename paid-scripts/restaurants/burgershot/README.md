@@ -1,7 +1,5 @@
 # 🍔 BurgerShot
 
-
-
 {% embed url="https://youtu.be/ePB-4ZlnF1k" %}
 
 ### Purchase Escrow: [\[Click Here\]](https://pulsescripts.com/product/burgershot)
@@ -9,6 +7,11 @@
 ### Purchase OpenSource: [\[Click here\]](https://pulsescripts.com/category/opensource)
 
 ### Preview: [\[Click Here\]](https://youtu.be/ePB-4ZlnF1k)
+
+{% hint style="info" %}
+**v3.0.0** — a full rebuild with a real NUI, self-migrating database, and a
+delivery app. Upgrading from v2? Read [What's New in v3](whats-new-v3.md) first.
+{% endhint %}
 
 ### Map Supported by This Script
 
@@ -24,63 +27,77 @@
 
 **King Maps:** [\[Click Here\]](https://kingmaps.net/products/6167902)
 
-TStudio : [\[Click Here\]](https://turbosaif.tebex.io/package/5956096)
+**TStudio :** [\[Click Here\]](https://turbosaif.tebex.io/package/5956096)
+
+**Giant \[FREE]:** [\[Click Here\]](https://forum.cfx.re/t/mlo-free-burger-shot/5401933)
+
+Set `Config.location = 'auto'` and the script will pick whichever of these is
+actually running on your server — see [Installation](installation.md).
 
 ### Prop Supported
 
-**DJ Burgershot Props:** [\[Click Here\]](https://djscollections.com/package/6098332)
+**pl\_restaurant\_props** — a dedicated custom prop pack shipped alongside the
+script (patties, fries, fry basket, burger bun, kiosk). v3 ships its own
+props, so the old v2 dependency on the external DJ Collections prop pack is
+gone. **Required**, see
+[Installation](installation.md#1-pl_restaurant_props-required).
 
-### Features:
+***
 
-**🍞 24 Consumable Item with unique ingredients**
+## Features
 
-**🏛️ Item Stock Management :-**
+### 🧾 Ordering & Front of House
 
-* **Add/Remove Items from the Stock**
-* **Update prices of the Items**
+- **Kiosk counter ordering** — customers browse a categorized menu (via a full
+  NUI, not a plain list) and pay by bank or at the counter.
+- **Order queue** — Pending → Cooking → Ready → Completed, tracked live for
+  every staff member on shift.
+- **📺 Order display board** — a TV prop shows the live order queue, just like
+  a real fast-food restaurant.
+- **🧾 Custom billing** — send a customer an ad-hoc bill for anything, with an
+  optional tip.
+- **💵 Tipping** — percentage tips, split between the employee and the business.
+- **🧻 Printed receipts** — customers get an itemized receipt after checkout.
+- **📱 Delivery app** — sell through the companion `pl_restaurantapp` on
+  lb-phone/gksphone, including a full delivery-driver job.
 
-**👨‍💼 Automatic Business Mode (Self/Automatic)**
+### 🧑‍🍳 Kitchen & Cooking
 
-* **Self: Player will have to ask Employee For the Order**
-* **Auto: Players can buy Directly from the Menu**
+- **🔥 Grill** — multi-slot shared grill, real-time synced cook/burn timers.
+- **🍟 Fryer** — cook frozen fries (and other fryer items), with its own
+  cook/burn timers and a shared fries counter stock.
+- **🥪 Assembly station** — build burgers step by step in the exact order the
+  recipe requires, with on-screen hints for missing ingredients.
+- **🥤 Drink machine** — multi-step drink crafting (fill → optional skill check).
+- **🧊 Ice machine** — turn water bottles into ice cubes over a configurable wait time.
+- **🎮 Interactive cooking & skill checks** — a real mini-game, not a progress bar.
+- **🧼 Kitchen cleanliness** — the kitchen gets dirty after a set number of
+  cooks and needs cleaning before work continues.
+- **🧽 Optional hand-wash requirement** before cooking.
+- **🍔 Inbuilt consumables** — eating/drinking animations and hunger/thirst are
+  handled by the script itself, item by item.
 
-💳 **Cash or Card Buying:**&#x20;
+### 🏛️ Management
 
-Choose your preferred payment method—convenience at its finest!
+- **Item stock management** — add/remove stock, update prices, live from the NUI.
+- **👨‍💼 Boss menu** — open/close the shop, manage society funds (withdraw/
+  deposit), hire/promote/demote/fire staff, view and clear order & shift history.
+- **🧑‍🍳 Duty / clocking system** — employees clock in/out; shift duration and
+  items cooked are tracked and visible to management.
+- **📦 Fridge / stash storage** — order ingredients in bulk with a delivery ETA,
+  store and retrieve stock.
+- **👕 Wardrobe** — switch to the job uniform on duty.
+- **🍽️ Tables, seats & counter trays** for a real dine-in experience.
+- **🗑️ Trash can** for burnt/ruined items.
 
-👕 **Wardrobe:**&#x20;
+### 🛠️ Under the Hood
 
-Easily switch to your job outfit and look the part while you work.
+- Self-installing, self-migrating database schema (zero manual SQL on upgrade).
+- Works with ESX, QBCore, and Qbox via **pl\_lib**.
+- Works with **ox\_inventory**, **qb-inventory**, and ESX items.
+- Declarative recipe system — add a new menu item by editing one file.
+- Location auto-detection across 8 supported map packs.
 
-🍽️ **Tables:**&#x20;
-
-Functional and interactive tables for a seamless dining experience.
-
-🛒 **Counter Trays:**&#x20;
-
-Pass food to customers efficiently—perfect for fast service!
-
-📦 **Stash Storage:**&#x20;
-
-Securely store items and ingredients for later use.
-
-❄️ **Fridge:**&#x20;
-
-Stocked with fresh ingredients—grab what you need to cook up delicious meals!
-
-**🧑‍🍳 Cook:**
-
-Master the art of cooking with a variety of delicious treats:
-
-🍔 **Burger** – Juicy, flavorful, and grilled to perfection. A classic favorite!\
-🍟 **Fries** – Crispy, golden, and perfectly seasoned. The ultimate sidekick!\
-🥤 **Drinks** – Refreshing and thirst-quenching beverages for every occasion.
-
-💰 **Cash Registers:**&#x20;
-
-Process payments and bill customers—every purchase adds to the shop funds!
-
-🪑 **Seats:**&#x20;
-
-Comfortable and sitable seats—relax and enjoy your meal!
-
+See the [Feature Guide](feature-guide.md) for a full walkthrough of every
+system, [Installation](installation.md) to get set up, and
+[Exports & Events](exports-and-events.md) if you're building an integration.

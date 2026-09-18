@@ -1,570 +1,225 @@
 # Installation
 
-### Dependencies
+{% hint style="info" %}
+Upgrading from v2? Read [What's New in v3](whats-new-v3.md) first — several
+settings were renamed or moved into pl\_lib.
+{% endhint %}
 
-Make Sure all the dependencies are installed.
+***
 
-Required
+## Dependency matrix
 
-[<kbd>ox\_lib</kbd>](https://github.com/overextended/ox_lib)
+| Resource | Required? | Why |
+|---|---|---|
+| [`ox_lib`](https://github.com/overextended/ox_lib) | **Required** | Callbacks, menus, points, zones, skill checks |
+| [`oxmysql`](https://github.com/overextended/oxmysql) | **Required** | Database access |
+| [`pl_lib`](https://github.com/pulsepk/pl_lib) | **Required** | Framework (ESX/QBCore/Qbox), target, notify, textUI, clothing, society/banking bridge — see [pl\_lib docs](../../../pl_lib/pl_lib/README.md) |
+| `pl_restaurant_props` | **Required** | Custom food/kiosk props — not declared in `fxmanifest.lua`, see below |
+| [`ox_target`](https://github.com/overextended/ox_target) or [`qb-target`](https://github.com/qbcore-fivem/qb-target) | Required if `Config.Interaction = 'target'` | Configured through pl\_lib |
+| `ox_inventory`, `qb-inventory`, or ESX items | **Required** (pick one) | Item registration |
+| [`xsound`](https://github.com/Xogy/xsound) | Optional | Grill/fryer sizzle + drink machine pour sound. Script works fine without it, just silently no sound. |
+| [`rpemotes`](https://github.com/alberttheprince/rpemotes-reborn) (or your emote resource) | Recommended | Carry/cooking animation dictionaries — see below |
+| [`ctn-text3d`](https://github.com/icetinturkey/ctn-text3d) | Optional | Only needed if `Config.Interaction = 'text3d'` for any zone |
+| [`pl_restaurant_tools`](https://github.com/pulsepk/pl_restaurant_tools) | Optional | Gates in-world builder/editing tools, if you use it |
+| `pl_restaurantapp` | Optional | Delivery/ordering companion app for lb-phone/gksphone |
 
-[<kbd>ox-target</kbd>](https://github.com/overextended/ox_target) <kbd>or</kbd> [<kbd>qb-target</kbd>](https://github.com/qbcore-framework/qb-target)
+***
 
-### Config Setup
+## Step 1 — Download & place
 
-Adjust config.lua according to your liking
+Drop the `pl_burgershot` folder into your server's `resources` directory.
 
-Make sure to set your map, target, clothing, billing, society script
+***
 
-### SQL Installation
+## Step 2 — Install pl\_lib first
 
-Use this if AutoInstallSQL Fails for some reason and doesn't generates the sql database
+pl\_lib **must** be installed, configured, and started before `pl_burgershot`.
+Follow the [pl\_lib installation guide](../../../pl_lib/pl_lib/installation.md),
+then come back here. If pl\_lib isn't running when pl\_burgershot starts,
+framework/target/notify detection fails and the whole script silently breaks.
+
+***
+
+## Step 3 — Required manual steps not enforced by fxmanifest
+
+These aren't in `pl_burgershot`'s `dependencies {}` block, so it's easy to
+install the script and think it's "done" while these are still missing.
+
+### 1. pl\_restaurant\_props (required)
+
+A separate map/prop resource that streams the custom models the config
+references by name — `pl_rawpatty`, `pl_cookedpatty`, `pl_burnedpatty`,
+`pl_cookedfries`, `pl_fries`, `pl_burnedfries`, `pl_fry_basket`,
+`pl_burgerbun`, `pl_kiosk`. Drop the `pl_restaurant_props` folder into
+`resources` and `ensure` it in `server.cfg` **before** `pl_burgershot`.
+Without it, cooked food and the kiosk prop simply won't render.
+
+### 2. xsound sound files (optional, but silent otherwise)
+
+If you run [`xsound`](https://github.com/Xogy/xsound), copy the 3 files from
+`pl_burgershot/Installfolder/sounds/` into your `xsound` resource's own sounds folder:
+
+| File | Used by |
+|---|---|
+| `drinkmachine.mp3` | `Config.DrinkMachine.PourSound` |
+| `fryer.mp3` | `Config.Fryer.SizzleSound` |
+| `grillstation.mp3` | `Config.Grill.SizzleSound` |
+
+The `Url` values in `shared/config.lua` are relative to xsound's own html
+folder — keep the filenames the same, or update the `Url` fields to match
+wherever you place them.
+
+### 3. Animation dictionaries in your emote resource (required for animations to work)
+
+The custom `.ycd` files in `pl_burgershot/Installfolder/animations/`
+(`cup_holding`, `fries_eating`, `frybasket`, `kitchen_spatula`,
+`pl_fry_basket`) need to be added/registered in your emote resource (e.g.
+[`rpemotes`](https://github.com/alberttheprince/rpemotes-reborn)) so the game
+can find them. Without this step, carry and cooking animations that reference
+these dictionaries won't play. Follow your emote resource's own instructions
+for adding a custom animation dictionary.
+
+***
+
+## Step 4 — server.cfg
+
+```cfg
+ensure ox_lib
+ensure oxmysql
+ensure pl_lib
+
+ensure pl_restaurant_props
+
+# your map pack, e.g.
+ensure gabz_burgershot
+
+ensure pl_burgershot
+```
+
+***
+
+## Step 5 — Configure
+
+Open `shared/config.lua` and set, at minimum:
+
+- `Config.location` — the map pack you're using (`gabz`, `molo`, `gn`, `smalo`,
+  `uniqx`, `king`, `tstudio`, `giant`), or `'auto'` to detect it from whichever
+  resource is running (fill in `Config.LocationResources` first if you use `auto`).
+- `Config.Jobname` / `Config.JobLabel` — must match the job you create in Step 7.
+- `Config.Interaction` — `'target'`, `'textui'`, or `'text3d'`.
+- `Config.RequireDuty` / `Config.RequireHandWash` — turn these on if you want
+  employees to clock in / wash hands before working.
+
+Everything else has sensible defaults — see [Preview Config](preview-config.md)
+for the full annotated file, and [Feature Guide](feature-guide.md) for what
+each system does.
+
+***
+
+## Step 6 — Database
+
+Leave `Config.AutoInstallSQL = true` (the default). On first boot the script
+creates all 4 tables it needs — `pl_burgershot`, `pl_burgershot_fridge`,
+`pl_burgershot_orders`, `pl_burgershot_shifts` — and seeds the fridge with the
+items from `Config.Shop.Storage`. If you upgrade later, it also auto-migrates
+older table formats without touching your existing data.
+
+{% hint style="warning" %}
+Your database user needs `CREATE TABLE`, `ALTER TABLE`, and `INSERT`
+privileges for auto-install/auto-migration to work. If it only has
+`SELECT/INSERT/UPDATE/DELETE`, turn `Config.AutoInstallSQL` off and run the SQL
+below by hand instead.
+{% endhint %}
 
 <details>
 
-<summary>ESX</summary>
+<summary>Manual SQL (only if AutoInstallSQL is off or fails)</summary>
 
-```lua
+```sql
+-- Main table (also holds shop open/closed state + item stock/price for the kiosk)
 CREATE TABLE IF NOT EXISTS `pl_burgershot` (
-  `stock` longtext DEFAULT NULL,
-  `state` varchar(5) NOT NULL DEFAULT 'open'
-) ENGINE=InnoDB DEFAULT CHARSET=armscii8 COLLATE=armscii8_bin;
+  `stock` LONGTEXT DEFAULT NULL,
+  `state` VARCHAR(5) NOT NULL DEFAULT 'open'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- Fridge/ingredient stock (single-row JSON)
+CREATE TABLE IF NOT EXISTS `pl_burgershot_fridge` (
+  `stock` LONGTEXT DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Completed order history
+CREATE TABLE IF NOT EXISTS `pl_burgershot_orders` (
+  `id`                       INT AUTO_INCREMENT PRIMARY KEY,
+  `order_id`                 VARCHAR(36)   NOT NULL,
+  `placed_at`                INT UNSIGNED  NOT NULL,
+  `player_name`              VARCHAR(64)   NOT NULL,
+  `player_identifier`        VARCHAR(64)   NOT NULL,
+  `items`                    LONGTEXT      NOT NULL,
+  `total`                    DECIMAL(10,2) NOT NULL,
+  `payment_method`           VARCHAR(10)   NOT NULL,
+  `paid_account`             VARCHAR(10)   DEFAULT NULL,
+  `approved_by_name`         VARCHAR(64)   NOT NULL,
+  `approved_by_identifier`   VARCHAR(64)   NOT NULL,
+  `completed_by_name`        VARCHAR(64)   NOT NULL,
+  `completed_by_identifier`  VARCHAR(64)   NOT NULL,
+  `completed_at`             TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  UNIQUE KEY `unique_order` (`order_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Employee clock in/out shifts
+CREATE TABLE IF NOT EXISTS `pl_burgershot_shifts` (
+  `id`             INT AUTO_INCREMENT PRIMARY KEY,
+  `identifier`     VARCHAR(64)  NOT NULL,
+  `player_name`    VARCHAR(64)  NOT NULL,
+  `clock_in_at`    INT UNSIGNED NOT NULL,
+  `clock_out_at`   INT UNSIGNED DEFAULT NULL,
+  `status`         VARCHAR(12)  NOT NULL DEFAULT 'open',
+  `items_cooked`   INT UNSIGNED DEFAULT NULL,
+  INDEX `idx_identifier_status` (`identifier`, `status`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+```
+
+**ESX only** — also create the society account/job:
+
+```sql
 INSERT INTO `addon_account` (name, label, shared) VALUES
-	('society_burgershot', 'BurgerShot', 1);
+    ('society_burgershot', 'BurgerShot', 1);
 
 INSERT INTO `datastore` (name, label, shared) VALUES
-	('society_burgershot', 'BurgerShot', 1);
+    ('society_burgershot', 'BurgerShot', 1);
 
-INSERT INTO `jobs` (name, label,whitelisted) VALUES
-	('burgershot', 'BurgerShot',1);
+INSERT INTO `jobs` (name, label, whitelisted) VALUES
+    ('burgershot', 'BurgerShot', 1);
 
 INSERT INTO `job_grades` (job_name, grade, name, label, salary, skin_male, skin_female) VALUES
-	('burgershot',0,'cashier','Cashier',20,'{}','{}'),
-	('burgershot',1,'cook','Cook',40,'{}','{}'),
-	('burgershot',2,'staff','Staff',60,'{}','{}'),
-	('burgershot',3,'manager','Manager',85,'{}','{}'),
-	('burgershot',4,'boss','Owner',100,'{}','{}');
+    ('burgershot', 0, 'cashier', 'Cashier', 20, '{}', '{}'),
+    ('burgershot', 1, 'cook',    'Cook',    40, '{}', '{}'),
+    ('burgershot', 2, 'staff',   'Staff',   60, '{}', '{}'),
+    ('burgershot', 3, 'manager', 'Manager', 85, '{}', '{}'),
+    ('burgershot', 4, 'boss',    'Owner',   100,'{}', '{}');
 ```
 
 </details>
 
-<details>
+***
 
-<summary>QBCore or Qbox</summary>
-
-```lua
-CREATE TABLE IF NOT EXISTS `pl_burgershot` (
-  `stock` longtext DEFAULT NULL,
-  `state` varchar(5) NOT NULL DEFAULT 'open'
-) ENGINE=InnoDB DEFAULT CHARSET=armscii8 COLLATE=armscii8_bin;
-```
-
-</details>
-
-### Items
-
-Add the items into your server
+## Step 7 — Job
 
 <details>
 
-<summary>Ox Inventory</summary>
+<summary>QBCore — paste into qb-core/shared/jobs.lua</summary>
 
 ```lua
-["bs_buffalo_wings"] = {
-    label = "Buffalo Wings",
-    weight = 1,
-    client = {
-			status = { hunger = 200000 },
-			anim = 'eating',
-			prop = 'burger',
-			usetime = 2500,
-			notification = 'You ate a delicious burger'
-		},
-},
-
-["bs_chicken_piece"] = {
-    label = "Chicken Piece",
-    weight = 1,
-    client = {
-			status = { hunger = 200000 },
-			anim = 'eating',
-			prop = 'burger',
-			usetime = 2500,
-			notification = 'You ate a delicious burger'
-		},
-},
-
-["bs_chillwave_cola"] = {
-    label = "Chillwave Cola",
-    weight = 1,
-    client = {
-			status = { thirst = 200000 },
-			anim = { dict = 'mp_player_intdrink', clip = 'loop_bottle' },
-			prop = { model = `prop_ld_can_01`, pos = vec3(0.01, 0.01, 0.06), rot = vec3(5.0, 5.0, -180.5) },
-			usetime = 2500,
-			notification = 'You quenched your thirst with a sprunk'
-		}
-},
-
-["bs_classic_salted_fries"] = {
-    label = "Classic Salted Fries",
-    weight = 1,
-    client = {
-			status = { hunger = 200000 },
-			anim = 'eating',
-			prop = 'burger',
-			usetime = 2500,
-			notification = 'You ate a delicious burger'
-		},
-},
-
-["bs_double_cheese_burger"] = {
-    label = "Double Cheese Burger",
-    weight = 1,
-    client = {
-			status = { hunger = 200000 },
-			anim = 'eating',
-			prop = 'burger',
-			usetime = 2500,
-			notification = 'You ate a delicious burger'
-		},
-},
-
-["bs_fish_burger"] = {
-    label = "Fish Burger",
-    weight = 1,
-    client = {
-			status = { hunger = 200000 },
-			anim = 'eating',
-			prop = 'burger',
-			usetime = 2500,
-			notification = 'You ate a delicious burger'
-		},
-},
-
-
-["bs_fizzberry_splash"] = {
-    label = "Fizzberry Splash",
-    weight = 1,
-    client = {
-			status = { thirst = 200000 },
-			anim = { dict = 'mp_player_intdrink', clip = 'loop_bottle' },
-			prop = { model = `prop_ld_can_01`, pos = vec3(0.01, 0.01, 0.06), rot = vec3(5.0, 5.0, -180.5) },
-			usetime = 2500,
-			notification = 'You quenched your thirst with a sprunk'
-		}
-},
-
-["bs_garlic_parmesan_fries"] = {
-    label = "Garlic Parmesan Fries",
-    weight = 1,
-    client = {
-			status = { hunger = 200000 },
-			anim = 'eating',
-			prop = 'burger',
-			usetime = 2500,
-			notification = 'You ate a delicious burger'
-		},
-},
-
-
-["bs_honey_wings"] = {
-    label = "Honey Wings",
-    weight = 1,
-    client = {
-			status = { hunger = 200000 },
-			anim = 'eating',
-			prop = 'burger',
-			usetime = 2500,
-			notification = 'You ate a delicious burger'
-		},
-},
-
-["bs_kentucky_burger"] = {
-    label = "Kentucky Burger",
-    weight = 1,
-    client = {
-			status = { hunger = 200000 },
-			anim = 'eating',
-			prop = 'burger',
-			usetime = 2500,
-			notification = 'You ate a delicious burger'
-		},
-},
-
-["bs_lemonlush_soda"] = {
-    label = "Lemonlush Soda",
-    weight = 1,
-    client = {
-			status = { thirst = 200000 },
-			anim = { dict = 'mp_player_intdrink', clip = 'loop_bottle' },
-			prop = { model = `prop_ld_can_01`, pos = vec3(0.01, 0.01, 0.06), rot = vec3(5.0, 5.0, -180.5) },
-			usetime = 2500,
-			notification = 'You quenched your thirst with a sprunk'
-		}
-},
-
-["bs_mighty_zinger"] = {
-    label = "Mighty Zinger",
-    weight = 1,
-    client = {
-			status = { hunger = 200000 },
-			anim = 'eating',
-			prop = 'burger',
-			usetime = 2500,
-			notification = 'You ate a delicious burger'
-		},
-},
-
-["bs_mushroom_veggie_burger"] = {
-    label = "Mushroom Veggie Burger",
-    weight = 1,
-    client = {
-			status = { hunger = 200000 },
-			anim = 'eating',
-			prop = 'burger',
-			usetime = 2500,
-			notification = 'You ate a delicious burger'
-		},
-},
-
-["bs_nuggets"] = {
-    label = "Nuggets",
-    weight = 1,
-    client = {
-			status = { hunger = 200000 },
-			anim = 'eating',
-			prop = 'burger',
-			usetime = 2500,
-			notification = 'You ate a delicious burger'
-		},
-},
-
-["bs_rice"] = {
-    label = "Rice Label",
-    weight = 1,
-    client = {
-			status = { hunger = 200000 },
-			anim = 'eating',
-			prop = 'burger',
-			usetime = 2500,
-			notification = 'You ate a delicious burger'
-		},
-},
-
-["bs_signature_whooper"] = {
-    label = "Signature Whooper",
-    weight = 1,
-    client = {
-			status = { hunger = 200000 },
-			anim = 'eating',
-			prop = 'burger',
-			usetime = 2500,
-			notification = 'You ate a delicious burger'
-		},
-},
-
-["bs_spicy_cajun_fries"] = {
-    label = "Spicy Cajun Fries",
-    weight = 1,
-    client = {
-			status = { hunger = 200000 },
-			anim = 'eating',
-			prop = 'burger',
-			usetime = 2500,
-			notification = 'You ate a delicious burger'
-		},
-},
-
-["bs_spicy_rice"] = {
-    label = "Spicy Rice",
-    weight = 1,
-    client = {
-			status = { hunger = 200000 },
-			anim = 'eating',
-			prop = 'burger',
-			usetime = 2500,
-			notification = 'You ate a delicious burger'
-		},
-},
-
-["bs_steakhouse_whooper"] = {
-    label = "Steakhouse Whooper",
-    weight = 1,
-    client = {
-			status = { hunger = 200000 },
-			anim = 'eating',
-			prop = 'burger',
-			usetime = 2500,
-			notification = 'You ate a delicious burger'
-		},
-},
-
-["bs_sweet_potato_fries"] = {
-    label = "Sweet Potato Fries",
-    weight = 1,
-    client = {
-			status = { hunger = 200000 },
-			anim = 'eating',
-			prop = 'burger',
-			usetime = 2500,
-			notification = 'You ate a delicious burger'
-		},
-},
-
-["bs_tortilla"] = {
-    label = "Tortilla Label",
-    weight = 1,
-    client = {
-			status = { hunger = 200000 },
-			anim = 'eating',
-			prop = 'burger',
-			usetime = 2500,
-			notification = 'You ate a delicious burger'
-		},
-},
-
-["bs_truffle_fries"] = {
-    label = "Truffle Fries",
-    weight = 1,
-    client = {
-			status = { hunger = 200000 },
-			anim = 'eating',
-			prop = 'burger',
-			usetime = 2500,
-			notification = 'You ate a delicious burger'
-		},
-},
-
-["bs_twister"] = {
-    label = "Twister",
-    weight = 1,
-    client = {
-			status = { hunger = 200000 },
-			anim = 'eating',
-			prop = 'burger',
-			usetime = 2500,
-			notification = 'You ate a delicious burger'
-		},
-},
-
-["bs_whooper_jr"] = {
-    label = "Whooper Jr",
-    weight = 1,
-    client = {
-			status = { hunger = 200000 },
-			anim = 'eating',
-			prop = 'burger',
-			usetime = 2500,
-			notification = 'You ate a delicious burger'
-		},
-},
-
-["bs_wings"] = {
-    label = "Wings",
-    weight = 1,
-    client = {
-			status = { hunger = 200000 },
-			anim = 'eating',
-			prop = 'burger',
-			usetime = 2500,
-			notification = 'You ate a delicious burger'
-		},
-},
-
-["bs_zesty_zing"] = {
-    label = "Zesty Zing",
-    weight = 1,
-    client = {
-			status = { thirst = 200000 },
-			anim = { dict = 'mp_player_intdrink', clip = 'loop_bottle' },
-			prop = { model = `prop_ld_can_01`, pos = vec3(0.01, 0.01, 0.06), rot = vec3(5.0, 5.0, -180.5) },
-			usetime = 2500,
-			notification = 'You quenched your thirst with a sprunk'
-		}
-},
-
-["bs_zinger_burger"] = {
-    label = "Zinger Burger",
-    weight = 1,
-    client = {
-			status = { hunger = 200000 },
-			anim = 'eating',
-			prop = 'burger',
-			usetime = 2500,
-			notification = 'You ate a delicious burger'
-		},
-},
-
-["bs_zinger_stacker"] = {
-    label = "Zinger Stacker",
-    weight = 1,
-    client = {
-			status = { hunger = 200000 },
-			anim = 'eating',
-			prop = 'burger',
-			usetime = 2500,
-			notification = 'You ate a delicious burger'
-		},
-},
-
-["bs_long_cheesy_onion_beef"] = {
-    label = "Long Cheesy Onion Beef",
-    weight = 1,
-    stack = true,
-    close = true,
-},
-
-["bs_jalapeno"] = {
-    label = "Jalapeno Label",
-    weight = 1,
-    stack = true,
-    close = true,
-},
-
-["bs_honey"] = {
-    label = "Honey Label",
-    weight = 1,
-    stack = true,
-    close = true,
-},
-
-["bs_fish_fillet"] = {
-    label = "Fish Fillet Label",
-    weight = 1,
-    stack = true,
-    close = true,
-},
-
-["bs_bun"] = {
-    label = "Bun Label",
-    weight = 1,
-    stack = true,
-    close = true,
-},
-
-["bs_cajun_seasoning"] = {
-    label = "Cajun Seasoning Label",
-    weight = 1,
-    stack = true,
-    close = true,
-},
-
-["bs_cheese_slice"] = {
-    label = "Cheese Slice Label",
-    weight = 1,
-    stack = true,
-    close = true,
-},
-
-["bs_chicken"] = {
-    label = "Chicken Label",
-    weight = 1,
-    stack = true,
-    close = true,
-},
-
-["bs_mushroom"] = {
-    label = "Mushroom Label",
-    weight = 1,
-    stack = true,
-    close = true,
-},
-
-["bs_onion"] = {
-    label = "Onion Label",
-    weight = 1,
-    stack = true,
-    close = true,
-},
-
-["bs_parmesan_cheese"] = {
-    label = "Parmesan Cheese Label",
-    weight = 1,
-    stack = true,
-    close = true,
-},
-
-["bs_pepperoni"] = {
-    label = "Pepperoni Label",
-    weight = 1,
-    stack = true,
-    close = true,
-},
-
-["bs_piece"] = {
-    label = "Piece Label",
-    weight = 1,
-    stack = true,
-    close = true,
-},
-
-["bs_potato"] = {
-    label = "Potato Label",
-    weight = 1,
-    stack = true,
-    close = true,
-},
-
-["bs_truffle_oil"] = {
-    label = "Truffle Oil Label",
-    weight = 1,
-    stack = true,
-    close = true,
-},
-
-["bs_bbq_burger"] = {
-    label = "BBQ Burger",
-    weight = 1,
-    stack = true,
-    close = true,
-},
-
-["bs_bbq_sauce"] = {
-    label = "BBQ Sauce Label",
-    weight = 1,
-    stack = true,
-    close = true,
-},
-
-["bs_beef_patty"] = {
-    label = "Beef Patty Label",
-    weight = 1,
-    stack = true,
-    close = true,
-},
-
-["bs_buffalo_sauce"] = {
-    label = "Buffalo Sauce Label",
-    weight = 1,
-    stack = true,
-    close = true,
-},
-["bs_emptycup"] = {
-    label = "BurgerShot EmptyCup",
-    weight = 1,
-    stack = true,
-    close = true,
-},
-["bs_icecubes"] = {
-    label = "Ice Cubes",
-    weight = 1,
-    stack = true,
-    close = true,
-},
-["bs_waterbottle"] = {
-    label = "Water Bottle",
-    weight = 1,
-    stack = true,
-    close = true,
-},
-
-["bs_tomato"] = {
-    label = "Tomato Label",
-    weight = 1,
-    stack = true,
-    close = true,
+['burgershot'] = {
+    label = 'BurgerShot',
+    defaultDuty = true,
+    grades = {
+        ['0'] = { name = 'Cashier',       payment = 50  },
+        ['1'] = { name = 'Cook',          payment = 75  },
+        ['2'] = { name = 'Shift Manager', payment = 100 },
+        ['3'] = { name = 'Manager',       payment = 125 },
+        ['4'] = { name = 'Owner',         payment = 125, isboss = true },
+    },
 },
 ```
 
@@ -572,408 +227,208 @@ Add the items into your server
 
 <details>
 
-<summary>QB Inventory</summary>
+<summary>Qbox — same job, grade keys without quotes</summary>
 
 ```lua
-['bs_zinger_burger'] = {['name'] = 'bs_zinger_burger', ['label'] = 'Zinger Burger', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_zinger_burger.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['bs_zinger_stacker'] = {['name'] = 'bs_zinger_stacker', ['label'] = 'Zinger Stacker', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_zinger_stacker.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['bs_kentucky_burger'] = {['name'] = 'bs_kentucky_burger', ['label'] = 'Kentucky Burger', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_kentucky_burger.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['bs_mighty_zinger'] = {['name'] = 'bs_mighty_zinger', ['label'] = 'Mighty Zinger', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_mighty_zinger.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['bs_twister'] = {['name'] = 'bs_twister', ['label'] = 'Twister', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_twister.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['bs_nuggets'] = {['name'] = 'bs_nuggets', ['label'] = 'Nuggets', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_nuggets.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['bs_wings'] = {['name'] = 'bs_wings', ['label'] = 'Wings', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_wings.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['bs_honey_wings'] = {['name'] = 'bs_honey_wings', ['label'] = 'Honey Wings', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_wings.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['bs_buffalo_wings'] = {['name'] = 'bs_buffalo_wings', ['label'] = 'Buffalo Wings', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_wings.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['bs_chicken_piece'] = {['name'] = 'bs_chicken_piece', ['label'] = 'Chicken Piece', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_chicken_piece.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['bs_fries'] = {['name'] = 'bs_fries', ['label'] = 'Fries', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_fries.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['bs_spicy_rice'] = {['name'] = 'bs_spicy_rice', ['label'] = 'Spicy Rice', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_spicy_rice.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['bs_piece'] = {['name'] = 'bs_piece', ['label'] = 'Piece', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_piece.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['bs_bun'] = {['name'] = 'bs_bun', ['label'] = 'Bun', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_bun.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['bs_jalapeno'] = {['name'] = 'bs_jalapeno', ['label'] = 'Jalapeno', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_jalapeno.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['bs_pepperoni'] = {['name'] = 'bs_pepperoni', ['label'] = 'Pepperoni', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_pepperoni.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['bs_cheese_slice'] = {['name'] = 'bs_cheese_slice', ['label'] = 'Cheese Slice', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_cheese_slice.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['bs_tortilla'] = {['name'] = 'bs_tortilla', ['label'] = 'Tortilla', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_tortilla.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['bs_tomato'] = {['name'] = 'bs_tomato', ['label'] = 'Tomato', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_tomato.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['bs_chicken'] = {['name'] = 'bs_chicken', ['label'] = 'Chicken', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_chicken.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['bs_honey'] = {['name'] = 'bs_honey', ['label'] = 'Honey', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_honey.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['bs_buffalo_sauce'] = {['name'] = 'bs_buffalo_sauce', ['label'] = 'Buggalo Sauce', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_buffalo_sauce.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['bs_potato'] = {['name'] = 'bs_potato', ['label'] = 'Potato', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_potato.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['bs_rice'] = {['name'] = 'bs_rice', ['label'] = 'Rice', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_rice.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['bs_mushroom_veggie_burger'] = {['name'] = 'bs_mushroom_veggie_burger', ['label'] = 'Mushroom Veggie Burger', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_mushroom_veggie_burger.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['bs_beef_patty'] = {['name'] = 'bs_beef_patty', ['label'] = 'Beef Patty', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_beef_patty.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['bs_mushroom'] = {['name'] = 'bs_mushroom', ['label'] = 'Mushroom', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_mushroom.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['bs_steakhouse_whooper'] = {['name'] = 'bs_steakhouse_whooper', ['label'] = 'Steakhouse Whooper', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_steakhouse_whooper.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['bs_fish_burger'] = {['name'] = 'bs_fish_burger', ['label'] = 'Fish Burger', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_fish_burger.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['bs_fish_fillet'] = {['name'] = 'bs_fish_fillet', ['label'] = 'Fish Fillet', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_fish_fillet.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['bs_double_cheese_burger'] = {['name'] = 'bs_double_cheese_burger', ['label'] = 'Dobule Cheese Burger', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_double_cheese_burger.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['bs_bbq_burger'] = {['name'] = 'bs_bbq_burger', ['label'] = 'BBQ Burger', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_bbq_burger.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['bs_bbq_sauce'] = {['name'] = 'bs_bbq_sauce', ['label'] = 'BBQ Sauce', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_bbq_sauce.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['bs_signature_whooper'] = {['name'] = 'bs_signature_whooper', ['label'] = 'Signature Whooper', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_signature_whooper.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['bs_whooper_jr'] = { ['name'] = 'bs_whooper_jr', ['label'] = 'Whooper JR', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_whooper_jr.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = '' },
-['bs_long_cheesy_onion_beef'] = { ['name'] = 'bs_long_cheesy_onion_beef', ['label'] = 'Long Cheesy Onion Beef', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_long_cheesy_onion_beef.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = '' },
-['bs_onion'] = { ['name'] = 'bs_onion', ['label'] = 'Onion', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_onion.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = '' },
-['bs_chillwave_cola'] = { ['name'] = 'bs_ochillwave_cola', ['label'] = 'ChillWave Cola', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_chillwave_cola.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = '' },
-['bs_fizzberry_splash'] = { ['name'] = 'bs_fizzberry_splash', ['label'] = 'FizzBerry Splash', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_fizzberry_splash.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = '' },
-['bs_lemonlush_soda'] = { ['name'] = 'bs_lemonlush_soda', ['label'] = 'LemonLush Soda', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_lemonlush_soda.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = '' },
-['bs_zesty_zing'] = { ['name'] = 'bs_zesty_zing', ['label'] = 'Zesty Zing', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_zesty_zing.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = '' },
-['bs_classic_salted_fries'] = { ['name'] = 'bs_classic_salted_fries', ['label'] = 'Classic Salted Fires', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_classic_salted_fries.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = '' },
-['bs_garlic_parmesan_fries'] = { ['name'] = 'bs_garlic_parmesan_fries', ['label'] = 'Garlic Parmesan Fries', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_garlic_parmesan_fries.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = '' },
-['bs_spicy_cajun_fries'] = { ['name'] = 'bs_spicy_cajun_fries', ['label'] = 'Spicy Cajun Fries', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_spicy_cajun_fries.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = '' },
-['bs_truffle_fries'] = { ['name'] = 'bs_truffle_fries', ['label'] = 'Truffle Fries', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_truffle_fries.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = '' },
-['bs_sweet_potato_fries'] = { ['name'] = 'bs_sweet_potato_fries', ['label'] = 'Sweet Potato Fries', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_sweet_potato_fries.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = '' },
-['bs_potatoes'] = { ['name'] = 'bs_potatoes', ['label'] = 'Potatoes', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_potatoes.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = '' },
-['bs_parmesan_cheese'] = { ['name'] = 'bs_parmesan_cheese', ['label'] = 'Parmesan Cheese', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_parmesan_cheese.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = '' },
-['bs_cajun_seasoning'] = { ['name'] = 'bs_cajun_seasoning', ['label'] = 'Cajun Seasoning', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_cajun_seasoning.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = '' },
-['bs_truffle_oil'] = { ['name'] = 'bs_truffle_oil', ['label'] = 'Truffle Oil', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_truffle_oil.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = '' },
-['bs_emptycup'] = { ['name'] = 'bs_emptycup', ['label'] = 'Empty Cup', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_emptycup.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = '' },
-['bs_icecubes'] = { ['name'] = 'bs_icecubes', ['label'] = 'Ice Cubes', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_icecubes.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = '' },
-['bs_waterbottle'] = { ['name'] = 'bs_waterbottle', ['label'] = 'Water Bottle', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_waterbottle.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = '' },
+['burgershot'] = {
+    label = 'BurgerShot',
+    defaultDuty = true,
+    grades = {
+        [0] = { name = 'Cashier',       payment = 50  },
+        [1] = { name = 'Cook',          payment = 75  },
+        [2] = { name = 'Shift Manager', payment = 100 },
+        [3] = { name = 'Manager',       payment = 125 },
+        [4] = { name = 'Owner',         payment = 125, isboss = true },
+    },
+},
 ```
+
+</details>
+
+ESX users: the job + grades are created automatically by the manual SQL in
+Step 6 (or by AutoInstallSQL).
+
+`Config.BossGrade` (default `4`) is the minimum grade that can use boss/
+management actions — match it to whichever grade number you make "Owner"/"Manager".
+
+***
+
+## Step 8 — Register items
+
+{% hint style="info" %}
+The v3 item catalog below is intentionally smaller than v2's — it's exactly
+the items `shared/recipe.lua` uses, plus a few standalone ingredients/utility
+items. The script now ships its own custom props (`pl_restaurant_props`), so
+v3 no longer depends on the external DJ Collections prop pack — register just
+the items below.
+{% endhint %}
+
+<details>
+
+<summary>ox_inventory — copy into ox_inventory/data/items.lua</summary>
+
+```lua
+-- CONSUMABLES
+["bs_classic_burger"] = {
+    label = "Classic Burger", weight = 1,
+    client = { status = { hunger = 200000 }, anim = 'eating', prop = 'burger', usetime = 2500, notification = 'You ate a delicious Classic Burger' },
+},
+["bs_cheese_burger"] = {
+    label = "Cheese Burger", weight = 1,
+    client = { status = { hunger = 200000 }, anim = 'eating', prop = 'burger', usetime = 2500, notification = 'You ate a delicious Cheese Burger' },
+},
+["bs_classic_fries"] = {
+    label = "Classic Fries", weight = 1,
+    client = { status = { hunger = 100000 }, anim = 'eating', prop = 'burger', usetime = 2500, notification = 'You ate some Classic Fries' },
+},
+["bs_cola"] = {
+    label = "BurgerShot Cola", weight = 1,
+    client = { status = { thirst = 200000 }, anim = { dict = 'mp_player_intdrink', clip = 'loop_bottle' }, prop = { model = `prop_ld_can_01`, pos = vec3(0.01, 0.01, 0.06), rot = vec3(5.0, 5.0, -180.5) }, usetime = 2500, notification = 'You drank a refreshing BurgerShot Cola' },
+},
+
+-- INGREDIENTS (not eaten directly — stack/close only)
+["bs_bun"]           = { label = "Burger Bun",   weight = 1, stack = true, close = true },
+["bs_beef_patty"]    = { label = "Beef Patty",   weight = 1, stack = true, close = true },
+["bs_cheese_slice"]  = { label = "Cheese Slice", weight = 1, stack = true, close = true },
+["bs_emptycup"]      = { label = "BurgerShot Empty Cup", weight = 1, stack = true, close = true },
+["bs_icecubes"]      = { label = "Ice Cubes",    weight = 1, stack = true, close = true },
+["bs_waterbottle"]   = { label = "Water Bottle", weight = 1, stack = true, close = true },
+["bs_grilled_patty"] = { label = "Grilled Patty",weight = 1, stack = true, close = true },
+["bs_frozen_fries"]  = { label = "Frozen Fries", weight = 1, stack = true, close = true },
+["bs_cooked_fries"]  = { label = "Cooked Fries", weight = 1, stack = true, close = true },
+
+-- Purchase receipt (each copy is its own order, so it does not stack)
+["bs_receipt"] = { label = "Receipt", weight = 1, stack = false, close = true },
+```
+
+Full file: `Installfolder/items-ox_inventory.lua`.
 
 </details>
 
 <details>
 
-<summary>Quasar Inventory</summary>
+<summary>qb-inventory — copy into qb-core/shared/items.lua</summary>
 
 ```lua
-['bs_zinger_burger'] = {['name'] = 'bs_zinger_burger', ['label'] = 'Zinger Burger', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_zinger_burger.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['bs_zinger_stacker'] = {['name'] = 'bs_zinger_stacker', ['label'] = 'Zinger Stacker', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_zinger_stacker.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['bs_kentucky_burger'] = {['name'] = 'bs_kentucky_burger', ['label'] = 'Kentucky Burger', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_kentucky_burger.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['bs_mighty_zinger'] = {['name'] = 'bs_mighty_zinger', ['label'] = 'Mighty Zinger', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_mighty_zinger.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['bs_twister'] = {['name'] = 'bs_twister', ['label'] = 'Twister', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_twister.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['bs_nuggets'] = {['name'] = 'bs_nuggets', ['label'] = 'Nuggets', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_nuggets.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['bs_wings'] = {['name'] = 'bs_wings', ['label'] = 'Wings', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_wings.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['bs_honey_wings'] = {['name'] = 'bs_honey_wings', ['label'] = 'Honey Wings', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_wings.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['bs_buffalo_wings'] = {['name'] = 'bs_buffalo_wings', ['label'] = 'Buffalo Wings', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_wings.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['bs_chicken_piece'] = {['name'] = 'bs_chicken_piece', ['label'] = 'Chicken Piece', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_chicken_piece.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['bs_fries'] = {['name'] = 'bs_fries', ['label'] = 'Fries', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_fries.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['bs_spicy_rice'] = {['name'] = 'bs_spicy_rice', ['label'] = 'Spicy Rice', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_spicy_rice.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['bs_piece'] = {['name'] = 'bs_piece', ['label'] = 'Piece', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_piece.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['bs_bun'] = {['name'] = 'bs_bun', ['label'] = 'Bun', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_bun.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['bs_jalapeno'] = {['name'] = 'bs_jalapeno', ['label'] = 'Jalapeno', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_jalapeno.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['bs_pepperoni'] = {['name'] = 'bs_pepperoni', ['label'] = 'Pepperoni', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_pepperoni.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['bs_cheese_slice'] = {['name'] = 'bs_cheese_slice', ['label'] = 'Cheese Slice', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_cheese_slice.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['bs_tortilla'] = {['name'] = 'bs_tortilla', ['label'] = 'Tortilla', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_tortilla.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['bs_tomato'] = {['name'] = 'bs_tomato', ['label'] = 'Tomato', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_tomato.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['bs_chicken'] = {['name'] = 'bs_chicken', ['label'] = 'Chicken', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_chicken.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['bs_honey'] = {['name'] = 'bs_honey', ['label'] = 'Honey', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_honey.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['bs_buffalo_sauce'] = {['name'] = 'bs_buffalo_sauce', ['label'] = 'Buggalo Sauce', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_buffalo_sauce.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['bs_potato'] = {['name'] = 'bs_potato', ['label'] = 'Potato', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_potato.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['bs_rice'] = {['name'] = 'bs_rice', ['label'] = 'Rice', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_rice.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['bs_mushroom_veggie_burger'] = {['name'] = 'bs_mushroom_veggie_burger', ['label'] = 'Mushroom Veggie Burger', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_mushroom_veggie_burger.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['bs_beef_patty'] = {['name'] = 'bs_beef_patty', ['label'] = 'Beef Patty', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_beef_patty.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['bs_mushroom'] = {['name'] = 'bs_mushroom', ['label'] = 'Mushroom', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_mushroom.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['bs_steakhouse_whooper'] = {['name'] = 'bs_steakhouse_whooper', ['label'] = 'Steakhouse Whooper', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_steakhouse_whooper.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['bs_fish_burger'] = {['name'] = 'bs_fish_burger', ['label'] = 'Fish Burger', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_fish_burger.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['bs_fish_fillet'] = {['name'] = 'bs_fish_fillet', ['label'] = 'Fish Fillet', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_fish_fillet.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['bs_double_cheese_burger'] = {['name'] = 'bs_double_cheese_burger', ['label'] = 'Dobule Cheese Burger', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_double_cheese_burger.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['bs_bbq_burger'] = {['name'] = 'bs_bbq_burger', ['label'] = 'BBQ Burger', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_bbq_burger.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['bs_bbq_sauce'] = {['name'] = 'bs_bbq_sauce', ['label'] = 'BBQ Sauce', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_bbq_sauce.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['bs_signature_whooper'] = {['name'] = 'bs_signature_whooper', ['label'] = 'Signature Whooper', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_signature_whooper.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = ''},
-['bs_whooper_jr'] = { ['name'] = 'bs_whooper_jr', ['label'] = 'Whooper JR', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_whooper_jr.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = '' },
-['bs_long_cheesy_onion_beef'] = { ['name'] = 'bs_long_cheesy_onion_beef', ['label'] = 'Long Cheesy Onion Beef', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_long_cheesy_onion_beef.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = '' },
-['bs_onion'] = { ['name'] = 'bs_onion', ['label'] = 'Onion', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_onion.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = '' },
-['bs_chillwave_cola'] = { ['name'] = 'bs_ochillwave_cola', ['label'] = 'ChillWave Cola', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_chillwave_cola.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = '' },
-['bs_fizzberry_splash'] = { ['name'] = 'bs_fizzberry_splash', ['label'] = 'FizzBerry Splash', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_fizzberry_splash.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = '' },
-['bs_lemonlush_soda'] = { ['name'] = 'bs_lemonlush_soda', ['label'] = 'LemonLush Soda', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_lemonlush_soda.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = '' },
-['bs_zesty_zing'] = { ['name'] = 'bs_zesty_zing', ['label'] = 'Zesty Zing', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_zesty_zing.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = '' },
-['bs_classic_salted_fries'] = { ['name'] = 'bs_classic_salted_fries', ['label'] = 'Classic Salted Fires', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_classic_salted_fries.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = '' },
-['bs_garlic_parmesan_fries'] = { ['name'] = 'bs_garlic_parmesan_fries', ['label'] = 'Garlic Parmesan Fries', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_garlic_parmesan_fries.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = '' },
-['bs_spicy_cajun_fries'] = { ['name'] = 'bs_spicy_cajun_fries', ['label'] = 'Spicy Cajun Fries', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_spicy_cajun_fries.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = '' },
-['bs_truffle_fries'] = { ['name'] = 'bs_truffle_fries', ['label'] = 'Truffle Fries', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_truffle_fries.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = '' },
-['bs_sweet_potato_fries'] = { ['name'] = 'bs_sweet_potato_fries', ['label'] = 'Sweet Potato Fries', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_sweet_potato_fries.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = '' },
-['bs_potatoes'] = { ['name'] = 'bs_potatoes', ['label'] = 'Potatoes', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_potatoes.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = '' },
-['bs_parmesan_cheese'] = { ['name'] = 'bs_parmesan_cheese', ['label'] = 'Parmesan Cheese', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_parmesan_cheese.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = '' },
-['bs_cajun_seasoning'] = { ['name'] = 'bs_cajun_seasoning', ['label'] = 'Cajun Seasoning', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_cajun_seasoning.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = '' },
-['bs_truffle_oil'] = { ['name'] = 'bs_truffle_oil', ['label'] = 'Truffle Oil', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_truffle_oil.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = '' },
-['bs_emptycup'] = { ['name'] = 'bs_emptycup', ['label'] = 'Empty Cup', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_emptycup.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = '' },
-['bs_icecubes'] = { ['name'] = 'bs_icecubes', ['label'] = 'Ice Cubes', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_icecubes.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = '' },
-['bs_waterbottle'] = { ['name'] = 'bs_waterbottle', ['label'] = 'Water Bottle', ['weight'] = 10, ['type'] = 'item', ['image'] = 'bs_waterbottle.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = '' },
+['bs_classic_burger'] = {['name']='bs_classic_burger', ['label']='Classic Burger', ['weight']=10, ['type']='item', ['image']='bs_classic_burger.png', ['unique']=false, ['useable']=true, ['shouldClose']=true, ['combinable']=nil, ['description']=''},
+['bs_cheese_burger']  = {['name']='bs_cheese_burger',  ['label']='Cheese Burger',  ['weight']=10, ['type']='item', ['image']='bs_cheese_burger.png',  ['unique']=false, ['useable']=true, ['shouldClose']=true, ['combinable']=nil, ['description']=''},
+['bs_classic_fries']  = {['name']='bs_classic_fries',  ['label']='Classic Fries',  ['weight']=10, ['type']='item', ['image']='bs_classic_fries.png',  ['unique']=false, ['useable']=true, ['shouldClose']=true, ['combinable']=nil, ['description']=''},
+['bs_cola']           = {['name']='bs_cola',           ['label']='BurgerShot Cola',['weight']=10, ['type']='item', ['image']='bs_cola.png',           ['unique']=false, ['useable']=true, ['shouldClose']=true, ['combinable']=nil, ['description']=''},
+
+['bs_bun']           = {['name']='bs_bun',           ['label']='Burger Bun',   ['weight']=10, ['type']='item', ['image']='bs_bun.png',           ['unique']=false, ['useable']=false, ['shouldClose']=true, ['combinable']=nil, ['description']=''},
+['bs_beef_patty']    = {['name']='bs_beef_patty',    ['label']='Beef Patty',   ['weight']=10, ['type']='item', ['image']='bs_beef_patty.png',    ['unique']=false, ['useable']=false, ['shouldClose']=true, ['combinable']=nil, ['description']=''},
+['bs_cheese_slice']  = {['name']='bs_cheese_slice',  ['label']='Cheese Slice', ['weight']=10, ['type']='item', ['image']='bs_cheese_slice.png',  ['unique']=false, ['useable']=false, ['shouldClose']=true, ['combinable']=nil, ['description']=''},
+['bs_emptycup']      = {['name']='bs_emptycup',      ['label']='Empty Cup',    ['weight']=10, ['type']='item', ['image']='bs_emptycup.png',      ['unique']=false, ['useable']=false, ['shouldClose']=true, ['combinable']=nil, ['description']=''},
+['bs_icecubes']      = {['name']='bs_icecubes',      ['label']='Ice Cubes',    ['weight']=10, ['type']='item', ['image']='bs_icecubes.png',      ['unique']=false, ['useable']=false, ['shouldClose']=true, ['combinable']=nil, ['description']=''},
+['bs_waterbottle']   = {['name']='bs_waterbottle',   ['label']='Water Bottle', ['weight']=10, ['type']='item', ['image']='bs_waterbottle.png',   ['unique']=false, ['useable']=false, ['shouldClose']=true, ['combinable']=nil, ['description']=''},
+['bs_grilled_patty'] = {['name']='bs_grilled_patty', ['label']='Grilled Patty',['weight']=10, ['type']='item', ['image']='bs_grilled_patty.png', ['unique']=false, ['useable']=false, ['shouldClose']=true, ['combinable']=nil, ['description']=''},
+['bs_frozen_fries']  = {['name']='bs_frozen_fries',  ['label']='Frozen Fries', ['weight']=10, ['type']='item', ['image']='bs_frozen_fries.png',  ['unique']=false, ['useable']=false, ['shouldClose']=true, ['combinable']=nil, ['description']=''},
+['bs_cooked_fries']  = {['name']='bs_cooked_fries',  ['label']='Cooked Fries', ['weight']=10, ['type']='item', ['image']='bs_cooked_fries.png',  ['unique']=false, ['useable']=false, ['shouldClose']=true, ['combinable']=nil, ['description']=''},
+
+-- Given to customers after checking out at the kiosk
+['bs_receipt'] = {['name']='bs_receipt', ['label']='Receipt', ['weight']=10, ['type']='item', ['image']='bs_receipt.png', ['unique']=true, ['useable']=true, ['shouldClose']=true, ['combinable']=nil, ['description']=''},
 ```
+
+Full file: `Installfolder/items-qb-inventory.lua`.
 
 </details>
 
 <details>
 
-<summary>ESX ITems Sql</summary>
+<summary>ESX — SQL insert</summary>
 
-```lua
+```sql
 INSERT INTO `items` (`name`, `label`, `weight`) VALUES
-	('bs_piece', 'Piece Label', 1),
-    ('bs_bun', 'Bun Label', 1),
-    ('bs_jalapeno', 'Jalapeno Label', 1),
-    ('bs_pepperoni', 'Pepperoni Label', 1),
-    ('bs_cheese_slice', 'Cheese Slice Label', 1),
-    ('bs_tortilla', 'Tortilla Label', 1),
-    ('bs_tomato', 'Tomato Label', 1),
-    ('bs_chicken', 'Chicken Label', 1),
-    ('bs_honey', 'Honey Label', 1),
-    ('bs_buffalo_sauce', 'Buffalo Sauce Label', 1),
-    ('bs_potato', 'Potato Label', 1),
-    ('bs_rice', 'Rice Label', 1),
-    ('bs_beef_patty', 'Beef Patty Label', 1),
-    ('bs_mushroom', 'Mushroom Label', 1),
-    ('bs_fish_fillet', 'Fish Fillet Label', 1),
-    ('bs_bbq_sauce', 'BBQ Sauce Label', 1),
-    ('bs_onion', 'Onion Label', 1),
-    ('bs_parmesan_cheese', 'Parmesan Cheese Label', 1),
-    ('bs_cajun_seasoning', 'Cajun Seasoning Label', 1),
-    ('bs_truffle_oil', 'Truffle Oil Label', 1),
-    ('bs_zinger_burger', 'Zinger Burger', 1),
-    ('bs_zinger_stacker', 'Zinger Stacker', 1),
-    ('bs_kentucky_burger', 'Kentucky Burger', 1),
-    ('bs_mighty_zinger', 'Mighty Zinger', 1),
-    ('bs_twister', 'Twister', 1),
-    ('bs_nuggets', 'Nuggets', 1),
-    ('bs_wings', 'Wings', 1),
-    ('bs_honey_wings', 'Honey Wings', 1),
-    ('bs_buffalo_wings', 'Buffalo Wings', 1),
-    ('bs_chicken_piece', 'Chicken Piece', 1),
-    ('bs_spicy_rice', 'Spicy Rice', 1),
-    ('bs_mushroom_veggie_burger', 'Mushroom Veggie Burger', 1),
-    ('bs_steakhouse_whooper', 'Steakhouse Whooper', 1),
-    ('bs_fish_burger', 'Fish Burger', 1),
-    ('bs_double_cheese_burger', 'Double Cheese Burger', 1),
-    ('bs_bbq_burger', 'BBQ Burger', 1),
-    ('bs_signature_whooper', 'Signature Whooper', 1),
-    ('bs_whooper_jr', 'Whooper Jr', 1),
-    ('bs_long_cheesy_onion_beef', 'Long Cheesy Onion Beef', 1),
-    ('bs_chillwave_cola', 'Chillwave Cola', 1),
-    ('bs_fizzberry_splash', 'Fizzberry Splash', 1),
-    ('bs_lemonlush_soda', 'Lemonlush Soda', 1),
-    ('bs_classic_salted_fries', 'Classic Salted Fries', 1),
-    ('bs_garlic_parmesan_fries', 'Garlic Parmesan Fries', 1),
-    ('bs_spicy_cajun_fries', 'Spicy Cajun Fries', 1),
-    ('bs_truffle_fries', 'Truffle Fries', 1),
-    ('bs_sweet_potato_fries', 'Sweet Potato Fries', 1),
-    ('bs_emptycup', 'EmptyCup', 1),
- ('bs_zesty_zing', 'Zesty Zing', 1),
-    ('bs_icecubes', 'Ice Cubes', 1),
-    ('bs_waterbottle', 'Water Bottle', 1);
+    ('bs_classic_burger', 'Classic Burger', 1),
+    ('bs_cheese_burger',  'Cheese Burger',  1),
+    ('bs_classic_fries',  'Classic Fries',  1),
+    ('bs_cola',           'BurgerShot Cola',1),
+    ('bs_frozen_fries',   'Frozen Fries',   1),
+    ('bs_cooked_fries',   'Cooked Fries',   1),
+    ('bs_bun',            'Burger Bun',     1),
+    ('bs_beef_patty',     'Beef Patty',     1),
+    ('bs_cheese_slice',   'Cheese Slice',   1),
+    ('bs_emptycup',       'Empty Cup',      1),
+    ('bs_icecubes',       'Ice Cubes',      1),
+    ('bs_waterbottle',    'Water Bottle',   1),
+    ('bs_grilled_patty',  'Grilled Patty',  1),
+    ('bs_receipt',        'Receipt',        1);
 ```
 
 </details>
 
-### For QBCore Only
+### Item images
 
-{% tabs %}
-{% tab title="jobs.lua" %}
-Add the Following in qb-core/shared/jobs.lua
+The kiosk/fridge/display NUI reads its icons straight from
+`web/assets/items/` via `Config.ImagesPath` — nothing to do there. Your
+**inventory's own UI** (the item icon shown in a player's inventory slots,
+hotbar, etc.) is separate and reads from its own image folder, so you still
+need to copy the icons from `pl_burgershot/Installfolder/images/` into it:
 
-```lua
-['burgershot'] = {
-    label = 'BurgerShot',
-    defaultDuty = true,
-    grades = {
-        ['0'] = {
-            name = 'Cashier',
-            payment = 50
-        },
-        ['1'] = {
-            name = 'Cook',
-            payment = 75
-        },
-        ['2'] = {
-            name = 'Shift Manager',
-            payment = 100
-        },
-        ['3'] = {
-            name = 'Manager',
-            payment = 125,
-        },
-        ['4'] = {
-            name = 'Owner',
-            payment = 125,
-            isboss = true,
-        },
-    },
-},
-```
+| Inventory | Copy the images into |
+|---|---|
+| `ox_inventory` | `ox_inventory/web/images/` |
+| `qb-inventory` | `qb-inventory/html/images/` |
 
-Added in Qbox->shared->jobs.lua
+`Installfolder/images/` contains one `.png` per core item (matching the item
+names above, including `bs_receipt.png` for the receipt) — drop all of them
+in, don't rename anything.
 
-```lua
-['burgershot'] = {
-    label = 'BurgerShot',
-    defaultDuty = true,
-    grades = {
-        [0] = {
-            name = 'Cashier',
-            payment = 50
-        },
-        [1] = {
-            name = 'Cook',
-            payment = 75
-        },
-        [2] = {
-            name = 'Shift Manager',
-            payment = 100
-        },
-        [3] = {
-            name = 'Manager',
-            payment = 125,
-        },
-        [4] = {
-            name = 'Owner',
-            payment = 125,
-            isboss = true,
-        },
-    },
-},
-```
-{% endtab %}
-{% endtabs %}
+***
 
-### Consumables
+## Step 9 — Optional: delivery app
+
+If you want customers to order (and staff to deliver) BurgerShot food from a
+phone, install the companion **`pl_restaurantapp`** resource (lb-phone or
+gksphone builds — see its own documentation) and add an entry for
+`"burgershot"` to its `Config.Restaurants`, with `dbTable = "pl_burgershot"`
+matching `Config.DBTable` here exactly.
+
+***
+
+## Common pitfalls
 
 <details>
+<summary>Food/kiosk props are invisible or wrong-looking</summary>
 
-<summary>QB Smallresources</summary>
-
-Add in qb-smallresourcse/config.lua
-
-```lua
---If using old qb-smallresources
-Config.ConsumablesDrink = {
-    ['bs_chillwave_cola'] = math.random(35, 54),
-    ['bs_fizzberry_splash'] = math.random(35, 54),
-    ['bs_lemonlush_soda'] = math.random(35, 54),
-    ['bs_zesty_zing'] = math.random(35, 54),
-}
-
-Config.ConsumablesEat = {
-    ['bs_zinger_burger'] = math.random(35, 54),
-    ['bs_zinger_stacker'] = math.random(35, 54),
-    ['bs_kentucky_burger'] = math.random(35, 54),
-    ['bs_mighty_zinger'] = math.random(35, 54),
-    ['bs_mushroom_veggie_burger'] = math.random(35, 54),
-    ['bs_steakhouse_whooper'] = math.random(35, 54),
-    ['bs_fish_burger'] = math.random(35, 54),
-    ['bs_double_cheese_burger'] = math.random(35, 54),
-    ['bs_bbq_burger'] = math.random(35, 54),
-    ['bs_signature_whooper'] = math.random(35, 54),
-    ['bs_whooper_jr'] = math.random(35, 54),
-    ['bs_long_cheesy_onion_beef'] = math.random(35, 54),
-
-    ['bs_classic_salted_fries'] = math.random(35, 54),
-    ['bs_garlic_parmesan_fries'] = math.random(35, 54),
-    ['bs_spicy_cajun_fries'] = math.random(35, 54),
-    ['bs_truffle_fries'] = math.random(35, 54),
-    ['bs_sweet_potato_fries'] = math.random(35, 54),
-    ['bs_twister'] = math.random(35, 54),
-    ['bs_nuggets'] = math.random(35, 54),
-    ['bs_wings'] = math.random(35, 54),
-    ['bs_honey_wings'] = math.random(35, 54),
-    ['bs_buffalo_wings'] = math.random(35, 54),
-    ['bs_chicken_piece'] = math.random(35, 54),
-    ['bs_spicy_rice'] = math.random(35, 54),
-}
-
---If using new qb-smallresources
-Config.Consumables = {
-    eat = {
-        ['bs_zinger_burger'] = math.random(35, 54), 
-        ['bs_zinger_stacker'] = math.random(35, 54),
-        ['bs_kentucky_burger'] = math.random(35, 54),
-        ['bs_mighty_zinger'] = math.random(35, 54),
-        ['bs_mushroom_veggie_burger'] = math.random(35, 54),
-        ['bs_steakhouse_whooper'] = math.random(35, 54),
-        ['bs_fish_burger'] = math.random(35, 54),
-        ['bs_double_cheese_burger'] = math.random(35, 54),
-        ['bs_bbq_burger'] = math.random(35, 54),
-        ['bs_signature_whooper'] = math.random(35, 54),
-        ['bs_whooper_jr'] = math.random(35, 54),
-        ['bs_long_cheesy_onion_beef'] = math.random(35, 54),
-
-        ['bs_classic_salted_fries'] = math.random(35, 54),
-        ['bs_garlic_parmesan_fries'] = math.random(35, 54),
-        ['bs_spicy_cajun_fries'] = math.random(35, 54),
-        ['bs_truffle_fries'] = math.random(35, 54),
-        ['bs_sweet_potato_fries'] = math.random(35, 54),
-        ['bs_twister'] = math.random(35, 54),
-        ['bs_nuggets'] = math.random(35, 54),
-        ['bs_wings'] = math.random(35, 54),
-        ['bs_honey_wings'] = math.random(35, 54),
-        ['bs_buffalo_wings'] = math.random(35, 54),
-        ['bs_chicken_piece'] = math.random(35, 54),
-        ['bs_spicy_rice'] = math.random(35, 54),
-    },
-    drink = {
-        ['bs_chillwave_cola'] = math.random(35, 54),
-        ['bs_fizzberry_splash'] = math.random(35, 54),
-        ['bs_lemonlush_soda'] = math.random(35, 54),
-        ['bs_zesty_zing'] = math.random(35, 54),
-    },
-}
-```
-
+`pl_restaurant_props` isn't installed or isn't started before `pl_burgershot`.
+See Step 3.
 </details>
 
 <details>
+<summary>No sizzle/pour sound</summary>
 
-<summary>Jim Consumables</summary>
-
-Add the following in jim-consumables/shared/consumables.lua
-
-```lua
---jim-consumables/shared/consumables.lua
-bs_zinger_burger = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20), }},
-bs_zinger_stacker = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20), }},
-bs_kentucky_burger = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20), }},
-bs_mighty_zinger = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20), }},
-bs_mushroom_veggie_burger = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20), }},
-bs_steakhouse_whooper = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20), }},
-bs_fish_burger = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20), }},
-bs_double_cheese_burger = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20), }},
-bs_bbq_burger = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20), }},
-bs_signature_whooper = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20), }},
-bs_whooper_jr = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20), }},
-bs_long_cheesy_onion_beef = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20), }},
-bs_classic_salted_fries = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20), }},
-bs_garlic_parmesan_fries = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20), }},
-bs_spicy_cajun_fries = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20), }},
-bs_truffle_fries = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20), }},
-bs_sweet_potato_fries = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20), }},
-bs_twister = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20), }},
-bs_nuggets = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20), }},
-bs_wings = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20), }},
-bs_honey_wings = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20), }},
-bs_buffalo_wings = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20), }},
-bs_chicken_piece = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20), }},
-bs_spicy_rice = { emote = "burger", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20), }},
-bs_chillwave_cola = { emote = "drink", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20), }},
-bs_fizzberry_splash = { emote = "drink", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20), }},
-bs_lemonlush_soda = { emote = "drink", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20), }},
-bs_zesty_zing = { emote = "drink", canRun = false, time = math.random(5000, 6000), stress = math.random(1, 2), heal = 0, armor = 0, type = "food",stats = { hunger = math.random(10,20), }},
-```
-
+Either you don't have `xsound` installed (expected — it's optional and fails
+silently), or you have it but haven't copied the 3 files from
+`Installfolder/sounds/` into it. See Step 3.
 </details>
 
-### Add Images to Inventory
+<details>
+<summary>Carry/cooking animations don't play, or the player just stands still</summary>
 
-Copy all the Images folder and paste it in your inventory Images folder
+The custom `.ycd` animation dictionaries from `Installfolder/animations/`
+haven't been registered in your emote resource. See Step 3.
+</details>
 
-### Livery
+<details>
+<summary>Items show up in the inventory UI with no icon/a broken image</summary>
 
-Download the vehicle and livery from the below links and install. Make sure to add the .ytd file from the livery into the resource.
+The `.png` files from `Installfolder/images/` haven't been copied into your
+inventory's own image folder yet — this is separate from the NUI icons the
+kiosk/fridge already load automatically. See [Step 8 → Item images](installation.md#item-images).
+</details>
 
-Vehicle - [Download](https://www.gta5-mods.com/vehicles/vapid-speedo-express-add-on-liveries)
+<details>
+<summary>Everything silently doesn't work — no target prompts, no notifications</summary>
 
-Livery - [Download](https://www.gta5-mods.com/paintjobs/vapid-speedo-express-burgershot-livery)
+`pl_lib` isn't installed, isn't started, or is started **after**
+`pl_burgershot` in `server.cfg`. Start order matters.
+</details>
 
-### Log Webook Setup - Optional
+<details>
+<summary>Blip/props/grill appear in the wrong spot, or "Config.location" errors</summary>
 
-To enable discord logs make sure to add your webhook in the server->Log.lua File
-
-{% embed url="https://www.youtube.com/watch?pp=ygULI2FwcHlxczIwMjM=&v=fKksxz2Gdnc" %}
-
-### Optional Dj Custom Props
-
-If you have purchased the DJ Burgershot Props [https://djscollections.com/package/6098332](https://djscollections.com/package/6098332) just install it and set the Config.UseDjItems = true
-
-<figure><img src="../../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
-
-### Video of Installation:
-
-{% embed url="https://www.youtube.com/watch?v=rkWxUxoF3_s" %}
+`Config.location` doesn't match the map pack you actually have running, or (if
+using `'auto'`) the resource name in `Config.LocationResources` doesn't match
+your map pack's real resource folder name.
+</details>
