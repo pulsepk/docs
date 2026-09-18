@@ -1,4 +1,4 @@
-# Preview Config
+# ⚙️ Preview Config
 
 The full, real `shared/config.lua` as of v3.0.0, with the in-file comments
 preserved. If you're looking for what a specific setting *does* rather than
