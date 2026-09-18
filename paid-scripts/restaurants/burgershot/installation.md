@@ -1,4 +1,4 @@
-# Installation
+# 🧰 Installation
 
 {% hint style="info" %}
 Upgrading from v2? Read [What's New in v3](whats-new-v3.md) first — several

@@ -22,6 +22,10 @@
 
 ## Paid Scripts
 
+* [📱 RestaurantApp](restaurantapp/README.md)
+  * [🧰 Installation](restaurantapp/installation.md)
+  * [🔌 Integration Guide](restaurantapp/integration-guide.md)
+  * [🎨 UI Customization](restaurantapp/ui-customization.md)
 * [💰 Drug Dealer V2](paid-scripts/drugdealer/README.md)
   * [Installation](paid-scripts/drugdealer/installation.md)
   * [Config File](paid-scripts/drugdealer/config-file.md)
@@ -46,7 +50,7 @@
     * [Common Issues](paid-scripts/restaurants/uwu-cat-cafe/common-issues.md)
   * [🍔 BurgerShot](paid-scripts/restaurants/burgershot/README.md)
     * [🆕 What's New in v3](paid-scripts/restaurants/burgershot/whats-new-v3.md)
-    * [Installation](paid-scripts/restaurants/burgershot/installation.md)
+    * [🧰 Installation](paid-scripts/restaurants/burgershot/installation.md)
     * [🔍 Feature Guide](paid-scripts/restaurants/burgershot/feature-guide.md)
     * [🔌 Exports & Events](paid-scripts/restaurants/burgershot/exports-and-events.md)
     * [🛠️ Customization Guide](paid-scripts/restaurants/burgershot/customization.md)
