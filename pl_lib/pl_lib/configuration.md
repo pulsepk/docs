@@ -68,10 +68,6 @@ PLLib.Dispatch = 'autodetect'
 -- 'autodetect' | 'esx_skin' | 'illenium-appearance' | 'fivem-appearance'
 --             | 'qb-clothing' | 'tgiann-clothing' | 'rcore_clothing'
 PLLib.Clothing = 'autodetect'
-
--- Phone resource
--- 'autodetect' | 'lb-phone' | 'gksphone'
-PLLib.Phone = 'autodetect'
 ```
 
 ***

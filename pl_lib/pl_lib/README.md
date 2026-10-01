@@ -28,7 +28,6 @@ All Pulse scripts use pl\_lib as their foundation. If you are a developer, you c
 | **Fuel**             | `SetVehicleFuel` across LegacyFuel, ox\_fuel, cdn-fuel, and more                         |
 | **Keys**             | `GiveVehicleKeys` across qb-vehiclekeys, wasabi\_carlock, and more                       |
 | **Appearance**       | `SetPlayerUniform`, `RevertPlayerClothing`                                               |
-| **Phone**            | `ShowPhoneNotification`, `SendPhoneNotification`, `GetPlayerPhoneNumber`, `SendPhoneMessage` |
 | **Logger**           | `Log()` to Discord webhooks, fivemanage, or fivemerr                                     |
 
 ***
@@ -49,7 +48,6 @@ All Pulse scripts use pl\_lib as their foundation. If you are a developer, you c
 | **Clothing**        | esx\_skin, illenium-appearance, fivem-appearance, qb-clothing, tgiann-clothing, rcore\_clothing                                  |
 | **Fuel**            | LegacyFuel, cdn-fuel, okokGasStation, rcore\_fuel, ox\_fuel                                                                      |
 | **Vehicle Keys**    | qb-vehiclekeys, wasabi\_carlock, qs-vehiclekeys, vehicles\_keys                                                                  |
-| **Phone**           | lb-phone, gksphone                                                                                                               |
 
 ***
 
